@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvilCrowRF V2 - Product Specification Sheet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --border: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --primary: #818cf8;
+            --primary-dark: #6366f1;
+            --accent: #f472b6;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1f1f1f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --border: #2a2a2a;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background-color: var(--bg-primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        [data-theme="dark"] .page {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 9px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .gradient-header * {
+            color: white !important;
+        }
+
+        .gradient-header h1 {
+            font-size: 21px;
+            margin: 0 0 3px 0;
+            font-weight: 700;
+        }
+
+        .gradient-header p {
+            font-size: 9px;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .section {
+            margin-bottom: 7px;
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            font-size: 7px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 5px;
+            background-color: var(--bg-secondary);
+            border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 7px;
+            font-size: 7px;
+            font-weight: 600;
+            margin-right: 3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .warning-badge {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 7px;
+            font-weight: 600;
+            margin: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            font-size: 7px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            outline: none;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 10px;
+            font-size: 6.5px;
+            line-height: 1.3;
+        }
+
+        ul li {
+            margin: 1px 0;
+        }
+
+        .chip-card {
+            text-align: center;
+            padding: 4px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 6.5px;
+        }
+
+        .chip-icon {
+            font-size: 10px;
+            color: var(--primary);
+            margin-bottom: 1px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            padding: 6px;
+            margin-bottom: 8px;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: white !important; margin: 0; padding: 0; }
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; page-break-after: avoid; }
+            .no-print { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
+            .grid-2, .grid-3, .grid-4, .grid-5, .two-column { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </div>
+
+    <button class="print-btn no-print" onclick="printPage()">
+        <i class="fas fa-print"></i> Print
+    </button>
+
+    <div class="page">
+        <div class="gradient-header">
+            <h1>EvilCrowRF V2 Transceiver</h1>
+            <p>Professional RF Security Testing Tool | Dual CC1101 Modules | WiFi Web Interface | Pentesting & Red Team</p>
+            <div style="margin-top: 5px;">
+                <span class="badge">Dual CC1101</span>
+                <span class="badge">NRF24L01</span>
+                <span class="badge">WiFi Config</span>
+                <span class="badge">Multi-Band</span>
+                <span class="badge">TX/RX</span>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <div style="font-size: 7px; text-align: center; font-weight: 700; color: #dc2626;">
+                <i class="fas fa-exclamation-triangle"></i> LEGAL NOTICE & RESPONSIBLE USE
+            </div>
+            <div style="font-size: 6.5px; line-height: 1.3; margin-top: 3px; text-align: center;">
+                This device is designed exclusively for authorized security testing, educational purposes, and research. Transmission of radio signals may be regulated or prohibited in your jurisdiction. Users are solely responsible for ensuring compliance with all applicable laws and regulations. Unauthorized transmission or reception of signals may be illegal. For authorized penetration testing and Red Team operations only.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-info-circle"></i> Product Overview</div>
+            <p style="font-size: 7px; margin: 0; line-height: 1.25;">Professional radiofrequency security testing device designed for penetration testing and Red Team operations. Features dual independently configurable CC1101 RF modules plus NRF24L01 module for comprehensive RF security assessment. Web-based configuration interface via WiFi enables easy setup and operation. Supports signal reception, transmission, replay, and analysis across multiple frequency bands. Pre-flashed with basic firmware, ready for immediate deployment in authorized security testing environments.</p>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-broadcast-tower"></i> RF Specifications</div>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Band 1</span>
+                        <span class="spec-value">300-348 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Band 2</span>
+                        <span class="spec-value">387-464 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Band 3</span>
+                        <span class="spec-value">779-928 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Band 4</span>
+                        <span class="spec-value">2.4 GHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">RF Module 1</span>
+                        <span class="spec-value">CC1101</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">RF Module 2</span>
+                        <span class="spec-value">CC1101</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">2.4G Module</span>
+                        <span class="spec-value">NRF24L01</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Config</span>
+                        <span class="spec-value">WiFi Web</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Mode</span>
+                        <span class="spec-value">TX/RX Dual</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-microchip"></i> Hardware Architecture</div>
+                <div class="grid-3">
+                    <div class="card" style="font-size: 6.5px; text-align: center;">
+                        <i class="fas fa-wifi" style="color: var(--primary); font-size: 10px;"></i>
+                        <div style="font-weight: 700; margin-top: 2px;">CC1101 #1</div>
+                        <div style="color: var(--text-secondary);">Independent Config</div>
+                    </div>
+                    <div class="card" style="font-size: 6.5px; text-align: center;">
+                        <i class="fas fa-wifi" style="color: var(--primary); font-size: 10px;"></i>
+                        <div style="font-weight: 700; margin-top: 2px;">CC1101 #2</div>
+                        <div style="color: var(--text-secondary);">Simultaneous Op</div>
+                    </div>
+                    <div class="card" style="font-size: 6.5px; text-align: center;">
+                        <i class="fas fa-broadcast-tower" style="color: var(--primary); font-size: 10px;"></i>
+                        <div style="font-weight: 700; margin-top: 2px;">NRF24L01</div>
+                        <div style="color: var(--text-secondary);">2.4 GHz Module</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-cogs"></i> Core Capabilities</div>
+            <div class="grid-5">
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-tower-broadcast" style="color: var(--primary); font-size: 11px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Signal Receiver</div>
+                    <div style="color: var(--text-secondary);">RF Signal Capture</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-satellite-dish" style="color: var(--primary); font-size: 11px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Signal Transmitter</div>
+                    <div style="color: var(--text-secondary);">RF TX Capability</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-redo" style="color: var(--primary); font-size: 11px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Signal Replay</div>
+                    <div style="color: var(--text-secondary);">Capture & Retransmit</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-chart-line" style="color: var(--primary); font-size: 11px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">URH Parse</div>
+                    <div style="color: var(--text-secondary);">Signal Analysis</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-mouse" style="color: var(--primary); font-size: 11px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Mousejacking</div>
+                    <div style="color: var(--text-secondary);">HID Testing</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-star"></i> Key Features</div>
+                <ul>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Dual RF Modules:</strong> Two independent CC1101 transceivers</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Simultaneous Operation:</strong> TX/RX on different frequencies</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Multi-Band:</strong> 300MHz to 2.4GHz coverage</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>WiFi Interface:</strong> Web-based configuration panel</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Pre-Flashed:</strong> Ready-to-use firmware included</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Compact Design:</strong> Portable testing platform</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>URH Compatible:</strong> Universal Radio Hacker support</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-wrench"></i> Configuration & Control</div>
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; margin-bottom: 2px;">WiFi Web Panel Interface</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        <strong>Easy Setup:</strong> Connect via WiFi hotspot<br>
+                        <strong>Web Dashboard:</strong> Browser-based configuration<br>
+                        <strong>Module Control:</strong> Configure both CC1101 independently<br>
+                        <strong>Function Selection:</strong> Choose RX, TX, replay modes<br>
+                        <strong>Frequency Settings:</strong> Set custom frequencies per module<br>
+                        <strong>Signal Management:</strong> Save and load captured signals<br>
+                        <strong>Real-time Monitoring:</strong> Live RF activity display
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-shield-alt"></i> Security Testing Applications</div>
+            <div class="grid-3" style="font-size: 6.5px;">
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-user-secret"></i> Penetration Testing</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • Wireless security assessment<br>
+                        • RF vulnerability discovery<br>
+                        • Access control testing<br>
+                        • Remote keyless entry evaluation
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-users-cog"></i> Red Team Operations</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • Physical security assessments<br>
+                        • Wireless attack simulations<br>
+                        • RF-based social engineering<br>
+                        • Security control validation
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-graduation-cap"></i> Research & Education</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • RF protocol analysis<br>
+                        • Security training exercises<br>
+                        • IoT device testing<br>
+                        • Wireless communication study
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-wave-square"></i> Supported RF Protocols & Technologies</div>
+            <div class="grid-4" style="font-size: 6.5px;">
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-key" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Remote Controls</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">OOK/ASK/FSK</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-car" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Car Keys</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">RKE Systems</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-door-open" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Gate Openers</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Garage/Access</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-bell" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Alarm Systems</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Wireless Sensors</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-thermometer-half" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">IoT Devices</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Smart Home</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-tachometer-alt" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">TPMS</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Tire Pressure</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-mouse" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Wireless HID</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">2.4GHz Devices</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-weather-sun" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Weather Stations</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">433/915 MHz</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-award"></i> Technical Advantages</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Dual Module:</strong> 2x CC1101</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Independent:</strong> Simultaneous Op</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Multi-Band:</strong> 4 Freq Ranges</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>WiFi Config:</strong> Easy Setup</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>NRF24:</strong> 2.4GHz Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Portable:</strong> Compact Size</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Pre-Flashed:</strong> Ready to Use</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>URH:</strong> Analysis Tools</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-box"></i> Package & Usage</div>
+                <div style="font-size: 6.5px; line-height: 1.4;">
+                    <div style="font-weight: 600; margin-bottom: 2px;">Included:</div>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x EvilCrowRF V2 Device<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Pre-flashed Firmware<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Basic Documentation<br>
+
+                    <div style="font-weight: 600; margin-top: 4px; margin-bottom: 2px;">Requirements:</div>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> WiFi-capable device (PC/phone/tablet)<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> Web browser for configuration<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> Optional: URH software for analysis<br>
+
+                    <div style="font-weight: 600; margin-top: 4px; margin-bottom: 2px;">Recommended:</div>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> External antennas for better range<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> USB power bank for portable use<br>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box" style="margin-top: 6px;">
+            <div style="font-size: 6.5px; line-height: 1.3; text-align: center;">
+                <div style="font-weight: 700; color: #dc2626; margin-bottom: 2px;">
+                    <i class="fas fa-gavel"></i> LEGAL & ETHICAL RESPONSIBILITY
+                </div>
+                <strong>For Authorized Testing Only:</strong> This tool must only be used on systems and frequencies you own or have explicit written authorization to test.
+                <strong>Regulatory Compliance:</strong> Radio transmission is regulated by FCC, ETSI, and other authorities worldwide. Verify legal compliance before transmission.
+                <strong>Professional Use:</strong> Designed for security professionals, researchers, and authorized testers conducting legitimate security assessments with proper authorization.
+            </div>
+        </div>
+
+        <div style="border-top: 2px solid var(--border); margin-top: 5px; padding-top: 5px; font-size: 6.5px; text-align: center; color: var(--text-secondary);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div><strong>OpenSourceSDR Lab</strong> | EvilCrowRF V2 | Professional RF Security Testing Platform</div>
+                <div>
+                    <i class="fas fa-shield-alt"></i> For Authorized Security Testing Only | <i class="fas fa-graduation-cap"></i> Educational & Research Use
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function printPage() {
+            try {
+                window.print();
+            } catch (e) {
+                alert('Unable to print. Please use Ctrl+P or Cmd+P.');
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const icon = document.getElementById('theme-icon');
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+            document.documentElement.setAttribute('data-theme', theme);
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        document.addEventListener('DOMContentLoaded', initTheme);
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const theme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                printPage();
+            }
+        });
+    </script>
+</body>
+</html>
