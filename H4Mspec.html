@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
 
@@ -8,79 +8,63 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SDRLab H4M Mayhem - Product Specifications</title>
+    <title>SDRLab H4M Mayhem - Product Specification Sheet</title>
 
-    <meta name="description" content="Professional SDR Kit with 1MHz-6GHz range, Mayhem firmware, and comprehensive signal processing capabilities">
-
- 
-
-    <!-- Tailwind CSS -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
- 
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
- 
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
 
-        * {
-
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-        }
+        * { font-family: 'Inter', sans-serif; }
 
  
 
         :root {
 
-            --primary: #5E6AD2;
+            --primary: #6366f1;
 
-            --primary-dark: #4C56C4;
+            --primary-dark: #4f46e5;
 
-            --accent: #8B5CF6;
+            --accent: #ec4899;
 
-            --bg-light: #FFFFFF;
+            --bg-primary: #ffffff;
 
-            --bg-light-secondary: #FAFBFC;
+            --bg-secondary: #f8f9fa;
 
-            --text-light: #0F1419;
+            --bg-tertiary: #f1f3f5;
 
-            --text-light-secondary: #6B7280;
+            --text-primary: #1a1a1a;
 
-            --border-light: #E5E7EB;
+            --text-secondary: #6b7280;
+
+            --text-tertiary: #9ca3af;
+
+            --border: #e5e7eb;
 
         }
 
  
 
-        .dark {
+        [data-theme="dark"] {
 
-            --bg-dark: #0A0A0F;
+            --primary: #818cf8;
 
-            --bg-dark-secondary: #13131A;
+            --primary-dark: #6366f1;
 
-            --bg-dark-tertiary: #1A1A24;
+            --accent: #f472b6;
 
-            --text-dark: #F5F5F7;
+            --bg-primary: #0a0a0a;
 
-            --text-dark-secondary: #9CA3AF;
+            --bg-secondary: #141414;
 
-            --border-dark: #27272A;
+            --bg-tertiary: #1f1f1f;
+
+            --text-primary: #f5f5f5;
+
+            --text-secondary: #a1a1aa;
+
+            --text-tertiary: #71717a;
+
+            --border: #2a2a2a;
 
         }
 
@@ -88,419 +72,313 @@
 
         body {
 
-            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
 
-            transition: background-color 0.3s ease, color 0.3s ease;
+            color: var(--text-primary);
 
-        }
+            transition: all 0.3s ease;
 
- 
+            margin: 0;
 
-        .light-mode {
-
-            background-color: var(--bg-light);
-
-            color: var(--text-light);
+            padding: 20px;
 
         }
 
  
 
-        .dark-mode {
+        .page {
 
-            background-color: var(--bg-dark);
+            width: 210mm;
 
-            color: var(--text-dark);
+            height: 297mm;
 
-        }
+            margin: 20px auto;
 
- 
+            background-color: var(--bg-primary);
 
-        /* Hero gradient - Linear App style */
-
-        .hero-gradient {
-
-            background: linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 50%, #A855F7 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
             position: relative;
 
             overflow: hidden;
 
-        }
-
- 
-
-        .hero-gradient::before {
-
-            content: '';
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            right: 0;
-
-            bottom: 0;
-
-            background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-
-                        radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.2) 0%, transparent 50%);
-
-            animation: gradientShift 10s ease infinite;
+            padding: 15px;
 
         }
 
  
 
-        @keyframes gradientShift {
+        [data-theme="dark"] .page {
 
-            0%, 100% { opacity: 1; transform: scale(1); }
-
-            50% { opacity: 0.8; transform: scale(1.1); }
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
         }
 
  
 
-        /* Card styles - Linear inspired */
+        .gradient-header {
 
-        .card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
 
-            border: 1px solid var(--border-light);
+            padding: 15px;
 
-            background-color: var(--bg-light);
+            border-radius: 8px;
 
-        }
+            margin-bottom: 10px;
 
- 
+            -webkit-print-color-adjust: exact;
 
-        .dark-mode .card {
-
-            border-color: var(--border-dark);
-
-            background-color: var(--bg-dark-secondary);
+            print-color-adjust: exact;
 
         }
 
  
 
-        .card:hover {
+        .gradient-header * {
 
-            transform: translateY(-2px);
-
-            box-shadow: 0 12px 24px -10px rgba(94, 106, 210, 0.15);
+            color: white !important;
 
         }
 
  
 
-        .dark-mode .card:hover {
+        .gradient-header h1 {
 
-            border-color: rgba(94, 106, 210, 0.4);
+            font-size: 24px;
 
-            box-shadow: 0 12px 24px -10px rgba(94, 106, 210, 0.3);
+            margin: 0 0 5px 0;
 
-        }
-
- 
-
-        /* Button styles */
-
-        .btn-primary {
-
-            background: linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%);
-
-            transition: all 0.3s ease;
-
-            position: relative;
-
-            overflow: hidden;
+            font-weight: 700;
 
         }
 
  
 
-        .btn-primary::before {
+        .gradient-header p {
 
-            content: '';
+            font-size: 11px;
 
-            position: absolute;
+            margin: 0;
 
-            top: 0;
-
-            left: -100%;
-
-            width: 100%;
-
-            height: 100%;
-
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-
-            transition: left 0.5s;
+            opacity: 0.95;
 
         }
 
  
 
-        .btn-primary:hover::before {
+        .section {
 
-            left: 100%;
-
-        }
-
- 
-
-        .btn-primary:hover {
-
-            transform: translateY(-2px);
-
-            box-shadow: 0 8px 20px rgba(94, 106, 210, 0.4);
+            margin-bottom: 8px;
 
         }
 
  
 
-        .btn-secondary {
+        .section-title {
 
-            background-color: transparent;
+            font-size: 11px;
 
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 700;
 
-            backdrop-filter: blur(10px);
+            color: var(--text-primary);
 
-            transition: all 0.3s ease;
+            margin-bottom: 4px;
 
-        }
+            padding-bottom: 3px;
 
- 
+            border-bottom: 2px solid var(--primary);
 
-        .btn-secondary:hover {
+            display: flex;
 
-            background-color: rgba(255, 255, 255, 0.1);
+            align-items: center;
 
-            border-color: rgba(255, 255, 255, 0.5);
-
-        }
-
- 
-
-        /* Fade in animation */
-
-        .fade-in {
-
-            animation: fadeIn 0.8s ease-out forwards;
+            gap: 4px;
 
         }
 
  
 
-        @keyframes fadeIn {
+        .spec-grid {
 
-            from {
+            display: grid;
 
-                opacity: 0;
+            grid-template-columns: repeat(3, 1fr);
 
-                transform: translateY(30px);
+            gap: 4px;
 
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform: translateY(0);
-
-            }
+            font-size: 8px;
 
         }
 
  
 
-        /* Section backgrounds */
+        .spec-item {
 
-        .light-mode .section-alt {
+            display: flex;
 
-            background-color: var(--bg-light-secondary);
+            justify-content: space-between;
 
-        }
+            padding: 3px 6px;
 
- 
-
-        .dark-mode .section-alt {
-
-            background-color: var(--bg-dark-secondary);
-
-        }
-
- 
-
-        /* Spec badge */
-
-        .spec-badge {
-
-            background: rgba(94, 106, 210, 0.05);
-
-            border: 1px solid rgba(94, 106, 210, 0.15);
-
-            transition: all 0.3s ease;
-
-        }
-
- 
-
-        .dark-mode .spec-badge {
-
-            background: rgba(94, 106, 210, 0.1);
-
-            border: 1px solid rgba(94, 106, 210, 0.2);
-
-        }
-
- 
-
-        .spec-badge:hover {
-
-            background: rgba(94, 106, 210, 0.1);
-
-            border-color: rgba(94, 106, 210, 0.3);
-
-            transform: scale(1.02);
-
-        }
-
- 
-
-        /* Custom scrollbar */
-
-        ::-webkit-scrollbar {
-
-            width: 8px;
-
-        }
-
- 
-
-        ::-webkit-scrollbar-track {
-
-            background: var(--bg-light-secondary);
-
-        }
-
- 
-
-        .dark-mode ::-webkit-scrollbar-track {
-
-            background: var(--bg-dark-secondary);
-
-        }
-
- 
-
-        ::-webkit-scrollbar-thumb {
-
-            background: #CBD5E1;
+            background-color: var(--bg-secondary);
 
             border-radius: 4px;
 
-        }
-
- 
-
-        .dark-mode ::-webkit-scrollbar-thumb {
-
-            background: #374151;
+            border: 1px solid var(--border);
 
         }
 
  
 
-        ::-webkit-scrollbar-thumb:hover {
+        .spec-label {
 
-            background: var(--primary);
+            color: var(--text-secondary);
+
+            font-weight: 500;
 
         }
 
  
 
-        /* Icon container */
+        .spec-value {
 
-        .icon-container {
+            font-weight: 600;
 
-            width: 56px;
+            color: var(--text-primary);
 
-            height: 56px;
+        }
+
+ 
+
+        .card {
+
+            background-color: var(--bg-secondary);
+
+            border: 1px solid var(--border);
+
+            border-radius: 6px;
+
+            padding: 6px;
+
+        }
+
+ 
+
+        .badge {
+
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+
+            border: 1px solid rgba(99, 102, 241, 0.3);
+
+            display: inline-block;
+
+            padding: 2px 8px;
+
+            border-radius: 8px;
+
+            font-size: 8px;
+
+            font-weight: 600;
+
+            margin-right: 4px;
+
+            -webkit-print-color-adjust: exact;
+
+            print-color-adjust: exact;
+
+        }
+
+ 
+
+        .grid-2 {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 6px;
+
+        }
+
+ 
+
+        .grid-3 {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 4px;
+
+        }
+
+ 
+
+        .grid-4 {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 4px;
+
+        }
+
+ 
+
+        .feature-list {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 3px;
+
+            font-size: 8px;
+
+        }
+
+ 
+
+        .feature-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3px;
+
+        }
+
+ 
+
+        .theme-toggle {
+
+            position: fixed;
+
+            top: 15px;
+
+            right: 15px;
+
+            z-index: 1000;
+
+            width: 40px;
+
+            height: 40px;
+
+            background-color: var(--bg-secondary);
+
+            border: 2px solid var(--border);
+
+            border-radius: 50%;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            border-radius: 14px;
-
-            background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-
-            transition: all 0.3s ease;
-
-        }
-
- 
-
-        .dark-mode .icon-container {
-
-            background: linear-gradient(135deg, rgba(94, 106, 210, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-
-        }
-
- 
-
-        .card:hover .icon-container {
-
-            transform: scale(1.1);
-
-            background: linear-gradient(135deg, rgba(94, 106, 210, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-
-        }
-
- 
-
-        /* Price tag */
-
-        .price-tag {
-
-            font-size: 3.5rem;
-
-            font-weight: 800;
-
-            background: linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 50%, #A855F7 100%);
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-
-            background-clip: text;
-
-        }
-
- 
-
-        /* Toggle switch */
-
-        .toggle-switch {
-
-            position: relative;
-
-            width: 56px;
-
-            height: 28px;
-
-            background-color: #E5E7EB;
-
-            border-radius: 14px;
 
             cursor: pointer;
 
@@ -510,221 +388,165 @@
 
  
 
-        .dark-mode .toggle-switch {
+        .theme-toggle:hover {
 
-            background-color: var(--primary);
+            transform: scale(1.1);
 
-        }
-
- 
-
-        .toggle-switch::after {
-
-            content: '';
-
-            position: absolute;
-
-            width: 22px;
-
-            height: 22px;
-
-            border-radius: 50%;
-
-            background-color: white;
-
-            top: 3px;
-
-            left: 3px;
-
-            transition: transform 0.3s ease;
-
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
 
         }
 
  
 
-        .dark-mode .toggle-switch::after {
+        .print-btn {
 
-            transform: translateX(28px);
+            position: fixed;
 
-        }
+            bottom: 15px;
 
- 
+            right: 15px;
 
-        /* Navbar */
+            z-index: 1000;
 
-        #navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
 
-            transition: all 0.3s ease;
+            color: white;
 
-        }
-
- 
-
-        .light-mode #navbar {
-
-            background-color: rgba(255, 255, 255, 0.8);
-
-            border-bottom-color: var(--border-light);
-
-        }
-
- 
-
-        .dark-mode #navbar {
-
-            background-color: rgba(10, 10, 15, 0.8);
-
-            border-bottom-color: var(--border-dark);
-
-        }
-
- 
-
-        /* Badge */
-
-        .badge {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            padding: 6px 14px;
-
-            background: rgba(255, 255, 255, 0.15);
-
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
 
             border-radius: 20px;
 
-            backdrop-filter: blur(10px);
-
-            font-size: 0.875rem;
-
             font-weight: 600;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+
+            transition: all 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            border: none;
+
+            outline: none;
 
         }
 
  
 
-        /* Print styles for PDF export */
+        .print-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+
+        }
+
+ 
+
+        .two-column {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 6px;
+
+        }
+
+ 
+
+        ul {
+
+            margin: 0;
+
+            padding-left: 12px;
+
+            font-size: 7px;
+
+            line-height: 1.4;
+
+        }
+
+ 
+
+        ul li {
+
+            margin: 2px 0;
+
+        }
+
+ 
+
+        .price-box {
+
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+
+            border: 2px solid var(--primary);
+
+            border-radius: 8px;
+
+            padding: 8px;
+
+            text-align: center;
+
+        }
+
+ 
+
+        .price {
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            color: var(--primary);
+
+            margin: 0;
+
+        }
+
+ 
+
+        .price-old {
+
+            font-size: 10px;
+
+            text-decoration: line-through;
+
+            color: var(--text-secondary);
+
+        }
+
+ 
 
         @media print {
 
-            body {
+            @page { size: A4; margin: 0; }
 
-                background: white !important;
+            body { background: white !important; margin: 0; padding: 0; }
 
-                color: black !important;
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; page-break-after: avoid; }
 
-            }
+            .no-print { display: none !important; }
 
- 
-
-            .no-print {
-
-                display: none !important;
-
-            }
-
- 
-
-            .card {
-
-                page-break-inside: avoid;
-
-                border: 1px solid #E5E7EB !important;
-
-                box-shadow: none !important;
-
-            }
-
- 
-
-            section {
-
-                page-break-inside: avoid;
-
-            }
-
- 
-
-            .hero-gradient {
-
-                background: linear-gradient(135deg, #5E6AD2 0%, #8B5CF6 100%) !important;
-
-                -webkit-print-color-adjust: exact;
-
-                print-color-adjust: exact;
-
-            }
-
- 
-
-            .spec-badge, .icon-container {
-
-                -webkit-print-color-adjust: exact;
-
-                print-color-adjust: exact;
-
-            }
-
- 
-
-            h1, h2, h3 {
-
-                page-break-after: avoid;
-
-            }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
         }
 
  
 
-        /* Responsive text */
+        @media screen and (max-width: 768px) {
 
-        @media (max-width: 768px) {
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
 
-            .price-tag {
-
-                font-size: 2.5rem;
-
-            }
-
-        }
-
- 
-
-        /* Skeleton loading */
-
-        .skeleton {
-
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-
-            background-size: 200% 100%;
-
-            animation: loading 1.5s infinite;
-
-        }
-
- 
-
-        .dark-mode .skeleton {
-
-            background: linear-gradient(90deg, #27272A 25%, #1A1A24 50%, #27272A 75%);
-
-            background-size: 200% 100%;
-
-        }
-
- 
-
-        @keyframes loading {
-
-            0% { background-position: 200% 0; }
-
-            100% { background-position: -200% 0; }
+            .grid-2, .grid-3, .grid-4, .two-column { grid-template-columns: 1fr; }
 
         }
 
@@ -732,47 +554,197 @@
 
 </head>
 
-<body class="light-mode">
+<body>
 
-    <!-- Navigation -->
+    <div class="theme-toggle no-print" onclick="toggleTheme()">
 
-    <nav class="no-print fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b" id="navbar">
+        <i id="theme-icon" class="fas fa-moon"></i>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    </div>
 
-            <div class="flex items-center justify-between h-16">
+ 
 
-                <div class="flex items-center space-x-3">
+    <button class="print-btn no-print" onclick="printPage()">
 
-                    <i class="fas fa-broadcast-tower text-2xl" style="color: var(--primary);"></i>
+        <i class="fas fa-print"></i> Print
 
-                    <span class="text-xl font-bold tracking-tight">SDRLab H4M</span>
+    </button>
+
+ 
+
+    <div class="page">
+
+        <div class="gradient-header">
+
+            <h1>SDRLab H4M Mayhem Edition</h1>
+
+            <p>Professional Software Defined Radio | 1MHz - 6GHz | Complete Kit</p>
+
+            <div style="margin-top: 6px;">
+
+                <span class="badge">Signature Edition</span>
+
+                <span class="badge">R10C</span>
+
+                <span class="badge">2025</span>
+
+                <span class="badge">ISO 9001:2015</span>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="section">
+
+            <div class="section-title"><i class="fas fa-info-circle"></i> Product Overview</div>
+
+            <p style="font-size: 8px; margin: 0; line-height: 1.3;">OpenSourceSDRLab 1MHz to 6GHz R10C receiver with Mayhem Signature-Edition PortaPack H4M. Professional SDR platform featuring 3.2" touchscreen, 2500mAh battery, and community-driven firmware with 25+ receiver modes and extensive transmission capabilities.</p>
+
+        </div>
+
+ 
+
+        <div class="two-column">
+
+            <div>
+
+                <div class="section">
+
+                    <div class="section-title"><i class="fas fa-microchip"></i> HackRF One R10C</div>
+
+                    <div class="spec-grid">
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Frequency</span>
+
+                            <span class="spec-value">1MHz-6GHz</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Sample Rate</span>
+
+                            <span class="spec-value">2-20 Msps</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Resolution</span>
+
+                            <span class="spec-value">8-bit I/Q</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Interface</span>
+
+                            <span class="spec-value">USB Type-C</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Antenna</span>
+
+                            <span class="spec-value">SMA Female</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Mode</span>
+
+                            <span class="spec-value">Half-Duplex</span>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="hidden md:flex items-center space-x-6">
+ 
 
-                    <a href="#overview" class="text-sm font-medium hover:text-purple-600 transition-colors">Overview</a>
+                <div class="section">
 
-                    <a href="#specs" class="text-sm font-medium hover:text-purple-600 transition-colors">Specifications</a>
+                    <div class="section-title"><i class="fas fa-tablet-alt"></i> H4M PortaPack</div>
 
-                    <a href="#software" class="text-sm font-medium hover:text-purple-600 transition-colors">Software</a>
+                    <div class="spec-grid">
 
-                    <a href="#applications" class="text-sm font-medium hover:text-purple-600 transition-colors">Applications</a>
+                        <div class="spec-item">
+
+                            <span class="spec-label">Display</span>
+
+                            <span class="spec-value">3.2" 240x320</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Battery</span>
+
+                            <span class="spec-value">2500 mAh</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Storage</span>
+
+                            <span class="spec-value">MicroSD</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Audio</span>
+
+                            <span class="spec-value">Speaker+Mic</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Controls</span>
+
+                            <span class="spec-value">Touch+Rotary</span>
+
+                        </div>
+
+                        <div class="spec-item">
+
+                            <span class="spec-label">Case</span>
+
+                            <span class="spec-value">ABS Clear</span>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="flex items-center space-x-4">
+            </div>
 
-                    <button onclick="window.print()" class="hidden md:flex items-center space-x-2 px-4 py-2 rounded-lg bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-800 transition-all text-sm font-medium">
+ 
 
-                        <i class="fas fa-download"></i>
+            <div class="price-box">
 
-                        <span>Export PDF</span>
+                <div class="price-old">Regular: $175.00</div>
 
-                    </button>
+                <div class="price">$162.75</div>
 
-                    <div class="toggle-switch" id="themeToggle" onclick="toggleTheme()" title="Toggle theme"></div>
+                <div style="font-size: 8px; color: var(--primary); font-weight: 600; margin-top: 3px;">SAVE 7%</div>
+
+                <div style="font-size: 7px; margin-top: 4px; color: var(--text-secondary);">
+
+                    <i class="fas fa-star" style="color: #fbbf24;"></i> 5.0/5 (18 reviews)<br>
+
+                    <i class="fas fa-box"></i> 156 Sold
 
                 </div>
 
@@ -780,81 +752,59 @@
 
         </div>
 
-    </nav>
-
  
 
-    <!-- Hero Section -->
+        <div class="section">
 
-    <section class="hero-gradient pt-32 pb-24 px-4 sm:px-6 lg:px-8 mt-16 relative">
+            <div class="section-title"><i class="fas fa-star"></i> H4M Key Improvements</div>
 
-        <div class="max-w-7xl mx-auto text-center text-white fade-in relative z-10">
+            <div class="grid-3">
 
-            <div class="badge mb-6">
+                <div class="card" style="font-size: 7px; text-align: center;">
 
-                <i class="fas fa-star mr-2"></i>
+                    <i class="fas fa-power-off" style="color: var(--primary); font-size: 10px;"></i>
 
-                Signature Edition
-
-            </div>
-
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-
-                SDRLab H4M<br>
-
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-pink-100">Mayhem Edition</span>
-
-            </h1>
-
-            <p class="text-xl md:text-2xl mb-10 text-purple-50 max-w-3xl mx-auto font-light leading-relaxed">
-
-                Professional Software Defined Radio with 1MHz-6GHz coverage and advanced Mayhem firmware for comprehensive signal analysis
-
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-
-                <button class="btn-primary text-white px-8 py-4 rounded-xl font-semibold shadow-2xl flex items-center space-x-2">
-
-                    <i class="fas fa-shopping-cart"></i>
-
-                    <span>Get Started - $162.75</span>
-
-                </button>
-
-                <button class="btn-secondary text-white px-8 py-4 rounded-xl font-semibold flex items-center space-x-2">
-
-                    <i class="fas fa-book"></i>
-
-                    <span>Documentation</span>
-
-                </button>
-
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
-
-                <div class="flex items-center space-x-2">
-
-                    <i class="fas fa-star text-yellow-300"></i>
-
-                    <span>5.0 Rating (18 reviews)</span>
+                    <div style="font-weight: 600;">Zero Phantom Drain</div>
 
                 </div>
 
-                <div class="flex items-center space-x-2">
+                <div class="card" style="font-size: 7px; text-align: center;">
 
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-battery-full" style="color: var(--primary); font-size: 10px;"></i>
 
-                    <span>ISO 9001:2015 Certified</span>
+                    <div style="font-weight: 600;">Smart Battery</div>
 
                 </div>
 
-                <div class="flex items-center space-x-2">
+                <div class="card" style="font-size: 7px; text-align: center;">
 
-                    <i class="fas fa-shipping-fast"></i>
+                    <i class="fas fa-sun" style="color: var(--primary); font-size: 10px;"></i>
 
-                    <span>Global Shipping</span>
+                    <div style="font-weight: 600;">Matte Display</div>
+
+                </div>
+
+                <div class="card" style="font-size: 7px; text-align: center;">
+
+                    <i class="fas fa-circle-notch" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600;">360° Rotary</div>
+
+                </div>
+
+                <div class="card" style="font-size: 7px; text-align: center;">
+
+                    <i class="fas fa-plug" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600;">GPIO Port</div>
+
+                </div>
+
+                <div class="card" style="font-size: 7px; text-align: center;">
+
+                    <i class="fas fa-bolt" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600;">Fast Charging</div>
 
                 </div>
 
@@ -862,87 +812,103 @@
 
         </div>
 
-    </section>
-
  
 
-    <!-- Overview Section -->
+        <div class="two-column">
 
-    <section id="overview" class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="section">
 
-        <div class="max-w-7xl mx-auto">
+                <div class="section-title"><i class="fas fa-satellite-dish"></i> Receiver (25+ Modes)</div>
 
-            <div class="text-center mb-16 fade-in">
+                <ul>
 
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Complete SDR Solution</h2>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> ADS-B Aviation Tracking</li>
 
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light">
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> AIS Marine Vessels</li>
 
-                    OpenSourceSDRLab 1MHz to 6GHz R10C receiver with Mayhem Signature-Edition PortaPack H4M
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Audio Radio (WFM/NFM/AM)</li>
 
-                </p>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> NOAA Weather & Radiosonde</li>
+
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> APRS & POCSAG Pager</li>
+
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Automotive TPMS Sensors</li>
+
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Bluetooth LE Monitoring</li>
+
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Spectrum Analysis</li>
+
+                </ul>
 
             </div>
 
  
 
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
+            <div class="section">
 
-                <div class="card rounded-2xl p-8 fade-in">
+                <div class="section-title"><i class="fas fa-broadcast-tower"></i> Transmitter</div>
 
-                    <div class="icon-container mb-5">
+                <ul>
 
-                        <i class="fas fa-signal text-3xl" style="color: var(--primary);"></i>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> GPS Signal Simulation</li>
 
-                    </div>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Morse Code Generator</li>
 
-                    <h3 class="text-xl font-bold mb-3 tracking-tight">Wide Frequency Range</h3>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> Bluetooth LE Broadcasting</li>
 
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> APRS Packet Transmission</li>
 
-                        1 MHz to 6 GHz coverage with half-duplex transceiver capability for comprehensive signal analysis
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> OOK/FSK Modulation</li>
 
-                    </p>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> SSTV Image Transmission</li>
 
-                </div>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> ADS-B Testing</li>
 
- 
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> POCSAG Pager Signals</li>
 
-                <div class="card rounded-2xl p-8 fade-in" style="animation-delay: 0.1s;">
+                </ul>
 
-                    <div class="icon-container mb-5">
+            </div>
 
-                        <i class="fas fa-mobile-alt text-3xl" style="color: var(--primary);"></i>
-
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-3 tracking-tight">Portable Design</h3>
-
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-
-                        3.2" touchscreen, 2500mAh battery, built-in speaker and microphone for field operations
-
-                    </p>
-
-                </div>
+        </div>
 
  
 
-                <div class="card rounded-2xl p-8 fade-in" style="animation-delay: 0.2s;">
+        <div class="two-column">
 
-                    <div class="icon-container mb-5">
+            <div class="section">
 
-                        <i class="fas fa-code text-3xl" style="color: var(--primary);"></i>
+                <div class="section-title"><i class="fas fa-tools"></i> Utility Tools</div>
 
-                    </div>
+                <ul>
 
-                    <h3 class="text-xl font-bold mb-3 tracking-tight">Mayhem Firmware</h3>
+                    <li>Real-time Spectrum Analyzer</li>
 
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <li>Signal Generator & Tones</li>
 
-                        Community-driven firmware with 25+ receiver modes and extensive transmission capabilities
+                    <li>Antenna Length Calculator</li>
 
-                    </p>
+                    <li>SD Card File Manager</li>
+
+                    <li>RF Capture & Replay</li>
+
+                    <li>Frequency Database</li>
+
+                </ul>
+
+            </div>
+
+ 
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-laptop"></i> Software Support</div>
+
+                <div style="font-size: 7px; line-height: 1.5;">
+
+                    <strong>OS:</strong> Windows, macOS, Linux, Android<br>
+
+                    <strong>Apps:</strong> GNU Radio, GQRX, SDR#, SDR Console, Universal Radio Hacker, HackRF Tools
 
                 </div>
 
@@ -950,359 +916,59 @@
 
         </div>
 
-    </section>
-
  
 
-    <!-- Specifications Section -->
+        <div class="section">
 
-    <section id="specs" class="section-alt py-24 px-4 sm:px-6 lg:px-8">
+            <div class="section-title"><i class="fas fa-search"></i> Applications</div>
 
-        <div class="max-w-7xl mx-auto">
+            <div class="grid-4" style="font-size: 7px;">
 
-            <div class="text-center mb-16">
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Technical Specifications</h2>
-
-                <p class="text-lg text-gray-600 dark:text-gray-400 font-light">Professional-grade hardware for demanding applications</p>
-
-            </div>
-
- 
-
-            <div class="grid lg:grid-cols-2 gap-6 mb-12">
-
-                <!-- HackRF One Specs -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <div class="flex items-center space-x-3 mb-6">
-
-                        <div class="icon-container">
-
-                            <i class="fas fa-microchip text-2xl" style="color: var(--primary);"></i>
-
-                        </div>
-
-                        <h3 class="text-2xl font-bold tracking-tight">HackRF One R10C</h3>
-
-                    </div>
-
- 
-
-                    <div class="space-y-4">
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Frequency Range</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">1 MHz to 6 GHz</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Sample Rate</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">2-20 Msps (quadrature)</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Resolution</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">8-bit quadrature samples</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Interface</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">High-speed USB Type-C</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Antenna Connection</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">50-ohm SMA Female</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Operation Mode</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">Half-duplex transceiver</div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <i class="fas fa-fingerprint" style="color: var(--primary);"></i> Signal Intelligence
 
                 </div>
 
- 
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                <!-- H4M PortaPack Specs -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <div class="flex items-center space-x-3 mb-6">
-
-                        <div class="icon-container">
-
-                            <i class="fas fa-tablet-alt text-2xl" style="color: var(--primary);"></i>
-
-                        </div>
-
-                        <h3 class="text-2xl font-bold tracking-tight">H4M PortaPack</h3>
-
-                    </div>
-
- 
-
-                    <div class="space-y-4">
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Display</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">3.2" 240x320 matte LCD touchscreen</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Controls</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">360° rotary wheel, arrow keys, select buttons</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Audio</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">Built-in speaker, 3.5mm jack, microphone with toggle</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Battery</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">2500 mAh rechargeable with management IC</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Storage</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">MicroSD card slot (expandable)</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Expansion</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">GPIO port for custom add-ons</div>
-
-                            </div>
-
-                        </div>
-
- 
-
-                        <div class="flex items-start space-x-3">
-
-                            <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                            <div class="flex-1">
-
-                                <div class="font-semibold text-base">Enclosure</div>
-
-                                <div class="text-gray-600 dark:text-gray-400 text-sm">Transparent ABS protective case</div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <i class="fas fa-bluetooth-b" style="color: var(--primary);"></i> BLE Analysis
 
                 </div>
 
-            </div>
+                <div class="card" style="padding: 3px; text-align: center;">
 
- 
+                    <i class="fas fa-key" style="color: var(--primary);"></i> Key-fob Testing
 
-            <!-- Key Improvements -->
+                </div>
 
-            <div class="card rounded-2xl p-8">
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                <h3 class="text-2xl font-bold mb-6 flex items-center space-x-3 tracking-tight">
+                    <i class="fas fa-signal" style="color: var(--primary);"></i> Protocol RE
 
-                    <i class="fas fa-star text-2xl" style="color: var(--primary);"></i>
+                </div>
 
-                    <span>H4M Key Improvements</span>
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                </h3>
+                    <i class="fas fa-plane" style="color: var(--primary);"></i> Aviation
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                </div>
 
-                    <div class="spec-badge rounded-xl p-5">
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                        <i class="fas fa-power-off mb-2 text-xl" style="color: var(--primary);"></i>
+                    <i class="fas fa-ship" style="color: var(--primary);"></i> Maritime
 
-                        <div class="font-semibold text-base mb-1">Zero Phantom Drain</div>
+                </div>
 
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Single power switch design eliminates battery drain when off</div>
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                    </div>
+                    <i class="fas fa-car" style="color: var(--primary);"></i> Automotive
 
-                    <div class="spec-badge rounded-xl p-5">
+                </div>
 
-                        <i class="fas fa-battery-full mb-2 text-xl" style="color: var(--primary);"></i>
+                <div class="card" style="padding: 3px; text-align: center;">
 
-                        <div class="font-semibold text-base mb-1">Smart Battery System</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Advanced management with detailed status display</div>
-
-                    </div>
-
-                    <div class="spec-badge rounded-xl p-5">
-
-                        <i class="fas fa-sun mb-2 text-xl" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold text-base mb-1">Matte Display</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Anti-glare screen for enhanced outdoor visibility</div>
-
-                    </div>
-
-                    <div class="spec-badge rounded-xl p-5">
-
-                        <i class="fas fa-circle-notch mb-2 text-xl" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold text-base mb-1">Premium Rotary Knob</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">360° iPod-style flat design with precise control</div>
-
-                    </div>
-
-                    <div class="spec-badge rounded-xl p-5">
-
-                        <i class="fas fa-plug mb-2 text-xl" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold text-base mb-1">GPIO Expansion</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">User customization port for hardware extensions</div>
-
-                    </div>
-
-                    <div class="spec-badge rounded-xl p-5">
-
-                        <i class="fas fa-bolt mb-2 text-xl" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold text-base mb-1">Fast Charging</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Enhanced charging efficiency with protection</div>
-
-                    </div>
+                    <i class="fas fa-cloud-rain" style="color: var(--primary);"></i> Weather
 
                 </div>
 
@@ -1310,907 +976,43 @@
 
         </div>
 
-    </section>
-
  
 
-    <!-- Software Section -->
+        <div class="section">
 
-    <section id="software" class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="section-title"><i class="fas fa-box"></i> Package Contents</div>
 
-        <div class="max-w-7xl mx-auto">
+            <div style="font-size: 7px; line-height: 1.5;">
 
-            <div class="text-center mb-16">
+                <i class="fas fa-check" style="color: #10b981;"></i> 1x HackRF One R10C Mainboard &nbsp;&nbsp;
 
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Mayhem Firmware</h2>
+                <i class="fas fa-check" style="color: #10b981;"></i> 1x H4M PortaPack with Mayhem Firmware &nbsp;&nbsp;
 
-                <p class="text-lg text-gray-600 dark:text-gray-400 font-light">Community-driven development with extensive capabilities</p>
+                <i class="fas fa-check" style="color: #10b981;"></i> 1x USB Type-C Cable &nbsp;&nbsp;
 
-            </div>
+                <i class="fas fa-check" style="color: #10b981;"></i> 1x Transparent ABS Case &nbsp;&nbsp;
 
- 
+                <i class="fas fa-check" style="color: #10b981;"></i> Documentation & Quick Start &nbsp;&nbsp;
 
-            <div class="grid lg:grid-cols-3 gap-6">
-
-                <!-- Receiver Applications -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <div class="icon-container mb-5">
-
-                        <i class="fas fa-satellite-dish text-3xl" style="color: var(--primary);"></i>
-
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-4 tracking-tight">Receiver Applications</h3>
-
-                    <p class="text-gray-600 dark:text-gray-400 mb-5 text-sm">25+ specialized receiver modes including:</p>
-
-                    <ul class="space-y-3 text-sm">
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">ADS-B aviation signal tracking</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">AIS maritime vessel monitoring</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">NOAA weather & radiosonde</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Amateur radio (APRS, POCSAG)</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Automotive TPMS sensors</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Bluetooth LE monitoring</span>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
- 
-
-                <!-- Transmission Capabilities -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <div class="icon-container mb-5">
-
-                        <i class="fas fa-broadcast-tower text-3xl" style="color: var(--primary);"></i>
-
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-4 tracking-tight">Transmission Capabilities</h3>
-
-                    <p class="text-gray-600 dark:text-gray-400 mb-5 text-sm">Multiple transmission protocols:</p>
-
-                    <ul class="space-y-3 text-sm">
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">GPS signal simulation & testing</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Morse code transmission</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Bluetooth LE broadcasting</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">APRS packet transmission</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">OOK/FSK modulation modes</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">SSTV image transmission</span>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
- 
-
-                <!-- Utility Tools -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <div class="icon-container mb-5">
-
-                        <i class="fas fa-tools text-3xl" style="color: var(--primary);"></i>
-
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-4 tracking-tight">Utility Tools</h3>
-
-                    <p class="text-gray-600 dark:text-gray-400 mb-5 text-sm">Comprehensive diagnostic utilities:</p>
-
-                    <ul class="space-y-3 text-sm">
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Real-time spectrum analyzer</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Signal generator & tones</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Antenna length calculator</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">SD card file manager</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">RF capture & replay functions</span>
-
-                        </li>
-
-                        <li class="flex items-start space-x-3">
-
-                            <i class="fas fa-chevron-right mt-1 text-xs" style="color: var(--primary);"></i>
-
-                            <span class="text-gray-700 dark:text-gray-300">Frequency manager & database</span>
-
-                        </li>
-
-                    </ul>
-
-                </div>
+                <span style="color: var(--text-secondary);">ⓘ Antennas sold separately</span>
 
             </div>
 
         </div>
 
-    </section>
-
  
 
-    <!-- Applications Section -->
+        <div style="border-top: 2px solid var(--border); margin-top: 8px; padding-top: 6px; font-size: 7px; text-align: center; color: var(--text-secondary);">
 
-    <section id="applications" class="section-alt py-24 px-4 sm:px-6 lg:px-8">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
 
-        <div class="max-w-7xl mx-auto">
-
-            <div class="text-center mb-16">
-
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Applications</h2>
-
-                <p class="text-lg text-gray-600 dark:text-gray-400 font-light">Versatile capabilities for diverse use cases</p>
-
-            </div>
-
- 
-
-            <div class="space-y-8">
-
-                <!-- Receive Applications -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <h3 class="text-2xl font-bold mb-6 flex items-center space-x-3 tracking-tight">
-
-                        <i class="fas fa-download text-xl" style="color: var(--primary);"></i>
-
-                        <span>Receive</span>
-
-                    </h3>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-plane text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">ADS-B Aviation Signals</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-ship text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">AIS Marine Tracking</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-radio text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Audio Radio (WFM/NFM/AM)</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-chart-line text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Spectrum Analysis</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-cloud-rain text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Weather Radiosondes</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-car text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">TPMS Sensors</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-tachometer-alt text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">ERT Utility Meters</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-pager text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">POCSAG Pager Decoding</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-tv text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Analog TV Decoding</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
- 
-
-                <!-- Transmit Applications -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <h3 class="text-2xl font-bold mb-6 flex items-center space-x-3 tracking-tight">
-
-                        <i class="fas fa-upload text-xl" style="color: var(--primary);"></i>
-
-                        <span>Transmit</span>
-
-                    </h3>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-plane-departure text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">ADS-B Testing & Simulation</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-map-marked-alt text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">APRS Packet Transmission</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-satellite text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">GPS Signal Simulation</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-ellipsis-h text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Morse Code Generator</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-pager text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">POCSAG Pager Signals</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-tv text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">SSTV Image Transmission</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-wave-square text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">OOK/FSK Packages</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-bluetooth-b text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Bluetooth LE Broadcasting</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
- 
-
-                <!-- Analysis Applications -->
-
-                <div class="card rounded-2xl p-8">
-
-                    <h3 class="text-2xl font-bold mb-6 flex items-center space-x-3 tracking-tight">
-
-                        <i class="fas fa-search text-xl" style="color: var(--primary);"></i>
-
-                        <span>Analysis & Testing</span>
-
-                    </h3>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-fingerprint text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Signal Intelligence</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-bluetooth-b text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Bluetooth MAC Discovery</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-microchip text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">NRF24L01 Decoding</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-key text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Key-fob Analysis</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-chart-bar text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">RF Spectrum Analysis</span>
-
-                        </div>
-
-                        <div class="spec-badge rounded-lg p-4 flex items-center space-x-3">
-
-                            <i class="fas fa-signal text-lg" style="color: var(--primary);"></i>
-
-                            <span class="text-sm font-medium">Protocol Reverse Engineering</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
- 
-
-    <!-- Platform Compatibility -->
-
-    <section class="py-24 px-4 sm:px-6 lg:px-8">
-
-        <div class="max-w-7xl mx-auto">
-
-            <div class="text-center mb-16">
-
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Platform Compatibility</h2>
-
-                <p class="text-lg text-gray-600 dark:text-gray-400 font-light">Seamlessly integrates with leading SDR software platforms</p>
-
-            </div>
-
- 
-
-            <div class="card rounded-2xl p-8 mb-8">
-
-                <h4 class="text-lg font-semibold mb-6 text-center">Operating Systems</h4>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-
-                    <div class="text-center">
-
-                        <i class="fab fa-windows text-5xl mb-3" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold">Windows</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">7, 10, 11</div>
-
-                    </div>
-
-                    <div class="text-center">
-
-                        <i class="fab fa-apple text-5xl mb-3" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold">macOS</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">10.12+</div>
-
-                    </div>
-
-                    <div class="text-center">
-
-                        <i class="fab fa-linux text-5xl mb-3" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold">Linux</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">All Distros</div>
-
-                    </div>
-
-                    <div class="text-center">
-
-                        <i class="fab fa-android text-5xl mb-3" style="color: var(--primary);"></i>
-
-                        <div class="font-semibold">Android</div>
-
-                        <div class="text-sm text-gray-600 dark:text-gray-400">With OTG</div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
- 
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-code text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">GNU Radio</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Complete compatibility</div>
-
-                </div>
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-radio text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">GQRX</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Full support</div>
-
-                </div>
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-signal text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">SDR#</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Windows compatible</div>
-
-                </div>
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-terminal text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">SDR Console</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Professional features</div>
-
-                </div>
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-broadcast-tower text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">Universal Radio Hacker</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Protocol analysis</div>
-
-                </div>
-
-                <div class="spec-badge rounded-xl p-6 text-center">
-
-                    <i class="fas fa-plus text-3xl mb-3" style="color: var(--primary);"></i>
-
-                    <div class="font-semibold text-base">HackRF Tools</div>
-
-                    <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Native support</div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
- 
-
-    <!-- Pricing Section -->
-
-    <section class="section-alt py-24 px-4 sm:px-6 lg:px-8">
-
-        <div class="max-w-4xl mx-auto">
-
-            <div class="card rounded-3xl p-12 text-center">
-
-                <div class="inline-flex items-center px-5 py-2 rounded-full mb-6" style="background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(94, 106, 210, 0.2);">
-
-                    <i class="fas fa-tag mr-2" style="color: var(--primary);"></i>
-
-                    <span class="text-sm font-semibold" style="color: var(--primary);">SPECIAL OFFER - SAVE 7%</span>
-
-                </div>
-
-                <h2 class="text-4xl font-bold mb-4 tracking-tight">Complete Kit Package</h2>
-
-                <div class="price-tag mb-2">$162.75</div>
-
-                <div class="text-gray-500 dark:text-gray-400 line-through mb-3 text-lg">$175.00 USD</div>
-
-                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">
-
-                    Includes HackRF One R10C, H4M PortaPack, protective case, and pre-loaded Mayhem firmware
-
-                </p>
-
- 
-
-                <div class="flex flex-wrap items-center justify-center gap-6 mb-10">
-
-                    <div class="flex items-center space-x-2">
-
-                        <i class="fas fa-star text-yellow-400 text-lg"></i>
-
-                        <span class="font-semibold">5.0/5 Rating</span>
-
-                    </div>
-
-                    <div class="flex items-center space-x-2">
-
-                        <i class="fas fa-users text-purple-600 text-lg"></i>
-
-                        <span class="font-semibold">18 Reviews</span>
-
-                    </div>
-
-                    <div class="flex items-center space-x-2">
-
-                        <i class="fas fa-box text-purple-600 text-lg"></i>
-
-                        <span class="font-semibold">156 Sold</span>
-
-                    </div>
-
-                </div>
-
- 
-
-                <button class="btn-primary text-white px-12 py-4 rounded-xl font-semibold text-lg shadow-2xl mb-10">
-
-                    <i class="fas fa-shopping-cart mr-2"></i>
-
-                    Order Now
-
-                </button>
-
- 
-
-                <div class="grid md:grid-cols-3 gap-6 text-left pt-8 border-t border-gray-200 dark:border-gray-700">
-
-                    <div class="flex items-start space-x-3">
-
-                        <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                        <div class="text-sm">
-
-                            <div class="font-semibold">ISO 9001:2015 Certified</div>
-
-                            <div class="text-gray-600 dark:text-gray-400">Quality manufacturing guaranteed</div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="flex items-start space-x-3">
-
-                        <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                        <div class="text-sm">
-
-                            <div class="font-semibold">Worldwide Shipping</div>
-
-                            <div class="text-gray-600 dark:text-gray-400">From China & US warehouses</div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="flex items-start space-x-3">
-
-                        <i class="fas fa-check-circle mt-1 text-lg" style="color: var(--primary);"></i>
-
-                        <div class="text-sm">
-
-                            <div class="font-semibold">Expert Support</div>
-
-                            <div class="text-gray-600 dark:text-gray-400">Email, Telegram & Discord</div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
- 
-
-    <!-- Footer -->
-
-    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t no-print">
-
-        <div class="max-w-7xl mx-auto">
-
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div><strong>OpenSourceSDRLab</strong> | ISO 9001:2015 Certified | Worldwide Shipping</div>
 
                 <div>
 
-                    <div class="flex items-center space-x-3 mb-4">
+                    <i class="fab fa-github"></i> GitHub: portapack-mayhem &nbsp;
 
-                        <i class="fas fa-broadcast-tower text-2xl" style="color: var(--primary);"></i>
-
-                        <span class="text-xl font-bold tracking-tight">SDRLab H4M</span>
-
-                    </div>
-
-                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-
-                        Professional Software Defined Radio solutions for researchers, engineers, and enthusiasts.
-
-                    </p>
-
-                </div>
-
- 
-
-                <div>
-
-                    <h4 class="font-semibold mb-4">Product</h4>
-
-                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-
-                        <li><a href="#specs" class="hover:text-purple-600 transition-colors">Specifications</a></li>
-
-                        <li><a href="#software" class="hover:text-purple-600 transition-colors">Software</a></li>
-
-                        <li><a href="#applications" class="hover:text-purple-600 transition-colors">Applications</a></li>
-
-                        <li><a href="https://github.com/portapack-mayhem/mayhem-firmware/wiki" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">Documentation</a></li>
-
-                    </ul>
-
-                </div>
-
- 
-
-                <div>
-
-                    <h4 class="font-semibold mb-4">Company</h4>
-
-                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-
-                        <li><a href="https://opensourcesdrlab.com" target="_blank" rel="noopener" class="hover:text-purple-600 transition-colors">OpenSourceSDRLab</a></li>
-
-                        <li><a href="#" class="hover:text-purple-600 transition-colors">Manufacturing</a></li>
-
-                        <li><a href="#" class="hover:text-purple-600 transition-colors">Quality Assurance</a></li>
-
-                        <li><a href="#" class="hover:text-purple-600 transition-colors">Contact</a></li>
-
-                    </ul>
-
-                </div>
-
- 
-
-                <div>
-
-                    <h4 class="font-semibold mb-4">Community</h4>
-
-                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-
-                        <li>
-
-                            <a href="https://github.com/portapack-mayhem" target="_blank" rel="noopener" class="flex items-center hover:text-purple-600 transition-colors">
-
-                                <i class="fab fa-github mr-2"></i>
-
-                                GitHub Repository
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="flex items-center hover:text-purple-600 transition-colors">
-
-                                <i class="fab fa-telegram mr-2"></i>
-
-                                Telegram Group
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="#" class="flex items-center hover:text-purple-600 transition-colors">
-
-                                <i class="fab fa-discord mr-2"></i>
-
-                                Discord Server
-
-                            </a>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
- 
-
-            <div class="border-t pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-
-                <div class="mb-4 md:mb-0">
-
-                    © 2025 OpenSourceSDRLab. All rights reserved. | ISO 9001:2015 Certified
-
-                </div>
-
-                <div class="flex items-center space-x-6">
-
-                    <a href="#" class="hover:text-purple-600 transition-colors">Privacy Policy</a>
-
-                    <a href="#" class="hover:text-purple-600 transition-colors">Terms of Service</a>
-
-                    <a href="#" class="hover:text-purple-600 transition-colors">Legal Notice</a>
+                    <i class="fas fa-envelope"></i> Support: Email, Telegram, Discord
 
                 </div>
 
@@ -2218,37 +1020,21 @@
 
         </div>
 
-    </footer>
+    </div>
 
  
 
     <script>
 
-        // Theme Toggle
+        function printPage() {
 
-        function toggleTheme() {
+            try {
 
-            const body = document.body;
+                window.print();
 
-            const navbar = document.getElementById('navbar');
+            } catch (e) {
 
- 
-
-            if (body.classList.contains('light-mode')) {
-
-                body.classList.remove('light-mode');
-
-                body.classList.add('dark-mode');
-
-                localStorage.setItem('theme', 'dark');
-
-            } else {
-
-                body.classList.remove('dark-mode');
-
-                body.classList.add('light-mode');
-
-                localStorage.setItem('theme', 'light');
+                alert('Unable to print. Please use Ctrl+P or Cmd+P.');
 
             }
 
@@ -2256,173 +1042,55 @@
 
  
 
-        // Initialize theme from localStorage or system preference
+        function toggleTheme() {
+
+            const html = document.documentElement;
+
+            const currentTheme = html.getAttribute('data-theme');
+
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            const icon = document.getElementById('theme-icon');
+
+            html.setAttribute('data-theme', newTheme);
+
+            localStorage.setItem('theme', newTheme);
+
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        }
+
+ 
 
         function initTheme() {
 
             const savedTheme = localStorage.getItem('theme');
 
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            const body = document.body;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
 
- 
+            const icon = document.getElementById('theme-icon');
 
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', theme);
 
-                body.classList.remove('light-mode');
-
-                body.classList.add('dark-mode');
-
-            }
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 
         }
 
  
 
-        // Navbar scroll effect
-
-        function handleNavbarScroll() {
-
-            const navbar = document.getElementById('navbar');
-
-            if (window.scrollY > 50) {
-
-                navbar.style.boxShadow = '0 4px 12px -2px rgba(0, 0, 0, 0.08)';
-
-            } else {
-
-                navbar.style.boxShadow = 'none';
-
-            }
-
-        }
-
- 
-
-        // Smooth scroll for anchor links
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-            anchor.addEventListener('click', function (e) {
-
-                const href = this.getAttribute('href');
-
-                if (href !== '#') {
-
-                    e.preventDefault();
-
-                    const target = document.querySelector(href);
-
-                    if (target) {
-
-                        const navbarHeight = document.getElementById('navbar').offsetHeight;
-
-                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
-
-                        window.scrollTo({
-
-                            top: targetPosition,
-
-                            behavior: 'smooth'
-
-                        });
-
-                    }
-
-                }
-
-            });
-
-        });
-
- 
-
-        // Intersection Observer for fade-in animations
-
-        const observerOptions = {
-
-            threshold: 0.1,
-
-            rootMargin: '0px 0px -80px 0px'
-
-        };
-
- 
-
-        const observer = new IntersectionObserver((entries) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.style.opacity = '1';
-
-                    entry.target.style.transform = 'translateY(0)';
-
-                }
-
-            });
-
-        }, observerOptions);
-
- 
-
-        // Initialize on DOMContentLoaded
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            initTheme();
-
- 
-
-            // Observe all cards and fade-in elements
-
-            const animatedElements = document.querySelectorAll('.card, .fade-in');
-
-            animatedElements.forEach(element => {
-
-                element.style.opacity = '0';
-
-                element.style.transform = 'translateY(30px)';
-
-                element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-
-                observer.observe(element);
-
-            });
-
-        });
-
- 
-
-        // Listen for scroll events
-
-        window.addEventListener('scroll', handleNavbarScroll);
-
- 
-
-        // Listen for system theme changes
+        document.addEventListener('DOMContentLoaded', initTheme);
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
 
             if (!localStorage.getItem('theme')) {
 
-                const body = document.body;
+                const theme = e.matches ? 'dark' : 'light';
 
-                if (e.matches) {
+                document.documentElement.setAttribute('data-theme', theme);
 
-                    body.classList.remove('light-mode');
-
-                    body.classList.add('dark-mode');
-
-                } else {
-
-                    body.classList.remove('dark-mode');
-
-                    body.classList.add('light-mode');
-
-                }
+                document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 
             }
 
@@ -2430,31 +1098,17 @@
 
  
 
-        // Print optimization
+        document.addEventListener('keydown', (e) => {
 
-        window.addEventListener('beforeprint', () => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
 
-            document.body.classList.remove('dark-mode');
+                e.preventDefault();
 
-            document.body.classList.add('light-mode');
-
-        });
-
- 
-
-        // Mobile menu toggle (if needed in future)
-
-        function toggleMobileMenu() {
-
-            const menu = document.getElementById('mobileMenu');
-
-            if (menu) {
-
-                menu.classList.toggle('hidden');
+                printPage();
 
             }
 
-        }
+        });
 
     </script>
 
