@@ -1,1 +1,1307 @@
+<!DOCTYPE html>
 
+<html lang="en" data-theme="light">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TRX-duo SDR - Product Specification Sheet</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+
+        * { font-family: 'Inter', sans-serif; }
+
+ 
+
+        :root {
+
+            --primary: #6366f1;
+
+            --primary-dark: #4f46e5;
+
+            --accent: #ec4899;
+
+            --bg-primary: #ffffff;
+
+            --bg-secondary: #f8f9fa;
+
+            --bg-tertiary: #f1f3f5;
+
+            --text-primary: #1a1a1a;
+
+            --text-secondary: #6b7280;
+
+            --text-tertiary: #9ca3af;
+
+            --border: #e5e7eb;
+
+        }
+
+ 
+
+        [data-theme="dark"] {
+
+            --primary: #818cf8;
+
+            --primary-dark: #6366f1;
+
+            --accent: #f472b6;
+
+            --bg-primary: #0a0a0a;
+
+            --bg-secondary: #141414;
+
+            --bg-tertiary: #1f1f1f;
+
+            --text-primary: #f5f5f5;
+
+            --text-secondary: #a1a1aa;
+
+            --text-tertiary: #71717a;
+
+            --border: #2a2a2a;
+
+        }
+
+ 
+
+        body {
+
+            background-color: var(--bg-primary);
+
+            color: var(--text-primary);
+
+            transition: all 0.3s ease;
+
+            margin: 0;
+
+            padding: 20px;
+
+        }
+
+ 
+
+        .page {
+
+            width: 210mm;
+
+            height: 297mm;
+
+            margin: 20px auto;
+
+            background-color: var(--bg-primary);
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 15px;
+
+        }
+
+ 
+
+        [data-theme="dark"] .page {
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+        }
+
+ 
+
+        .gradient-header {
+
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+
+            color: white;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            margin-bottom: 9px;
+
+            -webkit-print-color-adjust: exact;
+
+            print-color-adjust: exact;
+
+        }
+
+ 
+
+        .gradient-header * {
+
+            color: white !important;
+
+        }
+
+ 
+
+        .gradient-header h1 {
+
+            font-size: 21px;
+
+            margin: 0 0 3px 0;
+
+            font-weight: 700;
+
+        }
+
+ 
+
+        .gradient-header p {
+
+            font-size: 9px;
+
+            margin: 0;
+
+            opacity: 0.95;
+
+        }
+
+ 
+
+        .section {
+
+            margin-bottom: 7px;
+
+        }
+
+ 
+
+        .section-title {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: var(--text-primary);
+
+            margin-bottom: 3px;
+
+            padding-bottom: 2px;
+
+            border-bottom: 2px solid var(--primary);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3px;
+
+        }
+
+ 
+
+        .spec-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 3px;
+
+            font-size: 7px;
+
+        }
+
+ 
+
+        .spec-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 2px 5px;
+
+            background-color: var(--bg-secondary);
+
+            border-radius: 3px;
+
+            border: 1px solid var(--border);
+
+        }
+
+ 
+
+        .spec-label {
+
+            color: var(--text-secondary);
+
+            font-weight: 500;
+
+        }
+
+ 
+
+        .spec-value {
+
+            font-weight: 600;
+
+            color: var(--text-primary);
+
+        }
+
+ 
+
+        .card {
+
+            background-color: var(--bg-secondary);
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            padding: 5px;
+
+        }
+
+ 
+
+        .badge {
+
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+
+            border: 1px solid rgba(99, 102, 241, 0.3);
+
+            display: inline-block;
+
+            padding: 2px 7px;
+
+            border-radius: 7px;
+
+            font-size: 7px;
+
+            font-weight: 600;
+
+            margin-right: 3px;
+
+            -webkit-print-color-adjust: exact;
+
+            print-color-adjust: exact;
+
+        }
+
+ 
+
+        .grid-2 {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 5px;
+
+        }
+
+ 
+
+        .grid-3 {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 4px;
+
+        }
+
+ 
+
+        .grid-4 {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 3px;
+
+        }
+
+ 
+
+        .grid-5 {
+
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 3px;
+
+        }
+
+ 
+
+        .feature-list {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 2px;
+
+            font-size: 7px;
+
+        }
+
+ 
+
+        .feature-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3px;
+
+        }
+
+ 
+
+        .theme-toggle {
+
+            position: fixed;
+
+            top: 15px;
+
+            right: 15px;
+
+            z-index: 1000;
+
+            width: 40px;
+
+            height: 40px;
+
+            background-color: var(--bg-secondary);
+
+            border: 2px solid var(--border);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+ 
+
+        .theme-toggle:hover {
+
+            transform: scale(1.1);
+
+            border-color: var(--primary);
+
+        }
+
+ 
+
+        .print-btn {
+
+            position: fixed;
+
+            bottom: 15px;
+
+            right: 15px;
+
+            z-index: 1000;
+
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 20px;
+
+            font-weight: 600;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+
+            transition: all 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            border: none;
+
+            outline: none;
+
+        }
+
+ 
+
+        .print-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+
+        }
+
+ 
+
+        .two-column {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 5px;
+
+        }
+
+ 
+
+        ul {
+
+            margin: 0;
+
+            padding-left: 10px;
+
+            font-size: 6.5px;
+
+            line-height: 1.3;
+
+        }
+
+ 
+
+        ul li {
+
+            margin: 1px 0;
+
+        }
+
+ 
+
+        @media print {
+
+            @page { size: A4; margin: 0; }
+
+            body { background: white !important; margin: 0; padding: 0; }
+
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; page-break-after: avoid; }
+
+            .no-print { display: none !important; }
+
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+        }
+
+ 
+
+        @media screen and (max-width: 768px) {
+
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
+
+            .grid-2, .grid-3, .grid-4, .grid-5, .two-column { grid-template-columns: 1fr; }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="theme-toggle no-print" onclick="toggleTheme()">
+
+        <i id="theme-icon" class="fas fa-moon"></i>
+
+    </div>
+
+ 
+
+    <button class="print-btn no-print" onclick="printPage()">
+
+        <i class="fas fa-print"></i> Print
+
+    </button>
+
+ 
+
+    <div class="page">
+
+        <div class="gradient-header">
+
+            <h1>TRX-duo SDR Platform</h1>
+
+            <p>Red Pitaya Compatible | Dual Channel 16-bit ADC/DAC | Zynq7010 FPGA | 10kHz - 60MHz Direct Sampling</p>
+
+            <div style="margin-top: 5px;">
+
+                <span class="badge">Zynq7010</span>
+
+                <span class="badge">16-bit ADC</span>
+
+                <span class="badge">125 MS/s</span>
+
+                <span class="badge">Red Pitaya</span>
+
+                <span class="badge">Dual Core ARM</span>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="section">
+
+            <div class="section-title"><i class="fas fa-info-circle"></i> Product Overview</div>
+
+            <p style="font-size: 7px; margin: 0; line-height: 1.25;">Professional dual-channel SDR transceiver platform featuring Xilinx Zynq7010 SoC with dual-core ARM Cortex-A9 processor. Equipped with dual 16-bit LTC2208 ADCs sampling at 125MS/s for high dynamic range reception from 10kHz to 60MHz. Includes 14-bit DAC for dual-channel transmission. Fully compatible with Red Pitaya SDR software ecosystem including HDSDR, SDR#, PowerSDR, and SDR Console. High sensitivity, excellent dynamic range, and convenient remote deployment make it ideal for HF/VHF communications research, spectrum monitoring, and SDR development.</p>
+
+        </div>
+
+ 
+
+        <div class="two-column">
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-microchip"></i> Core Specifications</div>
+
+                <div class="spec-grid">
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">FPGA/SoC</span>
+
+                        <span class="spec-value">Zynq7010</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Processor</span>
+
+                        <span class="spec-value">Dual ARM A9</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Memory</span>
+
+                        <span class="spec-value">512MB RAM</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">ADC Chip</span>
+
+                        <span class="spec-value">2x LTC2208</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">ADC Bits</span>
+
+                        <span class="spec-value">16-bit</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Sample Rate</span>
+
+                        <span class="spec-value">125 MS/s</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Frequency</span>
+
+                        <span class="spec-value">10kHz-60MHz</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">DAC Bits</span>
+
+                        <span class="spec-value">14-bit</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Channels</span>
+
+                        <span class="spec-value">2 RX / 2 TX</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+ 
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-signal"></i> RF Performance</div>
+
+                <div class="spec-grid">
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">RX Range</span>
+
+                        <span class="spec-value">0.5 Vpp</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">RX Power</span>
+
+                        <span class="spec-value">-2 dBm</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">TX Range</span>
+
+                        <span class="spec-value">1 Vpp</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">TX Power</span>
+
+                        <span class="spec-value">+4 dBm</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Impedance</span>
+
+                        <span class="spec-value">50 Ω</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Dynamic</span>
+
+                        <span class="spec-value">High Range</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Sensitivity</span>
+
+                        <span class="spec-value">Excellent</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Direct</span>
+
+                        <span class="spec-value">Sampling</span>
+
+                    </div>
+
+                    <div class="spec-item">
+
+                        <span class="spec-label">Dual CH</span>
+
+                        <span class="spec-value">Independent</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="section">
+
+            <div class="section-title"><i class="fas fa-brain"></i> Zynq7010 SoC Architecture</div>
+
+            <div class="grid-4">
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-microchip" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">Dual ARM A9</div>
+
+                    <div style="color: var(--text-secondary);">Processing System</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-project-diagram" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">FPGA Fabric</div>
+
+                    <div style="color: var(--text-secondary);">Programmable Logic</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-memory" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">512MB DDR3</div>
+
+                    <div style="color: var(--text-secondary);">System Memory</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-tachometer-alt" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">High Speed</div>
+
+                    <div style="color: var(--text-secondary);">DSP Processing</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="section">
+
+            <div class="section-title"><i class="fas fa-network-wired"></i> Connectivity & I/O Interfaces</div>
+
+            <div class="grid-5">
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-ethernet" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">Gigabit LAN</div>
+
+                    <div style="color: var(--text-secondary);">1 Gbit Ethernet</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-usb" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">USB Type-C</div>
+
+                    <div style="color: var(--text-secondary);">USB 2.0</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-wifi" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">WiFi Ready</div>
+
+                    <div style="color: var(--text-secondary);">Optional Adapter</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-microchip" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">16 GPIO</div>
+
+                    <div style="color: var(--text-secondary);">Digital I/O</div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+
+                    <i class="fas fa-wave-square" style="color: var(--primary); font-size: 11px;"></i>
+
+                    <div style="font-weight: 700; margin-top: 2px;">Analog I/O</div>
+
+                    <div style="color: var(--text-secondary);">4 IN / 4 OUT</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="two-column">
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-plug"></i> Expansion & Peripherals</div>
+
+                <div class="card" style="font-size: 6.5px;">
+
+                    <div style="font-weight: 700; margin-bottom: 2px;">Analog I/O Specifications</div>
+
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+
+                        <strong>Analog Inputs:</strong> 4 channels, 0-3.3V range<br>
+
+                        <strong>Input Resolution:</strong> 12-bit ADC<br>
+
+                        <strong>Input Sample Rate:</strong> 100 kS/s maximum<br>
+
+                        <strong>Analog Outputs:</strong> 4 channels, 0-1.8V range<br>
+
+                        <strong>Applications:</strong> Sensor interfacing, control signals
+
+                    </div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; margin-top: 3px;">
+
+                    <div style="font-weight: 700; margin-bottom: 2px;">Communication Protocols</div>
+
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+
+                        <strong>I²C:</strong> Inter-Integrated Circuit bus<br>
+
+                        <strong>UART:</strong> Serial communication interface<br>
+
+                        <strong>SPI:</strong> Serial Peripheral Interface<br>
+
+                        <strong>GPIO:</strong> 16 programmable digital pins
+
+                    </div>
+
+                </div>
+
+            </div>
+
+ 
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-laptop-code"></i> Software Compatibility</div>
+
+                <div class="grid-2" style="font-size: 6.5px;">
+
+                    <div class="card" style="text-align: center;">
+
+                        <i class="fas fa-radio" style="color: var(--primary); font-size: 10px;"></i>
+
+                        <div style="font-weight: 700; margin-top: 2px;">HDSDR</div>
+
+                        <div style="color: var(--text-secondary);">Windows SDR</div>
+
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+
+                        <i class="fas fa-desktop" style="color: var(--primary); font-size: 10px;"></i>
+
+                        <div style="font-weight: 700; margin-top: 2px;">SDR#</div>
+
+                        <div style="color: var(--text-secondary);">SDRSharp</div>
+
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+
+                        <i class="fas fa-broadcast-tower" style="color: var(--primary); font-size: 10px;"></i>
+
+                        <div style="font-weight: 700; margin-top: 2px;">PowerSDR</div>
+
+                        <div style="color: var(--text-secondary);">Amateur Radio</div>
+
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+
+                        <i class="fas fa-terminal" style="color: var(--primary); font-size: 10px;"></i>
+
+                        <div style="font-weight: 700; margin-top: 2px;">SDR Console</div>
+
+                        <div style="color: var(--text-secondary);">V3 Compatible</div>
+
+                    </div>
+
+                </div>
+
+                <div class="card" style="font-size: 6.5px; margin-top: 3px;">
+
+                    <div style="font-weight: 700; margin-bottom: 2px;">Red Pitaya Ecosystem</div>
+
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+
+                        Fully compatible with Red Pitaya SDR software stack. Supports all major SDR applications with seamless integration. Web-based interface for remote operation and configuration.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="section">
+
+            <div class="section-title"><i class="fas fa-rocket"></i> Applications & Use Cases</div>
+
+            <div class="grid-4" style="font-size: 6.5px;">
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-broadcast-tower" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">HF Radio</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">Amateur Bands</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-chart-area" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Spectrum Monitor</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">RF Analysis</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-satellite" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">SDR Research</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">Development</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-network-wired" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Remote RX</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">Network SDR</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-graduation-cap" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Education</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">RF Learning</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-signal" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Signal Process</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">DSP Research</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-cog" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Test Equipment</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">RF Testing</div>
+
+                </div>
+
+                <div class="card" style="padding: 3px; text-align: center;">
+
+                    <i class="fas fa-flask" style="color: var(--primary); font-size: 10px;"></i>
+
+                    <div style="font-weight: 600; margin-top: 2px;">Wireless R&D</div>
+
+                    <div style="color: var(--text-secondary); font-size: 6px;">Protocol Dev</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div class="two-column">
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-star"></i> Key Advantages</div>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>16-bit ADC:</strong> High Resolution</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>125 MS/s:</strong> Fast Sampling</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>Dual Channel:</strong> 2 RX/TX</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>Direct Sampling:</strong> 10kHz-60MHz</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>Zynq7010:</strong> ARM + FPGA</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>Red Pitaya:</strong> Compatible</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>GigE:</strong> Fast Network</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+
+                        <span><strong>Remote:</strong> Deploy Anywhere</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+ 
+
+            <div class="section">
+
+                <div class="section-title"><i class="fas fa-box"></i> Package & Support</div>
+
+                <div style="font-size: 6.5px; line-height: 1.4;">
+
+                    <div style="font-weight: 600; margin-bottom: 2px;">Package Contents:</div>
+
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x TRX-duo SDR Board<br>
+
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x Power Supply<br>
+
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x Ethernet Cable<br>
+
+                    <i class="fas fa-check" style="color: #10b981;"></i> Quick Start Guide<br>
+
+                    <i class="fas fa-check" style="color: #10b981;"></i> Software Links & Documentation<br>
+
+ 
+
+                    <div style="font-weight: 600; margin-top: 4px; margin-bottom: 2px;">Software Resources:</div>
+
+                    <i class="fas fa-download" style="color: var(--primary);"></i> Red Pitaya SDR images<br>
+
+                    <i class="fas fa-book" style="color: var(--primary);"></i> Comprehensive documentation<br>
+
+                    <i class="fas fa-code" style="color: var(--primary);"></i> Example applications<br>
+
+                    <i class="fas fa-users" style="color: var(--primary);"></i> Active community support
+
+ 
+
+                    <div style="color: var(--text-secondary); font-style: italic; margin-top: 3px;">
+
+                        ⓘ Antennas and RF cables sold separately
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+        <div style="border-top: 2px solid var(--border); margin-top: 6px; padding-top: 5px; font-size: 6.5px; text-align: center; color: var(--text-secondary);">
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                <div><strong>OpenSourceSDR Lab</strong> | TRX-duo | Professional Dual-Channel SDR Platform</div>
+
+                <div>
+
+                    <i class="fas fa-microchip"></i> Zynq7010 SoC | <i class="fas fa-network-wired"></i> Red Pitaya Compatible | <i class="fas fa-chart-line"></i> 16-bit Performance
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ 
+
+    <script>
+
+        function printPage() {
+
+            try {
+
+                window.print();
+
+            } catch (e) {
+
+                alert('Unable to print. Please use Ctrl+P or Cmd+P.');
+
+            }
+
+        }
+
+ 
+
+        function toggleTheme() {
+
+            const html = document.documentElement;
+
+            const currentTheme = html.getAttribute('data-theme');
+
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            const icon = document.getElementById('theme-icon');
+
+            html.setAttribute('data-theme', newTheme);
+
+            localStorage.setItem('theme', newTheme);
+
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        }
+
+ 
+
+        function initTheme() {
+
+            const savedTheme = localStorage.getItem('theme');
+
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            const icon = document.getElementById('theme-icon');
+
+            document.documentElement.setAttribute('data-theme', theme);
+
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        }
+
+ 
+
+        document.addEventListener('DOMContentLoaded', initTheme);
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+
+            if (!localStorage.getItem('theme')) {
+
+                const theme = e.matches ? 'dark' : 'light';
+
+                document.documentElement.setAttribute('data-theme', theme);
+
+                document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+            }
+
+        });
+
+ 
+
+        document.addEventListener('keydown', (e) => {
+
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+
+                e.preventDefault();
+
+                printPage();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
