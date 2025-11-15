@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTL-SDR Blog V4 - Product Specification Sheet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --border: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --primary: #818cf8;
+            --primary-dark: #6366f1;
+            --accent: #f472b6;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1f1f1f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --border: #2a2a2a;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background-color: var(--bg-primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        [data-theme="dark"] .page {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 9px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .gradient-header * {
+            color: white !important;
+        }
+
+        .gradient-header h1 {
+            font-size: 21px;
+            margin: 0 0 3px 0;
+            font-weight: 700;
+        }
+
+        .gradient-header p {
+            font-size: 9px;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .section {
+            margin-bottom: 7px;
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            font-size: 7px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 5px;
+            background-color: var(--bg-secondary);
+            border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 7px;
+            font-size: 7px;
+            font-weight: 600;
+            margin-right: 3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            font-size: 7px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            outline: none;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 10px;
+            font-size: 6.5px;
+            line-height: 1.3;
+        }
+
+        ul li {
+            margin: 1px 0;
+        }
+
+        .chip-card {
+            text-align: center;
+            padding: 4px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 6.5px;
+        }
+
+        .chip-icon {
+            font-size: 10px;
+            color: var(--primary);
+            margin-bottom: 1px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 7px;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 2px 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: white !important; margin: 0; padding: 0; }
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; page-break-after: avoid; }
+            .no-print { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
+            .grid-2, .grid-3, .grid-4, .grid-5, .two-column { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </div>
+
+    <button class="print-btn no-print" onclick="printPage()">
+        <i class="fas fa-print"></i> Print
+    </button>
+
+    <div class="page">
+        <div class="gradient-header">
+            <h1>RTL-SDR Blog V4 R828D</h1>
+            <p>Advanced Software Defined Radio Receiver | 500 kHz - 1766 MHz | 1PPM TCXO | Direct Sampling HF Mode</p>
+            <div style="margin-top: 5px;">
+                <span class="badge">1 PPM TCXO</span>
+                <span class="badge">SMA Connector</span>
+                <span class="badge">HF Direct Sampling</span>
+                <span class="badge">Bias Tee</span>
+                <span class="badge">RTL2832U</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-info-circle"></i> Product Overview</div>
+            <p style="font-size: 7px; margin: 0; line-height: 1.25;">Professional RTL-SDR receiver featuring R828D tuner and RTL2832U demodulator with high-precision 1PPM TCXO for exceptional frequency stability. Enhanced V4 design includes improved direct sampling for HF reception (0-28.8 MHz), software-switchable bias tee, and optimized RF path with SMA connector. Perfect for SDR enthusiasts, radio hobbyists, and professionals requiring reliable wideband reception from HF through UHF spectrum.</p>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-signal"></i> RF Specifications</div>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">VHF/UHF</span>
+                        <span class="spec-value">500kHz-1766MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">HF Direct</span>
+                        <span class="spec-value">0-28.8 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Tuner</span>
+                        <span class="spec-value">R828D</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">ADC</span>
+                        <span class="spec-value">RTL2832U</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Max BW</span>
+                        <span class="spec-value">3.2 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Sample Rate</span>
+                        <span class="spec-value">2.4 Msps</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Resolution</span>
+                        <span class="spec-value">8-bit ADC</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">TCXO</span>
+                        <span class="spec-value">1 PPM</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Connector</span>
+                        <span class="spec-value">SMA Female</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-cogs"></i> Hardware Features</div>
+                <ul>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>1PPM TCXO:</strong> High precision temperature compensated crystal oscillator</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Improved HF:</strong> Enhanced direct sampling mode for HF reception</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Bias Tee:</strong> Software-switchable 4.5V bias tee for LNA power</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>SMA Connector:</strong> Standard SMA female RF connector</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Metal Case:</strong> Aluminum enclosure for EMI shielding</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>USB Powered:</strong> USB 2.0 interface, no external power needed</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Improved RF:</strong> Optimized filtering and LNA performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-star"></i> V4 Improvements Over Previous Versions</div>
+            <div class="grid-4">
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-microchip" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Improved HF</div>
+                    <div style="color: var(--text-secondary);">Better Direct Sampling</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-bolt" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Bias Tee</div>
+                    <div style="color: var(--text-secondary);">Software Control</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-filter" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Better Filtering</div>
+                    <div style="color: var(--text-secondary);">Optimized RF Path</div>
+                </div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-thermometer-half" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">Thermal Design</div>
+                    <div style="color: var(--text-secondary);">Improved Cooling</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-laptop-code"></i> Software Compatibility</div>
+                <div class="grid-4" style="font-size: 6.5px;">
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-desktop"></i></div>
+                        <div style="font-weight: 700;">SDR#</div>
+                        <div style="color: var(--text-secondary);">Windows</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-radio"></i></div>
+                        <div style="font-weight: 700;">GQRX</div>
+                        <div style="color: var(--text-secondary);">Linux/Mac</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-plus"></i></div>
+                        <div style="font-weight: 700;">SDR++</div>
+                        <div style="color: var(--text-secondary);">Cross-platform</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-cube"></i></div>
+                        <div style="font-weight: 700;">CubicSDR</div>
+                        <div style="color: var(--text-secondary);">Multi-OS</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-atom"></i></div>
+                        <div style="font-weight: 700;">GNU Radio</div>
+                        <div style="color: var(--text-secondary);">DSP Framework</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <div style="font-weight: 700;">SDRangel</div>
+                        <div style="color: var(--text-secondary);">Advanced</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-wifi"></i></div>
+                        <div style="font-weight: 700;">DSD+</div>
+                        <div style="color: var(--text-secondary);">Digital Voice</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-satellite"></i></div>
+                        <div style="font-weight: 700;">Orbitron</div>
+                        <div style="color: var(--text-secondary);">Satellite</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-plug"></i> Operating Systems</div>
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; margin-bottom: 2px;">Full Multi-Platform Support</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        <strong>Windows:</strong> 7, 8, 10, 11 (32/64-bit)<br>
+                        <strong>Linux:</strong> Ubuntu, Debian, Fedora, Arch, etc.<br>
+                        <strong>macOS:</strong> Intel and Apple Silicon (M1/M2)<br>
+                        <strong>Android:</strong> Via USB OTG with SDR apps<br>
+                        <strong>Raspberry Pi:</strong> Full support on all models
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-rocket"></i> Applications & Use Cases</div>
+            <div class="grid-5" style="font-size: 6.5px;">
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-plane" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">ADS-B</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Aircraft Tracking</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-ship" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">AIS</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Ship Tracking</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-satellite-dish" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Weather Sat</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">NOAA/Meteor</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-broadcast-tower" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">AM/FM Radio</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Broadcast</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-pager" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">POCSAG</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Pager Decode</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-map-marked-alt" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">APRS</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Position Report</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-key" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">ACARS</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Aircraft Comms</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-walkie-talkie" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">P25/DMR</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Digital Voice</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-tachometer-alt" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">TPMS</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Tire Pressure</div>
+                </div>
+                <div class="card" style="padding: 3px; text-align: center;">
+                    <i class="fas fa-chart-area" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 600; margin-top: 2px;">Spectrum</div>
+                    <div style="color: var(--text-secondary); font-size: 6px;">Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <div class="section-title"><i class="fas fa-wave-square"></i> Frequency Bands Coverage</div>
+                <div style="font-size: 6.5px; line-height: 1.4;">
+                    <div class="card" style="margin-bottom: 3px; padding: 3px;">
+                        <strong>HF Band (Direct Sampling):</strong> 0-28.8 MHz<br>
+                        • Shortwave broadcast, Amateur radio, CB
+                    </div>
+                    <div class="card" style="margin-bottom: 3px; padding: 3px;">
+                        <strong>VHF Low:</strong> 50-88 MHz<br>
+                        • FM broadcast, Amateur 6m/2m
+                    </div>
+                    <div class="card" style="margin-bottom: 3px; padding: 3px;">
+                        <strong>VHF/UHF:</strong> 88-512 MHz<br>
+                        • FM broadcast, Air band, Marine, PMR, Amateur
+                    </div>
+                    <div class="card" style="padding: 3px;">
+                        <strong>UHF:</strong> 512-1766 MHz<br>
+                        • GPS L1, ADS-B, LTE, WiFi, ISM bands
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="fas fa-star"></i> Key Advantages</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>1PPM TCXO:</strong> Stable Frequency</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>HF Capable:</strong> 0-28.8 MHz</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Wide Range:</strong> Up to 1766 MHz</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Bias Tee:</strong> Software Control</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>SMA:</strong> Standard Connector</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Metal Case:</strong> EMI Shield</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>USB Powered:</strong> No Adapter</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span><strong>Great Value:</strong> Affordable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><i class="fas fa-box"></i> Package Contents & Accessories</div>
+            <div class="two-column" style="font-size: 6.5px;">
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;">Included in Package:</div>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x RTL-SDR Blog V4 Receiver<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x Dipole Antenna Kit (telescopic)<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x USB Cable (Type-A to Type-C)<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x SMA to MCX Adapter<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Quick Start Guide<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Software Download Instructions
+                </div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;">Optional Accessories:</div>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> LNA (Low Noise Amplifier)<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> External Antennas (HF/VHF/UHF)<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> SMA Extension Cables<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> Band-specific Filters<br>
+                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> Upconverter for HF (alternative)<br>
+
+                    <div style="color: var(--text-secondary); font-style: italic; margin-top: 3px;">
+                        ⓘ Antenna included | Ready to use out of the box
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="border-top: 2px solid var(--border); margin-top: 6px; padding-top: 5px; font-size: 6.5px; text-align: center; color: var(--text-secondary);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div><strong>RTL-SDR Blog</strong> | Version 4 | Professional SDR Receiver for Everyone</div>
+                <div>
+                    <i class="fab fa-github"></i> Open Source Software Support | <i class="fas fa-users"></i> Active Community | <i class="fas fa-book"></i> Extensive Documentation
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function printPage() {
+            try {
+                window.print();
+            } catch (e) {
+                alert('Unable to print. Please use Ctrl+P or Cmd+P.');
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const icon = document.getElementById('theme-icon');
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+            document.documentElement.setAttribute('data-theme', theme);
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        document.addEventListener('DOMContentLoaded', initTheme);
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const theme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                printPage();
+            }
+        });
+    </script>
+</body>
+</html>
