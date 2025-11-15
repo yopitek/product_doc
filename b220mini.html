@@ -60,9 +60,9 @@
         .gradient-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            padding: 15px;
+            padding: 14px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 9px;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -72,46 +72,46 @@
         }
 
         .gradient-header h1 {
-            font-size: 22px;
-            margin: 0 0 4px 0;
+            font-size: 21px;
+            margin: 0 0 3px 0;
             font-weight: 700;
         }
 
         .gradient-header p {
-            font-size: 10px;
+            font-size: 9px;
             margin: 0;
             opacity: 0.95;
         }
 
         .section {
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
         .section-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
-            padding-bottom: 3px;
+            margin-bottom: 3px;
+            padding-bottom: 2px;
             border-bottom: 2px solid var(--primary);
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
 
         .spec-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            font-size: 8px;
+            gap: 3px;
+            font-size: 7px;
         }
 
         .spec-item {
             display: flex;
             justify-content: space-between;
-            padding: 3px 6px;
+            padding: 2px 5px;
             background-color: var(--bg-secondary);
-            border-radius: 4px;
+            border-radius: 3px;
             border: 1px solid var(--border);
         }
 
@@ -128,19 +128,19 @@
         .card {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 6px;
+            border-radius: 5px;
+            padding: 5px;
         }
 
         .badge {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
             border: 1px solid rgba(99, 102, 241, 0.3);
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 8px;
-            font-size: 8px;
+            padding: 2px 7px;
+            border-radius: 7px;
+            font-size: 7px;
             font-weight: 600;
-            margin-right: 4px;
+            margin-right: 3px;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -148,7 +148,7 @@
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
+            gap: 5px;
         }
 
         .grid-3 {
@@ -160,20 +160,20 @@
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
+            gap: 3px;
         }
 
         .grid-5 {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
+            gap: 3px;
         }
 
         .feature-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3px;
-            font-size: 8px;
+            gap: 2px;
+            font-size: 7px;
         }
 
         .feature-item {
@@ -233,33 +233,48 @@
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
+            gap: 5px;
         }
 
         ul {
             margin: 0;
-            padding-left: 12px;
-            font-size: 7px;
-            line-height: 1.4;
+            padding-left: 10px;
+            font-size: 6.5px;
+            line-height: 1.3;
         }
 
         ul li {
-            margin: 2px 0;
+            margin: 1px 0;
         }
 
         .chip-card {
             text-align: center;
-            padding: 5px;
+            padding: 4px;
             background-color: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 7px;
+            border-radius: 5px;
+            font-size: 6.5px;
         }
 
         .chip-icon {
-            font-size: 12px;
+            font-size: 10px;
             color: var(--primary);
-            margin-bottom: 2px;
+            margin-bottom: 1px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 7px;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 2px 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
         }
 
         @media print {
@@ -288,24 +303,25 @@
     <div class="page">
         <div class="gradient-header">
             <h1>LibreSDR B220 Mini AD9361</h1>
-            <p>Software Defined Radio Development Board | 70MHz - 6GHz | 2TX/2RX | USB 3.0</p>
-            <div style="margin-top: 6px;">
+            <p>Professional SDR Development Board | 70MHz - 6GHz | 2TX/2RX | USB 3.0 Type-C | Full B210 Compatible</p>
+            <div style="margin-top: 5px;">
+                <span class="badge">Artix7 FPGA</span>
                 <span class="badge">B210 Compatible</span>
                 <span class="badge">UHD Support</span>
-                <span class="badge">GNU Radio</span>
                 <span class="badge">OAI Ready</span>
-                <span class="badge">56 MHz BW</span>
+                <span class="badge">Type-C</span>
+                <span class="badge">61.44 Msps</span>
             </div>
         </div>
 
         <div class="section">
             <div class="section-title"><i class="fas fa-info-circle"></i> Product Overview</div>
-            <p style="font-size: 8px; margin: 0; line-height: 1.3;">Professional SDR development board based on USRP B210 design with AD9361 RF transceiver. Featuring full-duplex 2TX/2RX MIMO capability, 70MHz to 6GHz frequency coverage, and 56MHz instantaneous bandwidth. Fully compatible with USRP Hardware Driver (UHD), GNU Radio, and OpenAirInterface (OAI). Ideal for wireless communications research, spectrum analysis, and 4G/5G protocol development.</p>
+            <p style="font-size: 7px; margin: 0; line-height: 1.25;">Professional SDR development board with full USRP B210 compatibility. Features AD9361 RF transceiver with 2TX/2RX MIMO, Xilinx Artix7 FPGA (7A100T/7A200T), and USB 3.0 Type-C interface. Supports external clock taming, PPS/10M reference frequency synchronization, and phase synchronization. Enhanced with ADI PA using 5V power supply for improved efficiency. Perfect for 4G/5G research, MIMO systems, and wireless protocol development.</p>
         </div>
 
         <div class="two-column">
             <div class="section">
-                <div class="section-title"><i class="fas fa-microchip"></i> RF Specifications</div>
+                <div class="section-title"><i class="fas fa-microchip"></i> Core Specifications</div>
                 <div class="spec-grid">
                     <div class="spec-item">
                         <span class="spec-label">Frequency</span>
@@ -320,10 +336,6 @@
                         <span class="spec-value">2TX / 2RX</span>
                     </div>
                     <div class="spec-item">
-                        <span class="spec-label">Bandwidth</span>
-                        <span class="spec-value">56 MHz</span>
-                    </div>
-                    <div class="spec-item">
                         <span class="spec-label">Sample Rate</span>
                         <span class="spec-value">61.44 Msps</span>
                     </div>
@@ -332,222 +344,187 @@
                         <span class="spec-value">12-bit ADC/DAC</span>
                     </div>
                     <div class="spec-item">
-                        <span class="spec-label">TX Power</span>
-                        <span class="spec-value">10 dBm</span>
+                        <span class="spec-label">FPGA</span>
+                        <span class="spec-value">Artix7</span>
                     </div>
                     <div class="spec-item">
-                        <span class="spec-label">RX Gain</span>
-                        <span class="spec-value">0-76 dB</span>
+                        <span class="spec-label">Interface</span>
+                        <span class="spec-value">USB 3.0 C</span>
                     </div>
                     <div class="spec-item">
                         <span class="spec-label">Duplex</span>
                         <span class="spec-value">Full-Duplex</span>
                     </div>
+                    <div class="spec-item">
+                        <span class="spec-label">PA Type</span>
+                        <span class="spec-value">ADI 5V</span>
+                    </div>
                 </div>
             </div>
 
             <div class="section">
-                <div class="section-title"><i class="fas fa-cogs"></i> Hardware Platform</div>
-                <div class="spec-grid">
-                    <div class="spec-item">
-                        <span class="spec-label">FPGA</span>
-                        <span class="spec-value">Spartan-6</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Interface</span>
-                        <span class="spec-value">USB 3.0</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Clock</span>
-                        <span class="spec-value">40 MHz TCXO</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Ref Clock</span>
-                        <span class="spec-value">10 MHz Ext</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">PPS</span>
-                        <span class="spec-value">1PPS Input</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Antennas</span>
-                        <span class="spec-value">2x SMA TX/RX</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">GPIO</span>
-                        <span class="spec-value">12-pin Header</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Power</span>
-                        <span class="spec-value">USB 5V</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Size</span>
-                        <span class="spec-value">Mini Form</span>
-                    </div>
+                <div class="section-title"><i class="fas fa-signal"></i> Transmission Power</div>
+                <div class="card">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--text-secondary);">@ 1.0 GHz</td>
+                                <td style="text-align: right; font-weight: 600;">15 dBm</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-secondary);">@ 2.4 GHz</td>
+                                <td style="text-align: right; font-weight: 600;">&gt;10 dBm</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-secondary);">@ 5.0 GHz+</td>
+                                <td style="text-align: right; font-weight: 600;">Attenuation</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-secondary);">@ 6.0 GHz</td>
+                                <td style="text-align: right; font-weight: 600;">~2 dBm</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title"><i class="fas fa-chart-line"></i> Performance Characteristics</div>
-            <div class="grid-4">
-                <div class="card" style="font-size: 7px; text-align: center;">
-                    <i class="fas fa-tachometer-alt" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 700; margin-top: 2px;">61.44 Msps</div>
-                    <div style="color: var(--text-secondary);">Max Sample Rate</div>
+            <div class="section-title"><i class="fas fa-microchip"></i> FPGA Options & Features</div>
+            <div class="grid-3">
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">Xilinx Artix7 FPGA</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • 7A100T or 7A200T variants<br>
+                        • Both fully B210 compatible<br>
+                        • Lower power consumption<br>
+                        • More logic resources (7A200T)
+                    </div>
                 </div>
-                <div class="card" style="font-size: 7px; text-align: center;">
-                    <i class="fas fa-wave-square" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 700; margin-top: 2px;">56 MHz</div>
-                    <div style="color: var(--text-secondary);">Instantaneous BW</div>
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">Enhanced Power System</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • ADI PA with 5V supply<br>
+                        • Reduced LDO energy loss<br>
+                        • Improved efficiency vs 3.3V<br>
+                        • Better thermal performance
+                    </div>
                 </div>
-                <div class="card" style="font-size: 7px; text-align: center;">
-                    <i class="fas fa-signal" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 700; margin-top: 2px;">12-bit</div>
-                    <div style="color: var(--text-secondary);">ADC/DAC Resolution</div>
-                </div>
-                <div class="card" style="font-size: 7px; text-align: center;">
-                    <i class="fas fa-exchange-alt" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 700; margin-top: 2px;">Full-Duplex</div>
-                    <div style="color: var(--text-secondary);">MIMO Operation</div>
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">Synchronization Support</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • External clock taming<br>
+                        • PPS input for timing sync<br>
+                        • 10 MHz reference frequency<br>
+                        • PPS phase synchronization
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="two-column">
             <div class="section">
-                <div class="section-title"><i class="fas fa-broadcast-tower"></i> AD9361 Transceiver Features</div>
+                <div class="section-title"><i class="fas fa-clone"></i> B210 Compatibility</div>
                 <ul>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Integrated 2x2 MIMO RF transceiver</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> 70 MHz to 6.0 GHz tuning range</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Programmable sample rates up to 61.44 Msps</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> 12-bit ADCs and DACs</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Independent automatic gain control (AGC)</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Flexible filter configurations</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Programmable TX attenuation</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> Digital pre-distortion (DPD) support</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Windows:</strong> Replace bin file (replacement directory guide provided)</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Linux:</strong> Automatic replacement script included</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Drop-in:</strong> Full compatibility with B210 tools and frameworks</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>UHD:</strong> Native USRP Hardware Driver support</li>
+                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Scripts:</strong> Easy setup for various development tools</li>
                 </ul>
             </div>
 
             <div class="section">
-                <div class="section-title"><i class="fas fa-network-wired"></i> Connectivity & Interfaces</div>
-                <ul>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>USB 3.0:</strong> High-speed data interface</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>RF Ports:</strong> 2x TX SMA, 2x RX SMA</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>10 MHz Ref:</strong> External clock input</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>1PPS:</strong> Timing synchronization</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>GPIO:</strong> 12-pin expansion header</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>LEDs:</strong> Status indicators</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Compact:</strong> Mini form factor design</li>
-                    <li><i class="fas fa-check" style="color: #10b981;"></i> <strong>Power:</strong> USB 5V powered</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title"><i class="fas fa-laptop-code"></i> Software Ecosystem</div>
-            <div class="grid-3">
-                <div class="card" style="font-size: 7px;">
-                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">
-                        <i class="fas fa-code"></i> UHD Support
-                    </div>
-                    <div style="color: var(--text-secondary); line-height: 1.4;">
-                        Full USRP Hardware Driver (UHD) compatibility. Drop-in replacement for USRP B210 in existing applications.
-                    </div>
-                </div>
-                <div class="card" style="font-size: 7px;">
-                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">
-                        <i class="fas fa-atom"></i> GNU Radio
-                    </div>
-                    <div style="color: var(--text-secondary); line-height: 1.4;">
-                        Native GNU Radio support with UHD blocks. Access to extensive library of signal processing blocks.
-                    </div>
-                </div>
-                <div class="card" style="font-size: 7px;">
-                    <div style="font-weight: 700; color: var(--primary); margin-bottom: 2px;">
-                        <i class="fas fa-tower-cell"></i> OpenAirInterface
-                    </div>
-                    <div style="color: var(--text-secondary); line-height: 1.4;">
-                        OAI ready for 4G/5G research. Supports LTE eNB, UE, and 5G NR development and testing.
+                <div class="section-title"><i class="fas fa-vial"></i> OAI Test Results</div>
+                <div class="card" style="font-size: 6.5px;">
+                    <div style="font-weight: 700; margin-bottom: 2px;">OpenAirInterface N78 Band Testing</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        <strong>Configuration:</strong> Commercial UE tested<br>
+                        <strong>Frequency:</strong> N78 band (3.3-3.8 GHz)<br>
+                        <strong>Downlink:</strong> ~125 Mbps throughput<br>
+                        <strong>Uplink:</strong> ~24 Mbps throughput<br>
+                        <strong>Status:</strong> Fully operational with OAI
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title"><i class="fas fa-tools"></i> Development Tools & Frameworks</div>
-            <div class="grid-5" style="font-size: 7px;">
-                <div class="chip-card">
-                    <div class="chip-icon"><i class="fab fa-python"></i></div>
-                    <div style="font-weight: 700;">Python API</div>
-                    <div style="color: var(--text-secondary);">UHD Python</div>
+            <div class="section-title"><i class="fas fa-laptop-code"></i> Software Compatibility - Fully Tested</div>
+            <div class="grid-4">
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-chart-line" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">MATLAB</div>
+                    <div style="color: var(--text-secondary);">Algorithm Validation</div>
                 </div>
-                <div class="chip-card">
-                    <div class="chip-icon"><i class="fas fa-code"></i></div>
-                    <div style="font-weight: 700;">C++ API</div>
-                    <div style="color: var(--text-secondary);">Native UHD</div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-atom" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">GNU Radio</div>
+                    <div style="color: var(--text-secondary);">Signal Processing</div>
                 </div>
-                <div class="chip-card">
-                    <div class="chip-icon"><i class="fas fa-chart-line"></i></div>
-                    <div style="font-weight: 700;">MATLAB</div>
-                    <div style="color: var(--text-secondary);">Simulink</div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-broadcast-tower" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">SDRangel</div>
+                    <div style="color: var(--text-secondary);">Multi-purpose SDR</div>
                 </div>
-                <div class="chip-card">
-                    <div class="chip-icon"><i class="fas fa-wave-square"></i></div>
-                    <div style="font-weight: 700;">LabVIEW</div>
-                    <div style="color: var(--text-secondary);">NI Support</div>
-                </div>
-                <div class="chip-card">
-                    <div class="chip-icon"><i class="fab fa-linux"></i></div>
-                    <div style="font-weight: 700;">Linux</div>
-                    <div style="color: var(--text-secondary);">Win/Mac</div>
+                <div class="card" style="font-size: 6.5px; text-align: center;">
+                    <i class="fas fa-tower-cell" style="color: var(--primary); font-size: 10px;"></i>
+                    <div style="font-weight: 700; margin-top: 2px;">OAI</div>
+                    <div style="color: var(--text-secondary);">4G/5G Development</div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title"><i class="fas fa-rocket"></i> Applications</div>
-            <div class="grid-4" style="font-size: 7px;">
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-tower-cell" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">4G/5G Research</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">LTE/NR Development</div>
+            <div class="section-title"><i class="fas fa-graduation-cap"></i> Learning & Research Applications</div>
+            <div class="grid-2" style="font-size: 6.5px;">
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-flask"></i> Algorithm Development</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • Combine with MATLAB for algorithm validation and testing<br>
+                        • Rapid prototyping of wireless communication algorithms<br>
+                        • Real-time performance analysis and optimization
+                    </div>
                 </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-wifi" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">WiFi Testing</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">802.11 Protocols</div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-radio"></i> Signal Reception & Monitoring</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • SDRangel/SDR# for radio reception and broadcast listening<br>
+                        • ADS-B aircraft tracking and visualization<br>
+                        • AIS maritime vessel monitoring • DVB-T digital TV reception
+                    </div>
                 </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-satellite-dish" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">MIMO Systems</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">2x2 Spatial</div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-wave-square"></i> Spectrum Analysis</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • GNU Radio for spectrum detection and analysis<br>
+                        • Vector signal generation and transmission<br>
+                        • Custom modulation scheme development
+                    </div>
                 </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-chart-area" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">Spectrum Analysis</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">Wide Bandwidth</div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-code"></i> Product Development</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • UHD programming interface for custom applications<br>
+                        • Complete product function development framework<br>
+                        • Python, C++, and MATLAB API support
+                    </div>
                 </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-radar" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">Radar Systems</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">FMCW/Pulse</div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-network-wired"></i> Mobile Communications</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • OAI experiments for 4G LTE and 5G NR<br>
+                        • srsRAN software radio access network testing<br>
+                        • End-to-end network simulation and validation
+                    </div>
                 </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-signal" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">SIGINT</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">Signal Intelligence</div>
-                </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-satellite" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">GNSS/GPS</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">Navigation R&D</div>
-                </div>
-                <div class="card" style="padding: 4px; text-align: center;">
-                    <i class="fas fa-graduation-cap" style="color: var(--primary); font-size: 11px;"></i>
-                    <div style="font-weight: 600; margin-top: 2px;">Education</div>
-                    <div style="color: var(--text-secondary); font-size: 6px;">Academic Labs</div>
+                <div class="card">
+                    <div style="font-weight: 700; margin-bottom: 2px;"><i class="fas fa-users"></i> Education & Training</div>
+                    <div style="color: var(--text-secondary); line-height: 1.3;">
+                        • Hands-on wireless communication labs<br>
+                        • DSP and RF engineering courses<br>
+                        • Increase student interest with real-world applications
+                    </div>
                 </div>
             </div>
         </div>
@@ -558,66 +535,63 @@
                 <div class="feature-list">
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>B210 Compatible:</strong> UHD Support</span>
+                        <span><strong>B210 Compatible:</strong> Full Support</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>Full-Duplex:</strong> Simultaneous TX/RX</span>
+                        <span><strong>USB Type-C:</strong> Modern Interface</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>Wide Coverage:</strong> 70MHz-6GHz</span>
+                        <span><strong>Artix7:</strong> Lower Power</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>High BW:</strong> 56 MHz Instant</span>
+                        <span><strong>ADI PA:</strong> 5V Efficiency</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>USB 3.0:</strong> High-Speed Data</span>
+                        <span><strong>PPS Sync:</strong> Timing Precision</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>Compact:</strong> Mini Form Factor</span>
+                        <span><strong>10MHz Ref:</strong> External Clock</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>Open Source:</strong> Full Documentation</span>
+                        <span><strong>Tested:</strong> All Major Platforms</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                        <span><strong>OAI Ready:</strong> 4G/5G Development</span>
+                        <span><strong>OAI Ready:</strong> 125M Down / 24M Up</span>
                     </div>
                 </div>
             </div>
 
             <div class="section">
-                <div class="section-title"><i class="fas fa-box"></i> Package Contents</div>
-                <div style="font-size: 7px; line-height: 1.5;">
-                    <div style="font-weight: 600; margin-bottom: 3px;">Standard Package:</div>
-                    <i class="fas fa-check" style="color: #10b981;"></i> 1x LibreSDR B220 Mini Mainboard<br>
-                    <i class="fas fa-check" style="color: #10b981;"></i> 1x USB 3.0 Cable<br>
+                <div class="section-title"><i class="fas fa-box"></i> Package & Support</div>
+                <div style="font-size: 6.5px; line-height: 1.4;">
+                    <div style="font-weight: 600; margin-bottom: 2px;">Package Contents:</div>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x LibreSDR B220 Mini Board<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> 1x USB 3.0 Type-C Cable<br>
                     <i class="fas fa-check" style="color: #10b981;"></i> Quick Start Guide<br>
-                    <i class="fas fa-check" style="color: #10b981;"></i> UHD Installation Instructions<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Linux Auto-replacement Script<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> Windows Setup Instructions<br>
+                    <i class="fas fa-check" style="color: #10b981;"></i> UHD Configuration Files<br>
 
-                    <div style="font-weight: 600; margin-top: 5px; margin-bottom: 3px;">Optional Accessories:</div>
-                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> 4x Multi-band Antennas (70MHz-6GHz)<br>
-                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> GPS Antenna with SMA connector<br>
-                    <i class="fas fa-circle" style="color: var(--text-secondary); font-size: 5px;"></i> Protective Enclosure Case<br>
-
-                    <div style="color: var(--text-secondary); font-style: italic; margin-top: 4px;">
-                        ⓘ Fully assembled and tested | Ready for immediate use
-                    </div>
+                    <div style="font-weight: 600; margin-top: 4px; margin-bottom: 2px;">Documentation:</div>
+                    <i class="fas fa-book" style="color: var(--primary);"></i> Comprehensive user manual<br>
+                    <i class="fas fa-code" style="color: var(--primary);"></i> Example code for all platforms<br>
+                    <i class="fas fa-tools" style="color: var(--primary);"></i> Tool-specific setup guides
                 </div>
             </div>
         </div>
 
-        <div style="border-top: 2px solid var(--border); margin-top: 8px; padding-top: 6px; font-size: 7px; text-align: center; color: var(--text-secondary);">
+        <div style="border-top: 2px solid var(--border); margin-top: 6px; padding-top: 5px; font-size: 6.5px; text-align: center; color: var(--text-secondary);">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div><strong>OpenSourceSDR Lab</strong> | LibreSDR Series | Professional SDR Solutions</div>
+                <div><strong>OpenSourceSDR Lab</strong> | LibreSDR B220 Mini | Professional SDR Development Platform</div>
                 <div>
-                    <i class="fab fa-github"></i> Open Source Hardware & Software &nbsp;
-                    <i class="fas fa-book"></i> Comprehensive Documentation & Examples
+                    <i class="fab fa-github"></i> Open Source | <i class="fas fa-code"></i> Full B210 Compatibility | <i class="fas fa-flask"></i> Tested & Validated
                 </div>
             </div>
         </div>
