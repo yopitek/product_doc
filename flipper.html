@@ -1,1 +1,1021 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipper Zero - Product Specification</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --accent-color: #818cf8;
+            --accent-hover: #6366f1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .spec-table tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .spec-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-table td {
+            padding: 1rem 0;
+        }
+        
+        .spec-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 500;
+            width: 40%;
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            border-radius: 24px;
+            margin-bottom: 3rem;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+        
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .card {
+                border: 1px solid #ddd;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .tech-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            margin: 0.25rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .tech-chip:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 no-print" style="background: var(--bg-card); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(8px);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center text-2xl" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <i class="fas fa-fish text-white"></i>
+                </div>
+                <h1 class="text-2xl font-bold">Flipper Zero</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="window.print()" class="theme-toggle no-print" title="Print / Export PDF">
+                    <i class="fas fa-print" style="color: var(--text-primary);"></i>
+                </button>
+                <button id="themeToggle" class="theme-toggle no-print" title="Toggle Dark Mode">
+                    <i class="fas fa-moon" style="color: var(--text-primary);"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <!-- Hero Section -->
+        <div class="hero-gradient text-white mb-12 fade-in">
+            <div class="px-6 sm:px-12">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="flex-1 mb-6 md:mb-0">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge">Open Source</span>
+                            <span class="badge">Multi-Tool</span>
+                            <span class="badge">Portable</span>
+                        </div>
+                        <h2 class="text-4xl sm:text-5xl font-bold mb-4">Flipper Zero</h2>
+                        <p class="text-xl sm:text-2xl text-white/90 mb-6">Portable Multi-Tool for Pentesters & Hardware Hackers</p>
+                        <p class="text-lg text-white/80 max-w-2xl">
+                            A versatile cybersecurity tool combining RFID, NFC, Sub-GHz radio, infrared, GPIO, and more 
+                            in a compact, user-friendly package with an interactive cyber-dolphin companion.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center" style="font-size: 120px;">
+                        <i class="fas fa-microchip opacity-20"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 fade-in">
+            <div class="card text-center">
+                <div class="text-3xl font-bold mb-2" style="color: var(--accent-color);">1 MHz - 6 GHz</div>
+                <div style="color: var(--text-secondary);">Frequency Range</div>
+            </div>
+            <div class="card text-center">
+                <div class="text-3xl font-bold mb-2" style="color: var(--accent-color);">64 MHz</div>
+                <div style="color: var(--text-secondary);">Cortex-M4</div>
+            </div>
+            <div class="card text-center">
+                <div class="text-3xl font-bold mb-2" style="color: var(--accent-color);">2000 mAh</div>
+                <div style="color: var(--text-secondary);">Battery</div>
+            </div>
+            <div class="card text-center">
+                <div class="text-3xl font-bold mb-2" style="color: var(--accent-color);">102g</div>
+                <div style="color: var(--text-secondary);">Weight</div>
+            </div>
+        </div>
+
+        <!-- Product Overview -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Product Overview</h3>
+            <div class="card">
+                <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">
+                    Flipper Zero is a portable multi-functional cybersecurity device designed for penetration testers, 
+                    hardware hackers, and technology enthusiasts. Built around the powerful STM32WB55 dual-core microcontroller, 
+                    it combines multiple wireless protocols, access control system interaction, and hardware debugging capabilities 
+                    in a compact, autonomous device. Its playful cyber-dolphin companion evolves as you use the device, making 
+                    learning and exploration engaging and fun.
+                </p>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Technical Specifications</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Processor -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-microchip mr-2" style="color: var(--accent-color);"></i>
+                        Processor
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>MCU</td>
+                            <td class="font-semibold">STM32WB55RG</td>
+                        </tr>
+                        <tr>
+                            <td>Application Core</td>
+                            <td>ARM Cortex-M4 32-bit @ 64 MHz</td>
+                        </tr>
+                        <tr>
+                            <td>Radio Core</td>
+                            <td>ARM Cortex-M0+ 32-bit @ 32 MHz</td>
+                        </tr>
+                        <tr>
+                            <td>Flash Memory</td>
+                            <td>1024 KB (shared)</td>
+                        </tr>
+                        <tr>
+                            <td>SRAM</td>
+                            <td>256 KB (shared)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Display & Power -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-display mr-2" style="color: var(--accent-color);"></i>
+                        Display & Power
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Display Type</td>
+                            <td>Monochrome LCD</td>
+                        </tr>
+                        <tr>
+                            <td>Resolution</td>
+                            <td>128 × 64 pixels</td>
+                        </tr>
+                        <tr>
+                            <td>Screen Size</td>
+                            <td>1.4 inches diagonal</td>
+                        </tr>
+                        <tr>
+                            <td>Controller</td>
+                            <td>ST7567</td>
+                        </tr>
+                        <tr>
+                            <td>Battery</td>
+                            <td>2000 mAh LiPo (7 days standby)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Physical Dimensions -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-ruler-combined mr-2" style="color: var(--accent-color);"></i>
+                        Physical Dimensions
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Width</td>
+                            <td>100.3 mm (3.95 inches)</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>40.1 mm (1.58 inches)</td>
+                        </tr>
+                        <tr>
+                            <td>Depth</td>
+                            <td>25.6 mm (1.01 inches)</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>102 grams (3.6 ounces)</td>
+                        </tr>
+                        <tr>
+                            <td>Materials</td>
+                            <td>PC, ABS, PMMA</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Wireless Capabilities -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-wifi mr-2" style="color: var(--accent-color);"></i>
+                        Wireless Capabilities
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Sub-1 GHz</td>
+                            <td>CC1101 Transceiver</td>
+                        </tr>
+                        <tr>
+                            <td>Frequency Bands</td>
+                            <td>315, 433, 868, 915 MHz</td>
+                        </tr>
+                        <tr>
+                            <td>TX Power</td>
+                            <td>Up to 0 dBm</td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td>BLE 5.0/5.4, 802.15.4</td>
+                        </tr>
+                        <tr>
+                            <td>Range</td>
+                            <td>Up to 50 meters</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- RFID & NFC -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-id-card mr-2" style="color: var(--accent-color);"></i>
+                        RFID & NFC
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>NFC Transceiver</td>
+                            <td>ST25R3916</td>
+                        </tr>
+                        <tr>
+                            <td>HF Frequency</td>
+                            <td>13.56 MHz</td>
+                        </tr>
+                        <tr>
+                            <td>Supported Cards</td>
+                            <td>ISO 14443A/B, MIFARE, FeliCa</td>
+                        </tr>
+                        <tr>
+                            <td>LF Frequency</td>
+                            <td>125 kHz</td>
+                        </tr>
+                        <tr>
+                            <td>RFID Support</td>
+                            <td>Read, Write, Emulate</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Infrared & Other -->
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-satellite-dish mr-2" style="color: var(--accent-color);"></i>
+                        Infrared & Interfaces
+                    </h4>
+                    <table class="spec-table">
+                        <tr>
+                            <td>IR Wavelength</td>
+                            <td>800 - 950 nm</td>
+                        </tr>
+                        <tr>
+                            <td>IR TX Power</td>
+                            <td>300 mW</td>
+                        </tr>
+                        <tr>
+                            <td>iButton</td>
+                            <td>1-Wire (DS1990A compatible)</td>
+                        </tr>
+                        <tr>
+                            <td>USB</td>
+                            <td>USB 2.0 Type-C</td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td>microSD (up to 64GB)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software & Firmware -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Software & Firmware</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-code mr-2" style="color: var(--accent-color);"></i>
+                        Core System
+                    </h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="font-semibold mb-1">Operating System</div>
+                            <p style="color: var(--text-secondary);">FreeRTOS-based with custom abstraction layer</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">Programming Languages</div>
+                            <p style="color: var(--text-secondary);">C, C++, ARMv7-M Assembly</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">Build System</div>
+                            <p style="color: var(--text-secondary);">SCons with Python tooling</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">File System</div>
+                            <p style="color: var(--text-secondary);">LittleFS (internal), FatFS (SD card)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-mobile-alt mr-2" style="color: var(--accent-color);"></i>
+                        Applications & Tools
+                    </h4>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="font-semibold mb-1">Mobile Apps</div>
+                            <p style="color: var(--text-secondary);">Android & iOS companion apps</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">Desktop Tool</div>
+                            <p style="color: var(--text-secondary);">qFlipper (Windows, macOS, Linux)</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">Updates</div>
+                            <p style="color: var(--text-secondary);">OTA firmware updates via app</p>
+                        </div>
+                        <div>
+                            <div class="font-semibold mb-1">Development</div>
+                            <p style="color: var(--text-secondary);">Full SDK with comprehensive APIs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-6">
+                <h4 class="text-xl font-semibold mb-4">Supported Protocols & Technologies</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tech-chip">ASK/OOK</span>
+                    <span class="tech-chip">FSK</span>
+                    <span class="tech-chip">GFSK</span>
+                    <span class="tech-chip">MSK</span>
+                    <span class="tech-chip">ISO 14443A/B</span>
+                    <span class="tech-chip">MIFARE Classic</span>
+                    <span class="tech-chip">MIFARE Ultralight</span>
+                    <span class="tech-chip">MIFARE DESFire</span>
+                    <span class="tech-chip">FeliCa</span>
+                    <span class="tech-chip">HID iClass</span>
+                    <span class="tech-chip">iButton</span>
+                    <span class="tech-chip">UART</span>
+                    <span class="tech-chip">SPI</span>
+                    <span class="tech-chip">I2C</span>
+                    <span class="tech-chip">GPIO</span>
+                    <span class="tech-chip">1-Wire</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Key Features</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Sub-GHz Radio</h4>
+                    <p style="color: var(--text-secondary);">
+                        Capture, analyze, and replay wireless signals from garage doors, IoT devices, 
+                        and access control systems operating in 315-915 MHz range.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">RFID & NFC</h4>
+                    <p style="color: var(--text-secondary);">
+                        Read, write, and emulate both 125 kHz and 13.56 MHz cards including MIFARE, 
+                        FeliCa, and other common access control formats.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Infrared Control</h4>
+                    <p style="color: var(--text-secondary);">
+                        Universal remote functionality with built-in library for TVs, air conditioners, 
+                        and other IR-controlled devices. Capture and replay IR signals.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">BadUSB</h4>
+                    <p style="color: var(--text-secondary);">
+                        Emulate USB HID devices like keyboards to execute DuckyScript payloads for 
+                        penetration testing and automation tasks.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Hardware Hacking</h4>
+                    <p style="color: var(--text-secondary);">
+                        GPIO pins with 3.3V logic (5V tolerant) for hardware debugging, firmware flashing, 
+                        and interfacing with embedded systems.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Open Source</h4>
+                    <p style="color: var(--text-secondary);">
+                        100% open-source hardware and firmware with active community development, 
+                        custom applications, and extensible architecture.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">iButton</h4>
+                    <p style="color: var(--text-secondary);">
+                        Read, write, and emulate Dallas 1-Wire contact keys (TouchMemory) commonly 
+                        used in access control and identification systems.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Autonomous</h4>
+                    <p style="color: var(--text-secondary);">
+                        Completely standalone operation with 5-way directional pad, 1.4" LCD display, 
+                        and 7-day standby battery life. No PC required.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="feature-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Cyber-Dolphin Pet</h4>
+                    <p style="color: var(--text-secondary);">
+                        Interactive Tamagotchi-like companion that evolves as you use the device, 
+                        gamifying the learning experience and tracking progress.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Applications</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-shield-alt mr-2" style="color: var(--accent-color);"></i>
+                        Security Testing
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Professional penetration testing of access control systems, wireless networks, and IoT devices
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-graduation-cap mr-2" style="color: var(--accent-color);"></i>
+                        Education
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Hands-on learning about radio frequencies, cryptography, and embedded systems
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-wrench mr-2" style="color: var(--accent-color);"></i>
+                        Hardware Development
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Firmware flashing, debugging, and protocol analysis for embedded projects
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-search mr-2" style="color: var(--accent-color);"></i>
+                        Research
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Wireless protocol analysis, reverse engineering, and security research
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-home mr-2" style="color: var(--accent-color);"></i>
+                        Home Automation
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Universal remote control for IR devices and RF-controlled systems
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="font-semibold mb-2 flex items-center">
+                        <i class="fas fa-network-wired mr-2" style="color: var(--accent-color);"></i>
+                        IoT Development
+                    </h4>
+                    <p style="color: var(--text-secondary);">
+                        Testing and debugging wireless IoT devices and sensor networks
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Key Advantages</h3>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">Multi-Protocol Support</h4>
+                        <p style="color: var(--text-secondary);">
+                            Single device handles Sub-GHz, NFC, RFID, IR, Bluetooth, and GPIO
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">Truly Portable</h4>
+                        <p style="color: var(--text-secondary);">
+                            Pocket-sized at 102g with 7-day battery life and autonomous operation
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">Open Ecosystem</h4>
+                        <p style="color: var(--text-secondary);">
+                            100% open-source with active community, custom firmware, and plugins
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">Expandable Platform</h4>
+                        <p style="color: var(--text-secondary);">
+                            GPIO pins, microSD storage, and modular design for custom expansions
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">Cross-Platform</h4>
+                        <p style="color: var(--text-secondary);">
+                            Support for Windows, macOS, Linux, Android, and iOS
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex items-start">
+                    <i class="fas fa-check-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-1">User-Friendly</h4>
+                        <p style="color: var(--text-secondary);">
+                            Intuitive interface with gamified learning through cyber-dolphin companion
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Contents -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Package Contents</h3>
+            
+            <div class="card">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">What's Included</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check mr-3" style="color: var(--accent-color);"></i>
+                                <span>1× Flipper Zero Device</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check mr-3" style="color: var(--accent-color);"></i>
+                                <span>1× USB Type-C Cable</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check mr-3" style="color: var(--accent-color);"></i>
+                                <span>Quick Start Guide</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check mr-3" style="color: var(--accent-color);"></i>
+                                <span>Access to Full Documentation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Optional Accessories</h4>
+                        <ul class="space-y-2" style="color: var(--text-secondary);">
+                            <li class="flex items-center">
+                                <i class="fas fa-wifi mr-3"></i>
+                                <span>Wi-Fi Development Board</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-gamepad mr-3"></i>
+                                <span>Video Game Module</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-shield-alt mr-3"></i>
+                                <span>Protective Silicone Case</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-sd-card mr-3"></i>
+                                <span>microSD Card (up to 64GB)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Resources -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Developer Resources</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card">
+                    <i class="fas fa-book text-3xl mb-4" style="color: var(--accent-color);"></i>
+                    <h4 class="font-semibold mb-2">Documentation</h4>
+                    <p style="color: var(--text-secondary);">
+                        Comprehensive user and developer documentation with API references
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i class="fab fa-github text-3xl mb-4" style="color: var(--accent-color);"></i>
+                    <h4 class="font-semibold mb-2">GitHub Repository</h4>
+                    <p style="color: var(--text-secondary);">
+                        Full source code, schematics, and active development community
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-users text-3xl mb-4" style="color: var(--accent-color);"></i>
+                    <h4 class="font-semibold mb-2">Community Forum</h4>
+                    <p style="color: var(--text-secondary);">
+                        Active forum for support, custom apps, and community projects
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hardware Architecture -->
+        <section class="mb-12 fade-in">
+            <h3 class="text-3xl font-bold mb-6">Hardware Architecture</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="card text-center">
+                    <div class="text-4xl mb-3" style="color: var(--accent-color);">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2">STM32WB55</h4>
+                    <p class="text-sm" style="color: var(--text-secondary);">
+                        Dual-core ARM processor<br>64 MHz + 32 MHz
+                    </p>
+                </div>
+
+                <div class="card text-center">
+                    <div class="text-4xl mb-3" style="color: var(--accent-color);">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2">CC1101</h4>
+                    <p class="text-sm" style="color: var(--text-secondary);">
+                        Sub-GHz Transceiver<br>315-915 MHz
+                    </p>
+                </div>
+
+                <div class="card text-center">
+                    <div class="text-4xl mb-3" style="color: var(--accent-color);">
+                        <i class="fas fa-id-card-alt"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2">ST25R3916</h4>
+                    <p class="text-sm" style="color: var(--text-secondary);">
+                        NFC Transceiver<br>13.56 MHz
+                    </p>
+                </div>
+
+                <div class="card text-center">
+                    <div class="text-4xl mb-3" style="color: var(--accent-color);">
+                        <i class="fas fa-display"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2">ST7567</h4>
+                    <p class="text-sm" style="color: var(--text-secondary);">
+                        LCD Controller<br>128×64 pixels
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Note -->
+        <section class="fade-in">
+            <div class="card" style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-color: var(--accent-color);">
+                <div class="flex items-start">
+                    <i class="fas fa-info-circle text-2xl mr-4 mt-1" style="color: var(--accent-color);"></i>
+                    <div>
+                        <h4 class="font-semibold mb-2">Responsible Use Notice</h4>
+                        <p style="color: var(--text-secondary);">
+                            Flipper Zero is designed for educational purposes, security research, and authorized penetration testing. 
+                            Users must comply with all applicable laws and regulations. Unauthorized access to systems, networks, 
+                            or devices is illegal. Always obtain proper authorization before testing security systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8" style="border-top: 1px solid var(--border-color);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="color: var(--text-secondary);">
+            <p class="mb-2">Flipper Zero - Portable Multi-Tool for Pentesters & Hardware Hackers</p>
+            <p class="text-sm">Open Source Hardware & Software | CE + FCC Approved | 2-Year Warranty</p>
+            <p class="text-sm mt-4">Documentation generated on November 15, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icon
+            if (newTheme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
