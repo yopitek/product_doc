@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LimeSDR - Product Specification Sheet</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --accent: #06b6d4;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --border: #e5e7eb;
+        }
+
+        [data-theme="dark"] {
+            --primary: #4ade80;
+            --primary-dark: #22c55e;
+            --accent: #22d3ee;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1f1f1f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --border: #2a2a2a;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ecfdf5 0%, #cffafe 100%);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #064e3b 100%);
+        }
+
+        /* Page Layout */
+        .page {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--bg-primary);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        [data-theme="dark"] .page {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: white !important;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                width: 100%;
+                height: auto;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                page-break-after: avoid;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .page {
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            body {
+                background: var(--bg-primary);
+            }
+        }
+
+        /* Header Gradient */
+        .gradient-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        /* Spec Grid */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spec-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .spec-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .spec-item:hover::before {
+            opacity: 1;
+        }
+
+        [data-theme="dark"] .spec-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .spec-value {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+
+        .spec-unit {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        /* Card */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.1);
+        }
+
+        /* Badge */
+        .badge {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Chip Card */
+        .chip-card {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chip-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .chip-icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .chip-card:hover .chip-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .chip-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .chip-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* App Card */
+        .app-card {
+            text-align: center;
+            padding: 24px 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .app-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover .app-icon {
+            transform: scale(1.15);
+        }
+
+        .app-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .app-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Feature List */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background-color: var(--bg-tertiary);
+            transform: translateX(4px);
+        }
+
+        .feature-item i {
+            font-size: 16px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.5);
+        }
+
+        .print-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+        .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+
+        @media screen and (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+        }
+
+        /* Hero Stats */
+        .hero-stat {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        /* Standards Badge */
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+        }
+
+        .standard-badge {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .standard-badge:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* RF Connections */
+        .rf-connection {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .rf-connection i {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle no-print" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="printPage()" title="Print or save as PDF">
+        <i class="fas fa-print"></i>
+        <span>Print / PDF</span>
+    </button>
+
+    <!-- Main Page -->
+    <div class="page">
+        <!-- Header -->
+        <div class="gradient-header text-white p-10">
+            <div class="relative z-10">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-broadcast-tower text-5xl"></i>
+                        <div>
+                            <h1 class="text-4xl font-bold leading-tight">LimeSDR</h1>
+                            <p class="text-base opacity-90 mt-1">Open Source Apps-Enabled Software Defined Radio Platform</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-xl backdrop-blur-sm">
+                            <div class="text-2xl font-bold">USB 3.0</div>
+                            <div class="text-xs">2×2 MIMO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-4 mb-6">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">3.8 GHz</div>
+                        <div class="hero-stat-label">Max Frequency</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">61.44 MHz</div>
+                        <div class="hero-stat-label">Bandwidth</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">10 dBm</div>
+                        <div class="hero-stat-label">TX Power</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">256 MB</div>
+                        <div class="hero-stat-label">DDR2 RAM</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge text-white border-white border-opacity-30">
+                        <i class="fas fa-code"></i>Open Source
+                    </span>
+                    <span class="badge text-white border-white border-opacity-30">
+                        <i class="fas fa-microchip"></i>FPGA-based
+                    </span>
+                    <span class="badge text-white border-white border-opacity-30">
+                        <i class="fas fa-network-wired"></i>Full MIMO
+                    </span>
+                    <span class="badge text-white border-white border-opacity-30">
+                        <i class="fas fa-usb"></i>USB 3.0
+                    </span>
+                    <span class="badge text-white border-white border-opacity-30">
+                        <i class="fas fa-cloud-download-alt"></i>App Store
+                    </span>
+                </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-10">
+            <!-- Overview -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Product Overview
+                </div>
+                <div class="highlight-box">
+                    <p class="text-base leading-relaxed text-secondary">
+                        <strong>LimeSDR</strong> is an open source, apps-enabled software defined radio platform that can be used 
+                        to support just about any type of wireless communication standard. This versatile platform handles 
+                        <strong>UMTS, LTE, GSM, LoRa, Bluetooth, Zigbee, RFID, and Digital Broadcasting</strong> communications, 
+                        making it ideal for a wide range of applications from radio astronomy and RADAR to cellular basestations, 
+                        IoT gateways, HAM radio, drone control, test/measurement, and aerospace applications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Supported Standards -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-signal"></i>
+                    Supported Wireless Standards
+                </div>
+                <div class="standards-grid">
+                    <div class="standard-badge">UMTS</div>
+                    <div class="standard-badge">LTE</div>
+                    <div class="standard-badge">GSM</div>
+                    <div class="standard-badge">LoRa</div>
+                    <div class="standard-badge">Bluetooth</div>
+                    <div class="standard-badge">Zigbee</div>
+                    <div class="standard-badge">RFID</div>
+                    <div class="standard-badge">DVB</div>
+                </div>
+            </div>
+
+            <!-- Core Specifications -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Core RF Specifications
+                </div>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Frequency Range</span>
+                        <span class="spec-value">100 kHz - 3.8 GHz</span>
+                        <span class="spec-unit">Continuous coverage</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Bandwidth</span>
+                        <span class="spec-value">61.44 MHz</span>
+                        <span class="spec-unit">Max RF bandwidth</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">MIMO Configuration</span>
+                        <span class="spec-value">2×2</span>
+                        <span class="spec-unit">Full duplex</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">TX Power (Max)</span>
+                        <span class="spec-value">10 dBm</span>
+                        <span class="spec-unit">Continuous wave</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">RF Connectors</span>
+                        <span class="spec-value">10× U.FL</span>
+                        <span class="spec-unit">6 RX / 4 TX</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Interface</span>
+                        <span class="spec-value">USB 3.0</span>
+                        <span class="spec-unit">High-speed data</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hardware Architecture -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-microchip"></i>
+                    Hardware Architecture
+                </div>
+                <div class="grid-5">
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <div class="chip-name">LMS7002M</div>
+                        <div class="chip-desc">Lime Microsystems<br>MIMO FPRF Transceiver</div>
+                        <div class="chip-desc mt-2" style="color: var(--primary); font-weight: 600;">100 kHz - 3.8 GHz</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-brain"></i></div>
+                        <div class="chip-name">Cyclone IV</div>
+                        <div class="chip-desc">Altera FPGA<br>EP4CE40F23</div>
+                        <div class="chip-desc mt-2" style="color: var(--primary); font-weight: 600;">40K Logic Elements</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-memory"></i></div>
+                        <div class="chip-name">DDR2 SDRAM</div>
+                        <div class="chip-desc">System Memory<br>256 MBytes</div>
+                        <div class="chip-desc mt-2" style="color: var(--primary); font-weight: 600;">High-speed buffer</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-usb"></i></div>
+                        <div class="chip-name">CYUSB3014</div>
+                        <div class="chip-desc">Cypress USB 3.0<br>Controller</div>
+                        <div class="chip-desc mt-2" style="color: var(--primary); font-weight: 600;">SuperSpeed USB</div>
+                    </div>
+                    <div class="chip-card">
+                        <div class="chip-icon"><i class="fas fa-clock"></i></div>
+                        <div class="chip-name">RPT7050A</div>
+                        <div class="chip-desc">Rakon Oscillator<br>30.72 MHz</div>
+                        <div class="chip-desc mt-2" style="color: var(--primary); font-weight: 600;">Reference clock</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Physical & Power -->
+            <div class="section">
+                <div class="grid-2">
+                    <div>
+                        <div class="section-title">
+                            <i class="fas fa-ruler-combined"></i>
+                            Physical Specifications
+                        </div>
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Dimensions</span>
+                                <span class="spec-value">100 × 60 mm</span>
+                                <span class="spec-unit">Standard PCB size</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Power Input</span>
+                                <span class="spec-value">Micro USB</span>
+                                <span class="spec-unit">+ Optional external</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Indicators</span>
+                                <span class="spec-value">LED Status</span>
+                                <span class="spec-unit">Programmable</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Form Factor</span>
+                                <span class="spec-value">Standalone</span>
+                                <span class="spec-unit">Desktop/embedded</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="section-title">
+                            <i class="fas fa-plug"></i>
+                            RF Connections
+                        </div>
+                        <div class="card">
+                            <div class="space-y-3">
+                                <div class="rf-connection">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <div>
+                                        <div class="font-bold">6× RX U.FL</div>
+                                        <div class="text-xs text-secondary">Receive channels</div>
+                                    </div>
+                                </div>
+                                <div class="rf-connection">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <div>
+                                        <div class="font-bold">4× TX U.FL</div>
+                                        <div class="text-xs text-secondary">Transmit channels</div>
+                                    </div>
+                                </div>
+                                <div class="text-xs text-secondary mt-2">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    U.FL connectors require appropriate RF cables and antennas (sold separately)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software & Apps -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-code"></i>
+                    Software & Application Ecosystem
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="mb-4">
+                            <div class="text-sm font-bold mb-2" style="color: var(--primary);">
+                                <i class="fas fa-cloud-download-alt mr-2"></i>Apps-Enabled Platform
+                            </div>
+                            <div class="text-sm text-secondary leading-relaxed">
+                                Integration with <strong>Snappy Ubuntu Core</strong> enables a downloadable app distribution system. 
+                                Developers can share and/or sell custom applications through the platform, creating a vibrant 
+                                ecosystem of SDR software.
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="text-sm font-bold mb-2" style="color: var(--primary);">
+                                <i class="fas fa-code-branch mr-2"></i>Open Source
+                            </div>
+                            <div class="text-sm text-secondary leading-relaxed">
+                                Complete board schematics, layouts, manufacturing files, FPGA code, firmware, and host software 
+                                available under <strong>CC BY 3.0</strong> or <strong>Apache 2.0</strong> licenses via GitHub.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="text-sm font-bold mb-3" style="color: var(--primary);">
+                            <i class="fas fa-download mr-2"></i>Available Resources
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>Hardware schematics & PCB layouts</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>Manufacturing files & BOM</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>FPGA gateware sources</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>USB controller firmware</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>Host computer software & drivers</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                <span>Community-developed applications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    Applications & Use Cases
+                </div>
+                <div class="grid-4">
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #3b82f6;">
+                            <i class="fas fa-satellite-dish"></i>
+                        </div>
+                        <div class="app-title">Radio Astronomy</div>
+                        <div class="app-subtitle">Space signal detection</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #8b5cf6;">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <div class="app-title">RADAR Systems</div>
+                        <div class="app-subtitle">Detection & ranging</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #22c55e;">
+                            <i class="fas fa-tower-cell"></i>
+                        </div>
+                        <div class="app-title">Cellular Basestations</div>
+                        <div class="app-subtitle">LTE/5G infrastructure</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #f59e0b;">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="app-title">Media Streaming</div>
+                        <div class="app-subtitle">Broadcasting systems</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #06b6d4;">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="app-title">IoT Gateways</div>
+                        <div class="app-subtitle">LoRa, Zigbee hubs</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #ef4444;">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="app-title">HAM Radio</div>
+                        <div class="app-subtitle">Amateur operations</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #ec4899;">
+                            <i class="fas fa-helicopter"></i>
+                        </div>
+                        <div class="app-title">Drone Control</div>
+                        <div class="app-subtitle">UAV communication</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #14b8a6;">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="app-title">Test & Measurement</div>
+                        <div class="app-subtitle">RF lab equipment</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #f97316;">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="app-title">Aerospace</div>
+                        <div class="app-subtitle">Aviation systems</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #6366f1;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="app-title">Security Research</div>
+                        <div class="app-subtitle">RF analysis</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #10b981;">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="app-title">Research & Development</div>
+                        <div class="app-subtitle">Wireless protocols</div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon" style="color: #a855f7;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="app-title">Education</div>
+                        <div class="app-subtitle">SDR learning platform</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-star"></i>
+                    Key Advantages
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>Wide Coverage:</strong> 100 kHz to 3.8 GHz frequency range</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>High Bandwidth:</strong> 61.44 MHz RF bandwidth for wideband signals</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>Full MIMO:</strong> 2×2 configuration with independent TX/RX chains</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>USB 3.0:</strong> High-speed data transfer for real-time processing</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>Open Source:</strong> Complete hardware and software transparency</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>App Ecosystem:</strong> Downloadable apps via Snappy Ubuntu Core</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>FPGA Power:</strong> Flexible signal processing capabilities</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle" style="color: #22c55e; font-size: 20px;"></i>
+                        <span><strong>Multi-Standard:</strong> Support for all major wireless protocols</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Notes -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Important Notes
+                </div>
+                <div class="highlight-box">
+                    <ul class="text-sm text-secondary space-y-2">
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>RF Antennas:</strong> U.FL antennas and RF cables are required and sold separately
+                        </li>
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>Power Supply:</strong> Can be powered via Micro USB or optional external power supply
+                        </li>
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>TX Power:</strong> Maximum output power of 10 dBm (CW); actual power varies by frequency and configuration
+                        </li>
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>Compliance:</strong> Users are responsible for compliance with local RF regulations and licensing requirements
+                        </li>
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>Operating System:</strong> Best supported on Linux-based systems; Windows and macOS drivers also available
+                        </li>
+                        <li><i class="fas fa-info-circle mr-2" style="color: var(--primary);"></i>
+                            <strong>Development:</strong> FPGA development requires Altera Quartus II or compatible toolchain
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="text-center mt-8 pt-6 border-t border-gray-200" style="border-color: var(--border);">
+                <p class="text-xs text-secondary">
+                    <strong>LimeSDR</strong> | Powered by Lime Microsystems LMS7002M | Open Source Hardware & Software
+                </p>
+                <p class="text-xs text-tertiary mt-2">
+                    For schematics, code repositories, and community support, visit the official LimeSDR GitHub and forums
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Print Function
+        function printPage() {
+            try {
+                window.print();
+            } catch (e) {
+                console.error('Print error:', e);
+                alert('Unable to print. Please use Ctrl+P (Windows) or Cmd+P (Mac).');
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const icon = document.getElementById('theme-icon');
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            const icon = document.getElementById('theme-icon');
+
+            document.documentElement.setAttribute('data-theme', theme);
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const theme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        });
+
+        // Keyboard shortcut for print
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                printPage();
+            }
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Lazy loading for images (if any are added later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        // Animate standard badges on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.section').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
