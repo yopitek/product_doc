@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACS ACR1552U - NFC Reader IV | Product Specifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.75);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(17, 24, 39, 0.75);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.12), 0 12px 15px -5px rgba(0, 0, 0, 0.06);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.5), 0 12px 15px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 26px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+        
+        .spec-row {
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s ease;
+        }
+        
+        .dark .spec-row {
+            border-bottom-color: #374151;
+        }
+        
+        .spec-row:hover {
+            background-color: #f9fafb;
+        }
+        
+        .dark .spec-row:hover {
+            background-color: #1f2937;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.85rem;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+        }
+        
+        .badge:hover {
+            transform: scale(1.06);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(14, 165, 233, 0.06) 0%, rgba(14, 165, 233, 0) 100%);
+        }
+        
+        .dark .hero-gradient {
+            background: linear-gradient(180deg, rgba(14, 165, 233, 0.12) 0%, rgba(14, 165, 233, 0) 100%);
+        }
+
+        .gen-badge {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gen-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #3b82f6);
+            padding: 2px;
+            border-radius: 1rem;
+        }
+
+        .gradient-border-content {
+            background: white;
+            border-radius: calc(1rem - 2px);
+        }
+
+        .dark .gradient-border-content {
+            background: #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i class="fas fa-microchip text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-900 dark:text-white">ACR1552U</h1>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">NFC Reader IV</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-moon dark:hidden text-gray-700 text-lg"></i>
+                        <i class="fas fa-sun hidden dark:inline text-yellow-400 text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 hero-gradient animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="inline-flex items-center space-x-3 gen-badge bg-gradient-to-r from-sky-100 via-blue-100 to-cyan-100 dark:from-sky-900/30 dark:via-blue-900/30 dark:to-cyan-900/30 px-5 py-2.5 rounded-full mb-6 animate-scale-in border-2 border-sky-200 dark:border-sky-800">
+                    <i class="fas fa-rocket text-sky-600 dark:text-sky-400 text-lg"></i>
+                    <span class="text-sm font-black text-sky-700 dark:text-sky-300 tracking-wide">4TH GENERATION</span>
+                    <div class="w-2 h-2 bg-sky-500 rounded-full animate-pulse-slow"></div>
+                </div>
+                
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-sky-900 via-blue-800 to-cyan-900 dark:from-sky-200 dark:via-blue-200 dark:to-cyan-200 bg-clip-text text-transparent animate-slide-up">
+                    ACS ACR1552U
+                </h1>
+                
+                <p class="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 animate-slide-up" style="animation-delay: 0.1s;">
+                    USB NFC Reader IV - 13.56MHz
+                </p>
+                
+                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8 animate-slide-up leading-relaxed" style="animation-delay: 0.2s;">
+                    Fourth-generation NFC reader featuring ultra-high-speed 848 kbps communication, extended 70mm reading distance, comprehensive ISO 15693 support, and innovative keyboard emulation capability for seamless integration across enterprise applications.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-3 animate-slide-up" style="animation-delay: 0.3s;">
+                    <span class="badge bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-700">
+                        <i class="fas fa-tachometer-alt mr-2"></i> 848 kbps Speed
+                    </span>
+                    <span class="badge bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700">
+                        <i class="fas fa-ruler mr-2"></i> 70mm Range
+                    </span>
+                    <span class="badge bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-700">
+                        <i class="fas fa-keyboard mr-2"></i> Keyboard Emulation
+                    </span>
+                    <span class="badge bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">
+                        <i class="fas fa-layer-group mr-2"></i> ISO 15693 Support
+                    </span>
+                    <span class="badge bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-700">
+                        <i class="fas fa-tags mr-2"></i> All NFC Types 1-5
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generation Comparison -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Next-Generation Innovation</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Successor to ACR1252U with enhanced capabilities</p>
+            </div>
+            
+            <div class="gradient-border animate-on-scroll">
+                <div class="gradient-border-content p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-history text-gray-600 dark:text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400">Previous Generation</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500">ACR1252U Reader III</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                                <li class="flex items-center"><i class="fas fa-check text-gray-400 mr-3"></i>424 kbps speed</li>
+                                <li class="flex items-center"><i class="fas fa-check text-gray-400 mr-3"></i>50mm reading distance</li>
+                                <li class="flex items-center"><i class="fas fa-check text-gray-400 mr-3"></i>NFC Types 1-4 only</li>
+                                <li class="flex items-center"><i class="fas fa-check text-gray-400 mr-3"></i>Basic NFC modes</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-sky-500/10 to-blue-500/10 dark:from-sky-500/20 dark:to-blue-500/20 rounded-lg"></div>
+                            <div class="relative">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-sky-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                                        <i class="fas fa-star text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-sky-600 dark:text-sky-400">Current Generation</h3>
+                                        <p class="text-sm text-sky-600 dark:text-sky-400">ACR1552U Reader IV</p>
+                                    </div>
+                                </div>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center text-sky-700 dark:text-sky-300"><i class="fas fa-bolt text-sky-500 mr-3"></i><span class="font-semibold">848 kbps speed</span> <span class="ml-2 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">+100%</span></li>
+                                    <li class="flex items-center text-sky-700 dark:text-sky-300"><i class="fas fa-expand text-sky-500 mr-3"></i><span class="font-semibold">70mm reading distance</span> <span class="ml-2 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">+40%</span></li>
+                                    <li class="flex items-center text-sky-700 dark:text-sky-300"><i class="fas fa-tags text-sky-500 mr-3"></i><span class="font-semibold">All NFC Types 1-5</span> <span class="ml-2 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">NEW</span></li>
+                                    <li class="flex items-center text-sky-700 dark:text-sky-300"><i class="fas fa-keyboard text-sky-500 mr-3"></i><span class="font-semibold">Keyboard Emulation</span> <span class="ml-2 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">NEW</span></li>
+                                    <li class="flex items-center text-sky-700 dark:text-sky-300"><i class="fas fa-barcode text-sky-500 mr-3"></i><span class="font-semibold">ISO 15693 Support</span> <span class="ml-2 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded">NEW</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three NFC Modes -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Three Intelligent NFC Modes</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Advanced functionality for diverse applications</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl card-hover animate-on-scroll border-2 border-transparent hover:border-sky-300 dark:hover:border-sky-700">
+                    <div class="w-16 h-16 bg-gradient-to-br from-sky-500 to-sky-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-book-reader text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Reader/Writer Mode</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-4">Read and write data to NFC tags and contactless cards with ultra-high-speed 848 kbps access for maximum efficiency.</p>
+                    <div class="flex items-center space-x-2 text-sm text-sky-600 dark:text-sky-400 font-semibold">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Standard NFC Mode</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl card-hover animate-on-scroll border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-700" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-clone text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Card Emulation Mode</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-4">Emulate contactless smart cards enabling secure virtual card functionality for payment and access applications.</p>
+                    <div class="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400 font-semibold">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Advanced Security Mode</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-gray-800 dark:to-cyan-900/20 rounded-2xl p-8 shadow-xl card-hover animate-on-scroll border-2 border-cyan-300 dark:border-cyan-700" style="animation-delay: 0.2s;">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-keyboard text-white text-3xl"></i>
+                        </div>
+                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">NEW</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Keyboard Emulation Mode</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4 font-medium">Simulate keyboard input for seamless integration with any software accepting keyboard data - no special drivers required.</p>
+                    <div class="flex items-center space-x-2 text-sm text-cyan-700 dark:text-cyan-400 font-bold">
+                        <i class="fas fa-star"></i>
+                        <span>4th Generation Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Advanced Features</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Enterprise-grade capabilities and performance</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="feature-card card-hover bg-gradient-to-br from-sky-50 to-sky-100 dark:from-gray-800 dark:to-sky-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll">
+                    <div class="feature-icon bg-gradient-to-br from-sky-500 to-sky-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Ultra-High Speed</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Communication speed up to 848 kbps - double the previous generation for faster transactions and improved efficiency.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-blue-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.05s;">
+                    <div class="feature-icon bg-gradient-to-br from-blue-500 to-blue-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Extended Range</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Reading distance up to 70mm - 40% longer range for improved user convenience and flexibility in deployment.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-gray-800 dark:to-cyan-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="feature-icon bg-gradient-to-br from-cyan-500 to-cyan-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">ISO 15693 Support</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Comprehensive support for ISO 15693 cards including SRI, SRIX, CTS, Innovatron, and Picopass technologies.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-gray-800 dark:to-indigo-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.15s;">
+                    <div class="feature-icon bg-gradient-to-br from-indigo-500 to-indigo-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">SAM Security</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Built-in Secure Access Module slot for key diversification and mutual authentication providing enhanced security.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-purple-50 to-purple-100 dark:from-gray-800 dark:to-purple-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="feature-icon bg-gradient-to-br from-purple-500 to-purple-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">FIDO Authentication</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Support for FIDO protocols with PocketKey and YubiKey compatibility for secure passwordless authentication.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-pink-50 to-pink-100 dark:from-gray-800 dark:to-pink-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.25s;">
+                    <div class="feature-icon bg-gradient-to-br from-pink-500 to-pink-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Firmware Upgradeable</h3>
+                    <p class="text-gray-700 dark:text-gray-300">In-field firmware upgrade capability via USB ensuring long-term adaptability to evolving technologies.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-orange-50 to-orange-100 dark:from-gray-800 dark:to-orange-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="feature-icon bg-gradient-to-br from-orange-500 to-orange-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Extended APDU</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Support for extended APDU commands enabling complex operations and enhanced application flexibility.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-green-50 to-green-100 dark:from-gray-800 dark:to-green-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.35s;">
+                    <div class="feature-icon bg-gradient-to-br from-green-500 to-green-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Smart Indicators</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Programmable bi-color LED and buzzer for customizable visual and audio feedback during operations.</p>
+                </div>
+                
+                <div class="feature-card card-hover bg-gradient-to-br from-teal-50 to-teal-100 dark:from-gray-800 dark:to-teal-900/20 p-6 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="feature-icon bg-gradient-to-br from-teal-500 to-teal-600 text-white mb-4 shadow-lg">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Plug & Play</h3>
+                    <p class="text-gray-700 dark:text-gray-300">CCID and PC/SC compliant for instant compatibility across platforms with no special driver installation required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Technical Specifications</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Comprehensive hardware and performance details</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Performance Specs -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden animate-on-scroll">
+                    <div class="bg-gradient-to-r from-sky-500 to-sky-600 p-6">
+                        <h3 class="text-2xl font-bold text-white flex items-center">
+                            <i class="fas fa-gauge-high mr-3"></i>
+                            Performance Specifications
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-3">
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                                    <i class="fas fa-broadcast-tower text-sky-500 mr-2"></i>
+                                    Operating Frequency
+                                </span>
+                                <span class="text-gray-900 dark:text-white font-bold">13.56 MHz</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                                    <i class="fas fa-bolt text-sky-500 mr-2"></i>
+                                    Read/Write Speed
+                                </span>
+                                <span class="text-gray-900 dark:text-white font-bold">Up to 848 kbps</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                                    <i class="fas fa-expand text-sky-500 mr-2"></i>
+                                    Reading Distance
+                                </span>
+                                <span class="text-gray-900 dark:text-white font-bold">Up to 70 mm</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                                    <i class="fas fa-usb text-sky-500 mr-2"></i>
+                                    Interface
+                                </span>
+                                <span class="text-gray-900 dark:text-white font-bold">USB 2.0 Full Speed</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                                    <i class="fas fa-clock text-sky-500 mr-2"></i>
+                                    MTBF
+                                </span>
+                                <span class="text-gray-900 dark:text-white font-bold">500,000 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Compliance -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+                        <h3 class="text-2xl font-bold text-white flex items-center">
+                            <i class="fas fa-certificate mr-3"></i>
+                            Compliance & Standards
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-3">
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">USB Standard</span>
+                                <span class="text-gray-900 dark:text-white font-bold">CCID Compliant</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">PC Interface</span>
+                                <span class="text-gray-900 dark:text-white font-bold">PC/SC Standard</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">Smart Card</span>
+                                <span class="text-gray-900 dark:text-white font-bold">ISO 7816</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">Safety</span>
+                                <span class="text-gray-900 dark:text-white font-bold">IEC/EN 62368</span>
+                            </div>
+                            <div class="spec-row py-4 flex justify-between items-center">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">Certifications</span>
+                                <span class="text-gray-900 dark:text-white font-bold">CE, FCC, RoHS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Supported Card Types -->
+            <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden animate-on-scroll" style="animation-delay: 0.2s;">
+                <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center">
+                        <i class="fas fa-id-card mr-3"></i>
+                        Comprehensive Card Type Support
+                    </h3>
+                </div>
+                <div class="p-6">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-sky-50 to-sky-100 dark:bg-sky-900/20 p-4 rounded-xl border-2 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 transition-all">
+                            <i class="fas fa-check-double text-sky-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">ISO 14443 Type A</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Contactless Smart Cards</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-sky-50 to-sky-100 dark:bg-sky-900/20 p-4 rounded-xl border-2 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 transition-all">
+                            <i class="fas fa-check-double text-sky-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">ISO 14443 Type B</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Contactless Smart Cards</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 dark:bg-cyan-900/20 p-4 rounded-xl border-2 border-cyan-200 dark:border-cyan-800 hover:border-cyan-400 dark:hover:border-cyan-600 transition-all">
+                            <i class="fas fa-plus-circle text-cyan-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">ISO 15693</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">SRI, SRIX, CTS, Innovatron</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:bg-blue-900/20 p-4 rounded-xl border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all">
+                            <i class="fas fa-check-double text-blue-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">ISO 18092</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">All NFC Types 1-5</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:bg-indigo-900/20 p-4 rounded-xl border-2 border-indigo-200 dark:border-indigo-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all">
+                            <i class="fas fa-check-double text-indigo-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">MIFARE Classic</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">1K / 4K Cards</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:bg-indigo-900/20 p-4 rounded-xl border-2 border-indigo-200 dark:border-indigo-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all">
+                            <i class="fas fa-check-double text-indigo-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">MIFARE Plus</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Enhanced Security</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:bg-purple-900/20 p-4 rounded-xl border-2 border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 transition-all">
+                            <i class="fas fa-check-double text-purple-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">MIFARE DESFire</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">High Security</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:bg-pink-900/20 p-4 rounded-xl border-2 border-pink-200 dark:border-pink-800 hover:border-pink-400 dark:hover:border-pink-600 transition-all">
+                            <i class="fas fa-check-double text-pink-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">FeliCa</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sony Smart Cards</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:bg-orange-900/20 p-4 rounded-xl border-2 border-orange-200 dark:border-orange-800 hover:border-orange-400 dark:hover:border-orange-600 transition-all">
+                            <i class="fas fa-plus-circle text-orange-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">Picopass</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">HID iCLASS</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-teal-50 to-teal-100 dark:bg-teal-900/20 p-4 rounded-xl border-2 border-teal-200 dark:border-teal-800 hover:border-teal-400 dark:hover:border-teal-600 transition-all">
+                            <i class="fas fa-plus-circle text-teal-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">Topaz</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">NFC Type 1 Tags</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 dark:bg-green-900/20 p-4 rounded-xl border-2 border-green-200 dark:border-green-800 hover:border-green-400 dark:hover:border-green-600 transition-all">
+                            <i class="fas fa-check-double text-green-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">Innovatron</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">ISO 15693 Cards</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-lime-50 to-lime-100 dark:bg-lime-900/20 p-4 rounded-xl border-2 border-lime-200 dark:border-lime-800 hover:border-lime-400 dark:hover:border-lime-600 transition-all">
+                            <i class="fas fa-check-double text-lime-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-900 dark:text-white mb-1">MIFARE 7-byte UID</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Extended Identifier</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Support -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Software & Development</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Comprehensive tools and SDK for professional development</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <!-- NFC Tools -->
+                <div class="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 rounded-2xl p-8 shadow-lg animate-on-scroll">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-tools text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">NFC Tools for Desktop</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Professional NFC Management</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-book-open text-sky-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">Advanced Reading</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">View complete tag information including manufacturer details, memory layout, and all stored NDEF records.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-edit text-blue-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">Professional Writing</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Write URLs, vCards, WiFi credentials, Bluetooth pairing, SMS, email, and custom NDEF records.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-shield-alt text-cyan-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">Security Management</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Password protection, lock/unlock, format, and erase capabilities for complete tag lifecycle management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.wakdev.com/en/apps/nfc-tools-pc-mac.html" target="_blank" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-download mr-2"></i>
+                        Download NFC Tools
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Development SDK -->
+                <div class="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-gray-800 dark:to-teal-900/20 rounded-2xl p-8 shadow-lg animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Comprehensive SDK</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Full Development Resources</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-file-code text-cyan-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">PC/SC Sample Codes</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Complete collection of PC/SC-compliant sample codes for device and contactless card programming.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-puzzle-piece text-teal-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">NFC & NDEF Tools</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Demonstrate keyboard and card emulation modes with included smart card reader tools.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-terminal text-cyan-500 mt-1 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">API Documentation</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Complete API reference with support for PC/SC and CT-API (via wrapper) interfaces.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cyan-100 dark:bg-cyan-900/30 border border-cyan-300 dark:border-cyan-700 rounded-xl p-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-lightbulb text-cyan-600 dark:text-cyan-400 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-cyan-900 dark:text-cyan-200 mb-1">Development Ready</p>
+                                <p class="text-sm text-cyan-800 dark:text-cyan-300">Full SDK with examples for smart poster applications, URL marketing, and custom NFC solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operating System Support -->
+            <div class="bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-800 dark:to-slate-900/20 rounded-2xl p-8 shadow-lg animate-on-scroll" style="animation-delay: 0.2s;">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800 rounded-2xl flex items-center justify-center shadow-lg">
+                        <i class="fas fa-desktop text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Multi-Platform Support</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Universal Operating System Compatibility</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all text-center group">
+                        <i class="fab fa-windows text-6xl text-blue-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <p class="font-bold text-gray-900 dark:text-white text-lg">Windows</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">10 / 11</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl border-2 border-gray-300 dark:border-gray-700 hover:border-gray-500 dark:hover:border-gray-500 transition-all text-center group">
+                        <i class="fab fa-apple text-6xl text-gray-700 dark:text-gray-300 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <p class="font-bold text-gray-900 dark:text-white text-lg">macOS</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">All Versions</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl border-2 border-orange-200 dark:border-orange-800 hover:border-orange-400 dark:hover:border-orange-600 transition-all text-center group">
+                        <i class="fab fa-linux text-6xl text-orange-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <p class="font-bold text-gray-900 dark:text-white text-lg">Linux</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">All Distributions</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900/50 p-6 rounded-xl border-2 border-green-200 dark:border-green-800 hover:border-green-400 dark:hover:border-green-600 transition-all text-center group">
+                        <i class="fab fa-android text-6xl text-green-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                        <p class="font-bold text-gray-900 dark:text-white text-lg">Android</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">OTG Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Enterprise Applications</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Versatile solutions across multiple industries</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll">
+                    <div class="w-14 h-14 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-university text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">e-Government</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Digital identity verification with FIDO authentication for secure government services.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.05s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">e-Banking</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Secure financial transactions with SAM-enhanced security and FIDO support.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-heartbeat text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">e-Healthcare</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Patient identification and secure medical record access systems.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.15s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Access Control</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Physical and logical access with keyboard emulation for legacy systems.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-bus text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Transportation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Mass transit fare collection and e-ticketing with high-speed processing.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.25s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-boxes text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Inventory Tracking</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Asset management with ISO 15693 long-range tag support.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-bullhorn text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Smart Posters</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Interactive marketing campaigns with instant content delivery.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.35s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fas fa-network-wired text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Network Security</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Secure authentication with FIDO passwordless login support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connectivity -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-600 rounded-3xl p-8 sm:p-12 shadow-2xl animate-on-scroll">
+                <div class="max-w-4xl">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Flexible Connectivity Options</h2>
+                    <p class="text-xl text-sky-100 mb-8">Available with both USB Type-A and USB Type-C connectors for maximum compatibility with modern and legacy systems.</p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/30 hover:bg-white/20 transition-all">
+                            <div class="flex items-center space-x-4 mb-3">
+                                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-usb text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white text-lg">ACR1552U-M1</p>
+                                    <p class="text-sm text-sky-100">USB Type-A Connector</p>
+                                </div>
+                            </div>
+                            <p class="text-sky-100 text-sm">Standard USB-A interface for universal compatibility with existing infrastructure.</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/30 hover:bg-white/20 transition-all">
+                            <div class="flex items-center space-x-4 mb-3">
+                                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-plug text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white text-lg">ACR1552U-MF</p>
+                                    <p class="text-sm text-sky-100">USB Type-C Connector</p>
+                                </div>
+                            </div>
+                            <p class="text-sky-100 text-sm">Modern USB-C interface with reversible connector for next-generation devices.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <i class="fas fa-bolt text-yellow-300 text-xl"></i>
+                            <p class="text-white font-semibold text-sm">USB Bus Powered</p>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <i class="fas fa-plug-circle-check text-green-300 text-xl"></i>
+                            <p class="text-white font-semibold text-sm">Plug & Play Ready</p>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                            <i class="fas fa-feather text-blue-300 text-xl"></i>
+                            <p class="text-white font-semibold text-sm">Compact & Portable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-microchip text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">ACR1552U</h3>
+                            <p class="text-xs text-gray-400">NFC Reader IV</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Fourth-generation NFC reader with enhanced speed, range, and keyboard emulation capability.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://www.acs.com.hk/en/products/575/acr1552u-usb-nfc-reader-iv/" target="_blank" class="hover:text-white transition-colors flex items-center"><i class="fas fa-file-alt mr-2"></i>Product Page</a></li>
+                        <li><a href="https://www.wakdev.com/en/apps/nfc-tools-pc-mac.html" target="_blank" class="hover:text-white transition-colors flex items-center"><i class="fas fa-download mr-2"></i>NFC Tools Software</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center"><i class="fas fa-code mr-2"></i>Comprehensive SDK</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Key Innovations</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i>4th Generation Technology</li>
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i>848 kbps Ultra-High Speed</li>
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i>70mm Extended Range</li>
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i>Keyboard Emulation Mode</li>
+                        <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i>ISO 15693 Support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2024 ACS ACR1552U Product Specification. All rights reserved.</p>
+                <p class="mt-2">This document is for informational purposes only. Specifications subject to change without notice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        // Scroll Animation Observer
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initScrollAnimations();
+        });
+
+        // Handle system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
