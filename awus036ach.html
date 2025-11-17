@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFA AWUS036ACH - AC1200 WiFi USB Adapter Specifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .gradient-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            font-size: 16px;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .dark .card {
+            background-color: #1e293b;
+            border-color: #334155;
+        }
+
+        .dark .card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+            border: 3px solid #667eea;
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+            border-color: #764ba2;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .dark .highlight-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-color: #8b5cf6;
+        }
+
+        .os-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .os-badge:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .os-badge i {
+            font-size: 1.25rem;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 28px;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .spec-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 16px;
+        }
+
+        .dark .spec-row {
+            border-bottom-color: #334155;
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 16px;
+        }
+
+        .spec-value {
+            color: #1f2937;
+            font-size: 16px;
+        }
+
+        .dark .spec-value {
+            color: #e5e7eb;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 48px;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .dark .progress-bar {
+            background: #334155;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progress-shimmer 2s infinite;
+        }
+
+        @keyframes progress-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.25rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+
+        @media (max-width: 768px) {
+            .spec-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .highlight-card {
+                padding: 1.5rem;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.75rem 1rem;
+                font-size: 14px;
+            }
+        }
+
+        h1 { font-size: clamp(28px, 5vw, 48px); }
+        h2 { font-size: clamp(24px, 4vw, 36px); }
+        h3 { font-size: clamp(20px, 3vw, 28px); }
+        p, li, span { font-size: 16px; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+        <span class="ml-2" id="theme-text">Dark Mode</span>
+    </button>
+
+    <div class="container mx-auto px-4 py-16 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-16 fade-in-up">
+            <div class="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-semibold mb-6 shadow-lg">
+                Professional WiFi 5 AC1200 USB Adapter
+            </div>
+            <h1 class="font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+                ALFA AWUS036ACH
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                High-Performance AC1200 Dual-Band WiFi USB Adapter with USB Type-C Interface and Realtek RTL8812AU Chipset
+            </p>
+        </header>
+
+        <!-- Key Information Highlights -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- Chipset Highlight -->
+            <div class="highlight-card fade-in-up">
+                <div class="flex items-start gap-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-2">
+                            Premium Chipset
+                        </div>
+                        <div class="text-3xl font-bold mb-2 text-gray-900 dark:text-white">
+                            Realtek RTL8812AU
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                            Industry-leading chipset delivering exceptional performance and reliability for AC1200 dual-band connectivity
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USB Type-C Highlight -->
+            <div class="highlight-card fade-in-up">
+                <div class="flex items-start gap-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-usb"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-2">
+                            Modern Interface
+                        </div>
+                        <div class="text-3xl font-bold mb-2 text-gray-900 dark:text-white">
+                            USB Type-C
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                            SuperSpeed USB 3.0 Type-C interface with reversible connector design for maximum convenience
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Operating System Support -->
+        <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 mb-16 fade-in-up">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-desktop text-white text-xl"></i>
+                </div>
+                <h2 class="font-bold text-gray-900 dark:text-white">Multi-Platform Operating System Support</h2>
+            </div>
+            <div class="flex flex-wrap gap-3 mb-6">
+                <div class="os-badge">
+                    <i class="fab fa-windows"></i>
+                    <span>Windows 10 / 11</span>
+                </div>
+                <div class="os-badge">
+                    <i class="fab fa-apple"></i>
+                    <span>macOS</span>
+                </div>
+                <div class="os-badge">
+                    <i class="fab fa-linux"></i>
+                    <span>Kali Linux</span>
+                </div>
+                <div class="os-badge">
+                    <i class="fab fa-ubuntu"></i>
+                    <span>Linux Ubuntu</span>
+                </div>
+                <div class="os-badge">
+                    <i class="fab fa-android"></i>
+                    <span>Android Kali NetHunter</span>
+                </div>
+                <div class="os-badge">
+                    <i class="fab fa-raspberry-pi"></i>
+                    <span>Raspberry Pi</span>
+                </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Comprehensive driver support across Windows, macOS, multiple Linux distributions, Android Kali NetHunter, and Raspberry Pi platforms, making it ideal for penetration testing, network security analysis, and general wireless networking.
+            </p>
+        </div>
+
+        <!-- Performance Visualization -->
+        <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 mb-16 fade-in-up">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-tachometer-alt text-white text-xl"></i>
+                </div>
+                <h2 class="font-bold text-gray-900 dark:text-white">AC1200 Performance</h2>
+            </div>
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-semibold text-gray-700 dark:text-gray-300">2.4 GHz Band (802.11n)</span>
+                    <span class="font-bold text-purple-600 dark:text-purple-400 text-lg">300 Mbps</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 26%">300 Mbps</div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-semibold text-gray-700 dark:text-gray-300">5 GHz Band (802.11ac)</span>
+                    <span class="font-bold text-purple-600 dark:text-purple-400 text-lg">867 Mbps</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 74%">867 Mbps</div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 border-l-4 border-purple-600">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide mb-1">
+                            Combined Maximum Speed
+                        </div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            1167 Mbps
+                        </div>
+                    </div>
+                    <div class="text-6xl opacity-20">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features Grid -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">Dual-Band Technology</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Simultaneous 2.4 GHz and 5 GHz band support for optimal performance and reduced interference
+                </p>
+            </div>
+
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">High-Gain Antennas</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Two detachable 5 dBi dipole antennas with RP-SMA connectors for extended range and signal strength
+                </p>
+            </div>
+
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">Monitor Mode</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Full support for monitor mode and packet injection, essential for wireless security auditing
+                </p>
+            </div>
+
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">USB Type-C</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Modern SuperSpeed USB 3.0 Type-C connector with reversible design and backward compatibility
+                </p>
+            </div>
+
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">Advanced Security</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Support for WPA3, WPA2, WPA, and WEP encryption standards ensuring maximum network security
+                </p>
+            </div>
+
+            <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+                <div class="feature-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3 class="font-bold mb-3 text-gray-900 dark:text-white">Compact Design</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Lightweight 85 × 63 × 20 mm form factor, perfect for portable security testing and field work
+                </p>
+            </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 mb-16 fade-in-up">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-list-alt text-white text-xl"></i>
+                </div>
+                <h2 class="font-bold text-gray-900 dark:text-white">Technical Specifications</h2>
+            </div>
+
+            <div class="space-y-0">
+                <div class="spec-row">
+                    <div class="spec-label">Chipset</div>
+                    <div class="spec-value">Realtek RTL8812AU</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">WiFi Standard</div>
+                    <div class="spec-value">IEEE 802.11ac/a/b/g/n (WiFi 5)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Frequency Bands</div>
+                    <div class="spec-value">Dual-Band: 2.4 GHz & 5 GHz</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Data Rate</div>
+                    <div class="spec-value">
+                        <div>2.4 GHz: Up to 300 Mbps (802.11n)</div>
+                        <div class="mt-1">5 GHz: Up to 867 Mbps (802.11ac)</div>
+                        <div class="mt-1 font-bold text-purple-600">Combined: AC1200 (1167 Mbps)</div>
+                    </div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">USB Interface</div>
+                    <div class="spec-value">USB 3.0 Type-C (5 Gbps SuperSpeed) with USB 2.0 backward compatibility</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Antennas</div>
+                    <div class="spec-value">2 × Detachable 5 dBi Dipole Antennas (RP-SMA connectors)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Operating Modes</div>
+                    <div class="spec-value">Infrastructure, Ad-Hoc, Monitor Mode, Packet Injection</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Security</div>
+                    <div class="spec-value">WPA3, WPA2, WPA, WEP, 802.1x</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Transmit Power</div>
+                    <div class="spec-value">
+                        <div>2.4 GHz: Up to 20 dBm (100 mW)</div>
+                        <div class="mt-1">5 GHz: Up to 18 dBm (63 mW)</div>
+                    </div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Receiver Sensitivity</div>
+                    <div class="spec-value">
+                        <div>2.4 GHz: -75 dBm @ 54 Mbps</div>
+                        <div class="mt-1">5 GHz: -68 dBm @ 54 Mbps</div>
+                    </div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Dimensions</div>
+                    <div class="spec-value">85 × 63 × 20 mm (3.35 × 2.48 × 0.79 inches)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Power Supply</div>
+                    <div class="spec-value">USB powered (5V, max 0.7A)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Operating Temperature</div>
+                    <div class="spec-value">0°C ~ 40°C (32°F ~ 104°F)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Storage Temperature</div>
+                    <div class="spec-value">-20°C ~ 70°C (-4°F ~ 158°F)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Operating Humidity</div>
+                    <div class="spec-value">10% ~ 90% (non-condensing)</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Certifications</div>
+                    <div class="spec-value">FCC, CE</div>
+                </div>
+                <div class="spec-row">
+                    <div class="spec-label">Package Contents</div>
+                    <div class="spec-value">
+                        <div>• AWUS036ACH USB Adapter</div>
+                        <div>• 2 × 5 dBi Dipole Antennas</div>
+                        <div>• USB Type-C Cable</div>
+                        <div>• Quick Installation Guide</div>
+                        <div>• Driver CD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications -->
+        <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 mb-16 fade-in-up">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-rocket text-white text-xl"></i>
+                </div>
+                <h2 class="font-bold text-gray-900 dark:text-white">Professional Applications</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                            <i class="fas fa-user-secret text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-gray-900 dark:text-white text-lg">Penetration Testing</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Full monitor mode and packet injection support for wireless security assessments and vulnerability testing
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-gray-900 dark:text-white text-lg">Network Analysis</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Professional-grade packet capture and wireless network traffic analysis for security professionals
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-gray-900 dark:text-white text-lg">Education & Training</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Ideal for cybersecurity courses, wireless security training, and hands-on learning environments
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                            <i class="fas fa-laptop text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-gray-900 dark:text-white text-lg">High-Speed Connectivity</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            AC1200 dual-band performance for demanding applications, video streaming, and large file transfers
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads -->
+        <div class="card bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-8 fade-in-up">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-download text-white text-xl"></i>
+                </div>
+                <h2 class="font-bold text-gray-900 dark:text-white">Official Downloads</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-700">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-compact-disc text-3xl text-purple-600 dark:text-purple-400"></i>
+                        <h3 class="font-bold text-xl text-gray-900 dark:text-white">Drivers</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Latest official drivers for all supported operating systems including Windows, Linux, macOS, and Raspberry Pi
+                    </p>
+                    <a href="https://files.alfa.com.tw/" target="_blank" rel="noopener noreferrer" 
+                       class="btn-primary text-white px-6 py-3 rounded-xl inline-flex items-center gap-2 shadow-lg">
+                        <i class="fas fa-download"></i>
+                        <span>Download Drivers</span>
+                        <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-700">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-book text-3xl text-purple-600 dark:text-purple-400"></i>
+                        <h3 class="font-bold text-xl text-gray-900 dark:text-white">Documentation</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Comprehensive user manuals, quick start guides, installation instructions, and technical documentation
+                    </p>
+                    <a href="https://docs.alfa.com.tw/" target="_blank" rel="noopener noreferrer" 
+                       class="btn-primary text-white px-6 py-3 rounded-xl inline-flex items-center gap-2 shadow-lg">
+                        <i class="fas fa-file-alt"></i>
+                        <span>View Documentation</span>
+                        <i class="fas fa-external-link-alt text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 dark:bg-slate-700 rounded-lg border-l-4 border-blue-600">
+                <div class="flex gap-3">
+                    <i class="fas fa-info-circle text-blue-600 dark:text-blue-400 text-xl flex-shrink-0 mt-1"></i>
+                    <div>
+                        <p class="font-semibold text-gray-900 dark:text-white mb-1">Driver Installation Notes</p>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            For Linux-based systems including Kali Linux and Ubuntu, the RTL8812AU chipset typically requires manual driver compilation. 
+                            Please refer to the official documentation for detailed installation instructions specific to your distribution.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
+            <p class="text-gray-500 dark:text-gray-400 leading-relaxed">
+                ALFA AWUS036ACH - Professional WiFi 5 AC1200 USB Adapter Specifications
+            </p>
+            <p class="text-gray-400 dark:text-gray-500 mt-2 text-sm">
+                This page contains technical specifications for reference purposes only
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.classList.remove(currentTheme);
+            html.classList.add(newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.className = 'fas fa-moon';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            
+            document.documentElement.classList.add(theme);
+            updateThemeButton(theme);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // Animate progress bars on scroll
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+            progressObserver.observe(bar.parentElement);
+        });
+
+        // Initialize on load
+        initTheme();
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.classList.remove('light', 'dark');
+                document.documentElement.classList.add(newTheme);
+                updateThemeButton(newTheme);
+            }
+        });
+    </script>
+</body>
+</html>
