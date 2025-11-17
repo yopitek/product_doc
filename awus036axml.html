@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFA AWUS036AXML - WiFi 6E Tri-Band USB Adapter | Technical Specification</title>
+    <meta name="description" content="Professional technical specification sheet for ALFA AWUS036AXML WiFi 6E USB adapter with Bluetooth 5.2">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-50: #eff6ff;
+            --primary-100: #dbeafe;
+            --primary-200: #bfdbfe;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --accent-500: #8b5cf6;
+            --accent-600: #7c3aed;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Ensure minimum 12px font size */
+        body, p, li, span, td, th, label, input, button, a {
+            font-size: max(0.875rem, 14px); /* 14px minimum */
+        }
+        
+        h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+        h4 { font-size: clamp(1.125rem, 2vw, 1.25rem); }
+        
+        /* Light mode colors */
+        .light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Dark mode colors */
+        .dark-mode {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --border-color: #334155;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        /* Gradient backgrounds */
+        .gradient-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #3b82f6 100%);
+        }
+        
+        .gradient-accent {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        /* Card styles */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover);
+            border-color: var(--primary-500);
+        }
+        
+        /* Button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem; /* 15px */
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Feature grid */
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Spec table */
+        .spec-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9375rem; /* 15px */
+        }
+        
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+        
+        .spec-value {
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+        
+        /* Header styles */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode .header {
+            background-color: rgba(15, 23, 42, 0.8);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            font-size: 0.8125rem; /* 13px */
+            font-weight: 600;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        /* Progress bar for performance visualization */
+        .progress-bar {
+            height: 8px;
+            background-color: var(--bg-tertiary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Theme toggle */
+        .theme-toggle {
+            width: 56px;
+            height: 28px;
+            background-color: var(--bg-tertiary);
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .theme-toggle-dot {
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .dark-mode .theme-toggle-dot {
+            transform: translateX(28px);
+            background-color: #1e293b;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .spec-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .spec-label {
+                font-weight: 600;
+            }
+        }
+        
+        /* Download section */
+        .download-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .download-card:hover {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+        
+        /* Smooth scroll padding for fixed header */
+        html {
+            scroll-padding-top: 80px;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Header -->
+    <header class="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
+                        <i class="fas fa-wifi text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold" style="font-size: 1.125rem;">AWUS036AXML</h1>
+                        <p class="text-xs" style="font-size: 0.8125rem; color: var(--text-tertiary);">WiFi 6E Tri-Band USB Adapter</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="#downloads" class="hidden sm:inline-flex btn btn-secondary" style="font-size: 0.875rem;">
+                        <i class="fas fa-download"></i>
+                        Downloads
+                    </a>
+                    <div class="theme-toggle" id="themeToggle" role="button" aria-label="Toggle theme">
+                        <div class="theme-toggle-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Hero Section -->
+        <section class="mb-16 fade-in-up">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="badge mb-4">
+                        <i class="fas fa-bolt"></i> Next-Generation Wireless
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                        ALFA AWUS036AXML
+                    </h2>
+                    <p class="text-xl mb-8" style="color: var(--text-secondary); line-height: 1.6;">
+                        Professional WiFi 6E tri-band USB adapter with Bluetooth 5.2, delivering exceptional wireless performance across 2.4 GHz, 5 GHz, and 6 GHz bands.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#specifications" class="btn btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            View Specifications
+                        </a>
+                        <a href="#downloads" class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Get Drivers
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute inset-0 gradient-primary opacity-10 blur-3xl rounded-full"></div>
+                    <img src="https://store.rokland.com/cdn/shop/products/ProductPage700x700_5.png?v=1677606708" 
+                         alt="ALFA AWUS036AXML WiFi 6E USB Adapter" 
+                         class="relative rounded-2xl shadow-2xl w-full"
+                         style="max-width: 500px; margin: 0 auto;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Grid -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Key Features</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="card fade-in-up stagger-1">
+                    <div class="feature-icon gradient-primary mb-4">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Ultra-Fast Speed</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">Up to 3000 Mbps combined data rate with WiFi 6E technology</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card fade-in-up stagger-2">
+                    <div class="feature-icon gradient-secondary mb-4">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Tri-Band Support</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">2.4 GHz, 5 GHz, and 6 GHz frequency bands for maximum flexibility</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card fade-in-up stagger-3">
+                    <div class="feature-icon gradient-accent mb-4">
+                        <i class="fab fa-bluetooth-b"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Bluetooth 5.2</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">Integrated Bluetooth for seamless peripheral connectivity</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="card fade-in-up stagger-4">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <i class="fas fa-usb"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">USB Type-C</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">Modern USB-C connector with included USB-A adapter</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Metrics -->
+        <section class="mb-16">
+            <div class="card">
+                <h3 class="text-2xl font-bold mb-8">Performance Overview</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span style="color: var(--text-secondary); font-size: 0.9375rem;">2.4 GHz Band</span>
+                            <span class="font-semibold" style="font-size: 0.9375rem;">600 Mbps</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%; background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span style="color: var(--text-secondary); font-size: 0.9375rem;">5 GHz Band</span>
+                            <span class="font-semibold" style="font-size: 0.9375rem;">1200 Mbps</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%; background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span style="color: var(--text-secondary); font-size: 0.9375rem;">6 GHz Band</span>
+                            <span class="font-semibold" style="font-size: 0.9375rem;">1200 Mbps</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%; background: linear-gradient(90deg, #10b981 0%, #059669 100%);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section id="specifications" class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Technical Specifications</h3>
+            
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Wireless Specifications -->
+                <div class="card">
+                    <h4 class="font-semibold mb-6 flex items-center gap-2" style="font-size: 1.25rem;">
+                        <i class="fas fa-broadcast-tower" style="color: #667eea;"></i>
+                        Wireless Specifications
+                    </h4>
+                    <div class="space-y-0">
+                        <div class="spec-row">
+                            <div class="spec-label">Chipset</div>
+                            <div class="spec-value">MediaTek MT7921AUN</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">IEEE Standards</div>
+                            <div class="spec-value">802.11 a/b/g/n/ac/ax</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Bluetooth</div>
+                            <div class="spec-value">5.2</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Frequency Bands</div>
+                            <div class="spec-value">
+                                2.4 GHz (20/40 MHz)<br>
+                                5 GHz (20/40/80 MHz)<br>
+                                6 GHz (20/40/80 MHz)
+                            </div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Data Rates</div>
+                            <div class="spec-value">
+                                2.4 GHz: up to 600 Mbps<br>
+                                5 GHz: up to 1200 Mbps<br>
+                                6 GHz: up to 1200 Mbps
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware Specifications -->
+                <div class="card">
+                    <h4 class="font-semibold mb-6 flex items-center gap-2" style="font-size: 1.25rem;">
+                        <i class="fas fa-microchip" style="color: #8b5cf6;"></i>
+                        Hardware Specifications
+                    </h4>
+                    <div class="space-y-0">
+                        <div class="spec-row">
+                            <div class="spec-label">USB Connector</div>
+                            <div class="spec-value">USB Type-C</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Antenna</div>
+                            <div class="spec-value">2× 5 dBi external antennas<br>2× RP-SMA (female) connectors</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">85 × 63 × 20 mm<br>(3.4 × 2.5 × 0.8 inches)</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Power</div>
+                            <div class="spec-value">2.7 Watts (max), 5V</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">-25°C to 75°C<br>(-13°F to 167°F)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software & Compatibility -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Software & Compatibility</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card">
+                    <div class="flex items-start gap-4">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Windows Support</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1rem;">
+                                Full driver support for Windows 10 and Windows 11 with WPA3 encryption and enterprise security features.
+                            </p>
+                            <ul style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8;">
+                                <li>✓ Native Windows 10/11 support</li>
+                                <li>✓ WPA, WPA2, WPA3 encryption</li>
+                                <li>✓ Enterprise 64/128 WEP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start gap-4">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f7941d 0%, #fdc830 100%);">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Linux Support</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1rem;">
+                                Community-supported drivers for popular Linux distributions including Kali Linux and Ubuntu.
+                            </p>
+                            <ul style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8;">
+                                <li>✓ Kali Linux compatible</li>
+                                <li>✓ Ubuntu support</li>
+                                <li>✓ Wireless penetration testing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Applications & Use Cases</h3>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <div class="text-3xl mb-3">🎮</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Gaming & Streaming</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Ultra-low latency and high-speed connectivity for competitive gaming and 4K streaming.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="text-3xl mb-3">🔒</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Security Research</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Professional wireless penetration testing and network security analysis.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="text-3xl mb-3">💼</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Professional Work</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Remote work, video conferencing, and high-bandwidth data transfers.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="text-3xl mb-3">🏠</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Home Networking</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Upgrade older devices to WiFi 6E for better home network performance.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="text-3xl mb-3">📡</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Wireless Analysis</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Advanced wireless network monitoring and spectrum analysis.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="text-3xl mb-3">🖥️</div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Desktop Upgrades</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Add wireless connectivity to desktop computers and workstations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Contents -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Package Contents</h3>
+            
+            <div class="card">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">AWUS036AXML Adapter</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Main wireless adapter unit</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">2× 5 dBi Antennas</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Detachable external antennas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">USB-C Cable</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">3ft SuperSpeed cable with USB-A adapter</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Screen Clip</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">For mounting on laptop screens</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Suction Cup Mount</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Alternative mounting option</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <div>
+                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Quick Start Guide</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Installation instructions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads Section -->
+        <section id="downloads" class="mb-16">
+            <h3 class="text-2xl font-bold mb-8">Downloads & Resources</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Drivers Download -->
+                <div class="download-card">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4">
+                        <i class="fas fa-download text-white text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.25rem;">Official Drivers</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1.5rem;">
+                        Download the latest drivers and software for Windows and Linux operating systems.
+                    </p>
+                    <a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036AXML" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Get Drivers
+                    </a>
+                </div>
+
+                <!-- Documentation -->
+                <div class="download-card">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-book text-white text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold mb-2" style="font-size: 1.25rem;">Technical Documentation</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1.5rem;">
+                        Access comprehensive technical documentation, datasheets, and user manuals.
+                    </p>
+                    <a href="https://docs.alfa.com.tw/" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Documentation
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Notes -->
+        <section class="mb-16">
+            <div class="card" style="border-left: 4px solid #667eea;">
+                <h4 class="font-semibold mb-4 flex items-center gap-2" style="font-size: 1.125rem;">
+                    <i class="fas fa-info-circle" style="color: #667eea;"></i>
+                    Important Notes
+                </h4>
+                <ul style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.8; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.75rem;">
+                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                        <strong>USB 3.0 Required:</strong> USB 3.0 port required for maximum throughput. Backward compatible with USB 2.0 (up to 480 Mbps).
+                    </li>
+                    <li style="margin-bottom: 0.75rem;">
+                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                        <strong>WiFi 6E Router:</strong> To utilize 6 GHz band and achieve maximum speeds, a WiFi 6E compatible router is required.
+                    </li>
+                    <li style="margin-bottom: 0.75rem;">
+                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                        <strong>Antenna Upgrade:</strong> RP-SMA connectors allow for optional higher-gain antenna upgrades for extended range.
+                    </li>
+                    <li>
+                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                        <strong>Driver Installation:</strong> Always download the latest drivers from the official ALFA Network website for optimal performance.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: 4rem;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
+                            <i class="fas fa-wifi text-white"></i>
+                        </div>
+                        <span class="font-semibold" style="font-size: 1.125rem;">ALFA Network</span>
+                    </div>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem;">
+                        Professional wireless networking solutions for demanding applications.
+                    </p>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4" style="font-size: 1rem;">Product</h5>
+                    <ul style="color: var(--text-tertiary); font-size: 0.875rem; line-height: 2; list-style: none; padding: 0;">
+                        <li><a href="#specifications" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Specifications</a></li>
+                        <li><a href="#downloads" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Downloads</a></li>
+                        <li><a href="https://docs.alfa.com.tw/" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4" style="font-size: 1rem;">Resources</h5>
+                    <ul style="color: var(--text-tertiary); font-size: 0.875rem; line-height: 2; list-style: none; padding: 0;">
+                        <li><a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036AXML" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Driver Downloads</a></li>
+                        <li><a href="https://www.alfa.com.tw/products/awus036axml" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Official Product Page</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <p style="color: var(--text-tertiary); font-size: 0.875rem; text-align: center;">
+                    © 2024 ALFA Network Inc. All rights reserved. Product specifications subject to change without notice.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to system preference
+        const currentTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (currentTheme) {
+            body.classList.remove('light-mode', 'dark-mode');
+            body.classList.add(currentTheme);
+        } else if (systemPrefersDark) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+        
+        // Animate progress bars on scroll
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const performanceSection = document.querySelector('.progress-bar').closest('section');
+        if (performanceSection) {
+            progressObserver.observe(performanceSection);
+        }
+    </script>
+</body>
+</html>
