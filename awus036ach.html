@@ -3,707 +3,1188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALFA AWUS036ACH - Professional WiFi Adapter Specification</title>
+    <title>ALFA AWUS036ACH - AC1200 Dual Band WiFi USB-C Adapter | Professional Specification</title>
+    <meta name="description" content="Professional technical specification for ALFA AWUS036ACH WiFi adapter with RTL8812AU chipset, featuring USB Type-C and supporting Windows, macOS, Linux, and Raspberry Pi">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
         :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-color: #667eea;
+            --accent-secondary: #764ba2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ensure ALL text is minimum 14px */
+        body, p, li, span, td, th, label, input, button, a, div {
+            font-size: 0.875rem; /* 14px minimum */
+        }
+
+        /* Light Mode */
+        body.light {
             --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #f1f3f5;
-            --text-primary: #1a1a1a;
-            --text-secondary: #6b7280;
-            --border-color: #e5e7eb;
-            --accent-primary: #5b5fff;
-            --accent-secondary: #4845e4;
-            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --card-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+            --card-hover: #f8fafc;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        
-        [data-theme="dark"] {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #141414;
-            --bg-tertiary: #1f1f1f;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --border-color: #2a2a2a;
-            --accent-primary: #7d7aff;
-            --accent-secondary: #6865f1;
-            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            --card-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+        /* Dark Mode */
+        body.dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --border-color: #334155;
+            --card-bg: #1e293b;
+            --card-hover: #334155;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
-        
+
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 14px;
         }
-        
-        .container-custom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+
+        /* Typography Scale */
+        h1 { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 900; 
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
-        
-        .card {
-            background: var(--bg-secondary);
+        h2 { 
+            font-size: clamp(1.75rem, 4vw, 2.5rem); 
+            font-weight: 800; 
+            line-height: 1.2;
+        }
+        h3 { 
+            font-size: clamp(1.25rem, 3vw, 1.875rem); 
+            font-weight: 700; 
+            line-height: 1.3;
+        }
+        h4 { 
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem); 
+            font-weight: 600; 
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark header {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: var(--card-shadow);
+            border-radius: 1.25rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
         }
-        
-        .card:hover {
-            box-shadow: var(--card-shadow-hover);
-            transform: translateY(-2px);
-            border-color: var(--accent-primary);
+
+        .glass-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
         }
-        
+
+        /* Highlight Box for Key Information */
         .highlight-box {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 16px;
-            padding: 32px;
-            color: white;
-            box-shadow: 0 20px 40px -10px rgba(91, 95, 255, 0.3);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 3px solid var(--accent-color);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
         }
-        
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary-gradient);
+            animation: shimmer 3s infinite;
         }
-        
-        .spec-item {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 16px;
-            border-left: 3px solid var(--accent-primary);
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
-        
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background: var(--bg-tertiary);
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            margin: 4px;
+
+        /* Gradient Text */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
+        /* Button Styles */
         .btn-primary {
-            background: var(--accent-primary);
+            background: var(--primary-gradient);
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(91, 95, 255, 0.4);
-        }
-        
-        .theme-toggle {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border: none;
             cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border: 2px solid var(--border-color);
         }
-        
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: var(--card-shadow-hover);
+
+        .btn-secondary:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
         }
-        
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 10px;
+            background: var(--bg-tertiary);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 999px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progress-shimmer 2s infinite;
+        }
+
+        @keyframes progress-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Fade In Animation */
         .fade-in {
-            animation: fadeIn 0.6s ease-in;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Hero Title - Large and Bold */
-        .hero-title {
-            font-size: 56px;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
+        /* Staggered Animation */
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+        .fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Spec Table */
+        .spec-row {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 1.5rem;
+            padding: 1.125rem 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .hero-subtitle {
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--text-secondary);
-        }
-
-        /* Responsive Hero Typography */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 48px;
-            }
-            .hero-subtitle {
-                font-size: 18px;
-            }
+        .spec-row:last-child {
+            border-bottom: none;
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 40px;
-            }
-            .hero-subtitle {
-                font-size: 17px;
+            .spec-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
         }
 
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 32px;
-            }
-            .hero-subtitle {
-                font-size: 16px;
-            }
+        .spec-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9375rem; /* 15px */
         }
-        
-        h1 { font-size: 42px; font-weight: 700; line-height: 1.2; }
-        h2 { font-size: 32px; font-weight: 600; line-height: 1.3; }
-        h3 { font-size: 24px; font-weight: 600; line-height: 1.4; }
-        h4 { font-size: 18px; font-weight: 600; line-height: 1.5; }
-        p, li { font-size: 15px; line-height: 1.6; }
-        
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-primary);
-            border-radius: 12px;
+
+        .spec-value {
+            color: var(--text-primary);
+            font-size: 0.9375rem; /* 15px */
+            line-height: 1.7;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            color: var(--accent-color);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        /* Icon Box */
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: var(--primary-gradient);
             color: white;
-            font-size: 24px;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
         }
-        
-        .os-badge {
+
+        .glass-card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 64px;
+            height: 32px;
             background: var(--bg-tertiary);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 999px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark .theme-toggle-slider {
+            left: 34px;
+            background: var(--accent-color);
+        }
+
+        /* Feature Icon */
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 2.5rem 0;
+            }
+        }
+
+        /* Download Card */
+        .download-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 3px dashed var(--border-color);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            border-color: var(--accent-color);
+            border-style: solid;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            transform: translateY(-4px);
+        }
+
+        /* OS Support Grid */
+        .os-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .os-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem;
+            background: var(--bg-tertiary);
+            border-radius: 0.75rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
             transition: all 0.2s ease;
         }
-        
-        .os-badge:hover {
-            background: var(--accent-primary);
+
+        .os-item:hover {
+            background: var(--primary-gradient);
             color: white;
             transform: translateX(4px);
         }
-        
-        @media (max-width: 768px) {
-            h2 { font-size: 24px; }
-            h3 { font-size: 20px; }
-            .container-custom { padding: 0 16px; }
-            .highlight-box { padding: 24px; }
-            .spec-grid { grid-template-columns: 1fr; }
+
+        .os-item i {
+            font-size: 1.5rem;
+        }
+
+        body.dark .os-item:hover i {
+            color: white;
         }
     </style>
 </head>
-<body>
-    <!-- Theme Toggle Button -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </div>
-
-    <div class="container-custom" style="padding-top: 60px; padding-bottom: 80px;">
-        
-        <!-- Header Section -->
-        <div class="fade-in" style="text-align: center; margin-bottom: 60px;">
-            <div style="margin-bottom: 16px;">
-                <span style="background: var(--accent-primary); color: white; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;">
-                    <i class="fas fa-wifi"></i> PROFESSIONAL WIFI ADAPTER
-                </span>
-            </div>
-            <h1 class="hero-title">ALFA AWUS036ACH</h1>
-            <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
-                World's First WiFi 5 Adapter with USB Type-C, Screen Clip Mount and Detachable Antennas
-            </p>
-        </div>
-
-        <!-- Key Highlights Section -->
-        <div class="highlight-box fade-in" style="margin-bottom: 48px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px;">
-                <div>
-                    <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Chipset</div>
-                    <div style="font-size: 32px; font-weight: 700; margin-bottom: 4px;">RTL8812AU</div>
-                    <div style="font-size: 14px; opacity: 0.9;">Realtek™ High Performance</div>
+<body class="light">
+    <!-- Header -->
+    <header>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-wifi text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold gradient-text">AWUS036ACH</div>
+                        <div class="text-xs" style="color: var(--text-tertiary);">Professional WiFi Adapter</div>
+                    </div>
                 </div>
-                <div>
-                    <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Speed</div>
-                    <div style="font-size: 32px; font-weight: 700; margin-bottom: 4px;">AC1200</div>
-                    <div style="font-size: 14px; opacity: 0.9;">867 Mbps (5GHz) + 300 Mbps (2.4GHz)</div>
-                </div>
-                <div>
-                    <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Connection</div>
-                    <div style="font-size: 32px; font-weight: 700; margin-bottom: 4px;">USB-C</div>
-                    <div style="font-size: 14px; opacity: 0.9;">SuperSpeed USB 5 Gbps</div>
+
+                <div class="flex items-center gap-4">
+                    <a href="#downloads" class="hidden sm:inline-flex btn-secondary" style="padding: 0.625rem 1.25rem; font-size: 0.875rem;">
+                        <i class="fas fa-download"></i>
+                        Downloads
+                    </a>
+                    <div class="theme-toggle" onclick="toggleTheme()">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- Operating System Support Section -->
-        <div class="card fade-in" style="margin-bottom: 48px;">
-            <h2 style="margin-bottom: 24px; color: var(--text-primary);">
-                <i class="fas fa-desktop" style="color: var(--accent-primary); margin-right: 12px;"></i>
-                Operating System Support
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                <div class="os-badge">
-                    <i class="fab fa-windows" style="font-size: 20px;"></i>
-                    <span>Windows 10 / 11</span>
+    <!-- Hero Section -->
+    <section class="pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-in">
+                <div class="inline-block mb-6">
+                    <span class="badge">
+                        <i class="fas fa-bolt mr-2"></i>
+                        World's First USB Type-C WiFi 5 Adapter
+                    </span>
                 </div>
-                <div class="os-badge">
-                    <i class="fab fa-apple" style="font-size: 20px;"></i>
-                    <span>macOS</span>
-                </div>
-                <div class="os-badge">
-                    <i class="fab fa-linux" style="font-size: 20px;"></i>
-                    <span>Kali Linux</span>
-                </div>
-                <div class="os-badge">
-                    <i class="fab fa-ubuntu" style="font-size: 20px;"></i>
-                    <span>Linux Ubuntu</span>
-                </div>
-                <div class="os-badge">
-                    <i class="fab fa-android" style="font-size: 20px;"></i>
-                    <span>Android Kali NetHunter</span>
-                </div>
-                <div class="os-badge">
-                    <i class="fab fa-raspberry-pi" style="font-size: 20px;"></i>
-                    <span>Raspberry Pi</span>
-                </div>
-            </div>
-            <div style="margin-top: 24px; padding: 16px; background: var(--bg-tertiary); border-radius: 8px; border-left: 3px solid #10b981;">
-                <p style="margin: 0; color: var(--text-secondary);">
-                    <i class="fas fa-info-circle" style="color: #10b981; margin-right: 8px;"></i>
-                    <strong>Note:</strong> Kali Linux version 2017.1 and later supports packet injection for this adapter
+                <h1 class="gradient-text mb-4">ALFA AWUS036ACH</h1>
+                <p class="text-xl sm:text-2xl font-semibold max-w-3xl mx-auto mb-8" style="color: var(--text-secondary); line-height: 1.5;">
+                    AC1200 Dual Band High Power WiFi USB-C Adapter with Detachable Antennas
                 </p>
             </div>
         </div>
+    </section>
 
-        <!-- Key Features Section -->
-        <div style="margin-bottom: 48px;">
-            <h2 style="margin-bottom: 32px; color: var(--text-primary);">Key Features</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
-                        <i class="fas fa-broadcast-tower"></i>
+    <!-- Key Highlights Section - MOST IMPORTANT -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center gap-3 mb-8 fade-in">
+                <i class="fas fa-star" style="color: #f59e0b; font-size: 2rem;"></i>
+                <h2 class="text-2xl sm:text-3xl font-bold" style="color: var(--accent-color);">Essential Product Information</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                <!-- Chipset Highlight -->
+                <div class="highlight-box glass-card p-8 fade-in relative z-10">
+                    <div class="flex items-start gap-4">
+                        <div class="icon-box">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold mb-2 uppercase tracking-wider" style="color: var(--accent-color); font-size: 0.875rem;">Chipset Technology</h3>
+                            <div class="text-3xl sm:text-4xl font-black gradient-text mb-3">Realtek RTL8812AU</div>
+                            <p class="text-base leading-relaxed" style="color: var(--text-secondary);">
+                                Professional-grade WiFi 5 (802.11ac) chipset delivering superior performance and extensive compatibility
+                            </p>
+                        </div>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">Dual-Band Operation</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        Operates on both 2.4 GHz and 5 GHz bands with support for 5 GHz DFS channels for maximum flexibility
-                    </p>
                 </div>
-                
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
-                        <i class="fas fa-shield-alt"></i>
+
+                <!-- OS Support Highlight -->
+                <div class="highlight-box glass-card p-8 fade-in relative z-10">
+                    <div class="flex items-start gap-4">
+                        <div class="icon-box">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold mb-4 uppercase tracking-wider" style="color: #10b981; font-size: 0.875rem;">Operating System Support</h3>
+                            <div class="os-grid">
+                                <div class="os-item">
+                                    <i class="fab fa-windows" style="color: #0078d4;"></i>
+                                    <span>Windows 10/11</span>
+                                </div>
+                                <div class="os-item">
+                                    <i class="fab fa-apple" style="color: #000000;"></i>
+                                    <span>macOS</span>
+                                </div>
+                                <div class="os-item">
+                                    <i class="fab fa-linux" style="color: #f7941d;"></i>
+                                    <span>Kali Linux</span>
+                                </div>
+                                <div class="os-item">
+                                    <i class="fab fa-ubuntu" style="color: #dd4814;"></i>
+                                    <span>Linux Ubuntu</span>
+                                </div>
+                                <div class="os-item">
+                                    <i class="fab fa-android" style="color: #3ddc84;"></i>
+                                    <span>Kali NetHunter</span>
+                                </div>
+                                <div class="os-item">
+                                    <i class="fab fa-raspberry-pi" style="color: #c51a4a;"></i>
+                                    <span>Raspberry Pi</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">Enterprise Security</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        64/128 WEP encryption, WPA, WPA-PSK, WPA2, and 802.1X support for robust security
-                    </p>
                 </div>
-                
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
-                        <i class="fas fa-signal"></i>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 mt-12 fade-in">
+                <a href="#specifications" class="btn-primary">
+                    <i class="fas fa-file-alt"></i>
+                    View Full Specifications
+                </a>
+                <a href="#downloads" class="btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Download Drivers
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Overview -->
+    <section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12 fade-in">Performance Overview</h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Speed -->
+                <div class="glass-card p-8 fade-in">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Maximum Speed</h3>
+                        <i class="fas fa-gauge-high text-3xl" style="color: var(--accent-color);"></i>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">Extended Range</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        High receive sensitivity with internal power amplifier for up to 3× the range of standard adapters
-                    </p>
+                    <div class="text-4xl font-bold gradient-text mb-3">AC1200</div>
+                    <p class="text-base mb-4" style="color: var(--text-tertiary);">867 Mbps (5 GHz) + 300 Mbps (2.4 GHz)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
                 </div>
-                
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
+
+                <!-- USB Type-C -->
+                <div class="glass-card p-8 fade-in">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">USB Type-C</h3>
+                        <i class="fas fa-usb text-3xl" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-3">5 Gbps</div>
+                    <p class="text-base mb-4" style="color: var(--text-tertiary);">SuperSpeed USB 3.0 interface</p>
+                    <div class="flex gap-2">
+                        <div class="flex-1 px-3 py-2 rounded-lg text-center text-sm font-semibold" style="background: var(--bg-tertiary);">USB 3.0</div>
+                        <div class="flex-1 px-3 py-2 rounded-lg text-center text-sm font-semibold" style="background: var(--bg-tertiary);">USB 2.0</div>
+                    </div>
+                </div>
+
+                <!-- Antenna -->
+                <div class="glass-card p-8 fade-in">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Dual Antennas</h3>
+                        <i class="fas fa-tower-broadcast text-3xl" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-3">2× 5 dBi</div>
+                    <p class="text-base mb-4" style="color: var(--text-tertiary);">Detachable high-gain antennas</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12 fade-in">Outstanding Features</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 fade-in text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">WiFi 5 (802.11ac)</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-tertiary);">Next-generation wireless standard with enhanced performance</p>
+                </div>
+
+                <div class="glass-card p-6 fade-in text-center">
+                    <div class="feature-icon">
                         <i class="fas fa-plug"></i>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">Detachable Antennas</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        Two RP-SMA female connectors with dual-band 5 dBi dipole omni antennas - upgradeable
-                    </p>
+                    <h3 class="text-lg font-semibold mb-2">USB Type-C</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-tertiary);">Modern reversible connector with SuperSpeed capability</p>
                 </div>
-                
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
-                        <i class="fas fa-rocket"></i>
+
+                <div class="glass-card p-6 fade-in text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-broadcast-tower"></i>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">USB 3.0 Speed</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        USB 3.0 compliant for maximum throughput, backward compatible with USB 2.0
-                    </p>
+                    <h3 class="text-lg font-semibold mb-2">RP-SMA Connectors</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-tertiary);">Detachable antennas for extended range and upgrades</p>
                 </div>
-                
-                <div class="card">
-                    <div class="feature-icon" style="margin-bottom: 16px;">
-                        <i class="fas fa-sync-alt"></i>
+
+                <div class="glass-card p-6 fade-in text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">Backward Compatible</h4>
-                    <p style="color: var(--text-secondary); margin: 0;">
-                        Full compatibility with 802.11a/b/g/n standards for universal connectivity
-                    </p>
+                    <h3 class="text-lg font-semibold mb-2">Enterprise Security</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-tertiary);">WPA/WPA2/WPA-PSK and 802.1X authentication</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Technical Specifications Section -->
-        <div class="card fade-in" style="margin-bottom: 48px;">
-            <h2 style="margin-bottom: 32px; color: var(--text-primary);">
-                <i class="fas fa-cog" style="color: var(--accent-primary); margin-right: 12px;"></i>
-                Technical Specifications
-            </h2>
-            
-            <div class="spec-grid">
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Chipset</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Realtek™ RTL8812AU</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Standards</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">IEEE 802.11a/b/g/n/ac</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Frequency Bands</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">2.4 GHz / 5 GHz</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Data Rate (5GHz)</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Up to 867 Mbps</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Data Rate (2.4GHz)</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Up to 300 Mbps</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Interface</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">USB Type-C (USB 3.0)</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Antenna Connectors</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">2× RP-SMA (Female)</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Antenna Gain</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">5 dBi Dual-Band Omni</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Power Consumption</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">0.7A @ 5V (Max)</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Dimensions</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">85 × 63 × 20 mm</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Country of Origin</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Taiwan</div>
-                </div>
-                
-                <div class="spec-item">
-                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Warranty</div>
-                    <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">One Year Manufacturer</div>
-                </div>
-            </div>
-        </div>
+    <!-- Technical Specifications -->
+    <section id="specifications">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12">Complete Technical Specifications</h2>
 
-        <!-- Data Rates Table -->
-        <div class="card fade-in" style="margin-bottom: 48px;">
-            <h3 style="margin-bottom: 24px; color: var(--text-primary);">Data Rate Specifications</h3>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: var(--bg-tertiary);">
-                            <th style="padding: 16px; text-align: left; font-size: 14px; font-weight: 600; border-bottom: 2px solid var(--border-color);">Standard</th>
-                            <th style="padding: 16px; text-align: left; font-size: 14px; font-weight: 600; border-bottom: 2px solid var(--border-color);">Maximum Speed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 16px; font-size: 14px;">802.11ac (5GHz)</td>
-                            <td style="padding: 16px; font-size: 14px; font-weight: 600;">867 Mbps</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 16px; font-size: 14px;">802.11n (2.4GHz)</td>
-                            <td style="padding: 16px; font-size: 14px; font-weight: 600;">300 Mbps</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 16px; font-size: 14px;">802.11a/g</td>
-                            <td style="padding: 16px; font-size: 14px; font-weight: 600;">54 Mbps</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 16px; font-size: 14px;">802.11b</td>
-                            <td style="padding: 16px; font-size: 14px; font-weight: 600;">11 Mbps</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Hardware Specifications -->
+                <div class="glass-card p-8">
+                    <h3 class="text-2xl font-bold mb-6 gradient-text flex items-center gap-3">
+                        <i class="fas fa-microchip" style="font-size: 1.75rem;"></i>
+                        Hardware Specifications
+                    </h3>
 
-        <!-- Applications Section -->
-        <div style="margin-bottom: 48px;">
-            <h2 style="margin-bottom: 32px; color: var(--text-primary);">Applications & Use Cases</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                <div class="card" style="border-left: 4px solid #3b82f6;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-user-secret" style="color: #3b82f6; margin-right: 8px;"></i>
-                        Security Testing
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Perfect for penetration testing and security auditing with Kali Linux packet injection support
-                    </p>
-                </div>
-                
-                <div class="card" style="border-left: 4px solid #10b981;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-network-wired" style="color: #10b981; margin-right: 8px;"></i>
-                        Network Analysis
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Monitor and analyze wireless networks with extended range capabilities
-                    </p>
-                </div>
-                
-                <div class="card" style="border-left: 4px solid #f59e0b;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-desktop" style="color: #f59e0b; margin-right: 8px;"></i>
-                        Desktop Enhancement
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Upgrade desktop computers with modern AC1200 WiFi connectivity
-                    </p>
-                </div>
-                
-                <div class="card" style="border-left: 4px solid #8b5cf6;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-laptop" style="color: #8b5cf6; margin-right: 8px;"></i>
-                        Laptop Upgrade
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Replace aging laptop WiFi with superior range and speed performance
-                    </p>
-                </div>
-                
-                <div class="card" style="border-left: 4px solid #ec4899;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-microchip" style="color: #ec4899; margin-right: 8px;"></i>
-                        IoT Development
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Raspberry Pi compatible for IoT projects and embedded systems
-                    </p>
-                </div>
-                
-                <div class="card" style="border-left: 4px solid #06b6d4;">
-                    <h4 style="margin-bottom: 12px; color: var(--text-primary);">
-                        <i class="fas fa-satellite-dish" style="color: #06b6d4; margin-right: 8px;"></i>
-                        Long-Range Connection
-                    </h4>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
-                        Connect to distant access points with detachable high-gain antennas
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Download Section -->
-        <div class="card fade-in" style="margin-bottom: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white;">
-            <h2 style="margin-bottom: 24px; color: white;">
-                <i class="fas fa-download" style="margin-right: 12px;"></i>
-                Official Resources & Downloads
-            </h2>
-            <p style="font-size: 15px; margin-bottom: 32px; opacity: 0.95;">
-                Access official drivers, documentation, and technical support materials
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036ACH" 
-                   target="_blank"
-                   style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; text-decoration: none; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);"
-                   onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-4px)'"
-                   onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
-                    <div style="font-size: 32px; margin-bottom: 12px;">
-                        <i class="fas fa-file-download"></i>
+                    <!-- HIGHLIGHTED CHIPSET -->
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); padding: 1.25rem; border-radius: 1rem; border: 3px solid var(--accent-color); margin-bottom: 1.5rem;">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fas fa-microchip" style="color: var(--accent-color); font-size: 1.75rem;"></i>
+                            <div class="spec-label" style="font-weight: 800; color: var(--accent-color); font-size: 1.125rem;">Chipset</div>
+                        </div>
+                        <div class="spec-value" style="font-weight: 800; font-size: 1.75rem; margin-left: 3rem;">
+                            Realtek RTL8812AU
+                        </div>
                     </div>
-                    <h4 style="margin-bottom: 8px; font-size: 18px;">Official Drivers</h4>
-                    <p style="margin: 0; font-size: 14px; opacity: 0.9;">Download the latest drivers for all supported operating systems</p>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Interface</div>
+                        <div class="spec-value">USB Type-C (USB 3.0 SuperSpeed, backward compatible with USB 2.0)</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Antennas</div>
+                        <div class="spec-value">
+                            2× Detachable 5 dBi dual-band antennas<br>
+                            2× RP-SMA female connectors<br>
+                            Upgradeable design
+                        </div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Dimensions</div>
+                        <div class="spec-value">85 × 63 × 20 mm (3.3 × 2.5 × 0.8 inches)</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Power Consumption</div>
+                        <div class="spec-value">Maximum 0.7 A at 5V (3.5W)</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Cable</div>
+                        <div class="spec-value">USB Type-A to USB Type-C cable included</div>
+                    </div>
+                </div>
+
+                <!-- Wireless Specifications -->
+                <div class="glass-card p-8">
+                    <h3 class="text-2xl font-bold mb-6 gradient-text flex items-center gap-3">
+                        <i class="fas fa-signal" style="font-size: 1.75rem;"></i>
+                        Wireless Specifications
+                    </h3>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Standards</div>
+                        <div class="spec-value">IEEE 802.11 a/b/g/n/ac (WiFi 5)</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Frequency Bands</div>
+                        <div class="spec-value">
+                            2.4 GHz (2.400 - 2.484 GHz)<br>
+                            5 GHz (5.150 - 5.850 GHz)
+                        </div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Data Rates</div>
+                        <div class="spec-value">
+                            <strong>802.11ac:</strong> Up to 867 Mbps<br>
+                            <strong>802.11n:</strong> Up to 300 Mbps<br>
+                            <strong>802.11a/g:</strong> 6, 9, 12, 18, 24, 36, 48, 54 Mbps<br>
+                            <strong>802.11b:</strong> 1, 2, 5.5, 11 Mbps<br>
+                            <strong>Combined:</strong> Up to 1200 Mbps (AC1200)
+                        </div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Security</div>
+                        <div class="spec-value">64/128-bit WEP, WPA, WPA-PSK, WPA2, 802.1X</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">DFS Channels</div>
+                        <div class="spec-value">5 GHz DFS channels supported</div>
+                    </div>
+
+                    <div class="spec-row">
+                        <div class="spec-label">Special Features</div>
+                        <div class="spec-value">
+                            Internal power amplifier<br>
+                            High receive sensitivity<br>
+                            Packet injection support (Kali Linux)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operating System Support -->
+    <section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12">Operating System Compatibility</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Windows & macOS -->
+                <div class="glass-card p-8" style="border: 3px solid rgba(0, 120, 212, 0.4);">
+                    <div class="flex items-start gap-6">
+                        <div class="icon-box" style="background: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-4">Windows & macOS Support</h3>
+                            <p class="text-base mb-4 leading-relaxed" style="color: var(--text-secondary);">
+                                Full native driver support for Microsoft Windows and Apple macOS platforms with plug-and-play installation.
+                            </p>
+                            <ul class="space-y-2" style="list-style: none; padding: 0;">
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Windows 10 / 11</strong> - Native drivers</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Windows 7 / 8 / 8.1</strong> - Legacy support</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>macOS</strong> - Official drivers available</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux & Embedded -->
+                <div class="glass-card p-8" style="border: 3px solid rgba(247, 148, 29, 0.4);">
+                    <div class="flex items-start gap-6">
+                        <div class="icon-box" style="background: linear-gradient(135deg, #f7941d 0%, #fdc830 100%);">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-4">Linux & Embedded Systems</h3>
+                            <p class="text-base mb-4 leading-relaxed" style="color: var(--text-secondary);">
+                                Comprehensive support for Linux distributions and embedded platforms, perfect for security professionals and IoT projects.
+                            </p>
+                            <ul class="space-y-2" style="list-style: none; padding: 0;">
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Kali Linux 2017.1+</strong> - Packet injection</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Linux Ubuntu</strong> - Full support</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Android NetHunter</strong> - Mobile pentesting</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem;"></i>
+                                    <span class="text-base"><strong>Raspberry Pi</strong> - IoT applications</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications & Use Cases -->
+    <section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12">Professional Applications & Use Cases</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Security Testing & Penetration</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        Professional wireless penetration testing, network security auditing, and WiFi analysis with Kali Linux and specialized security tools. Packet injection support included.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-network-wired text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Network Extension & Upgrade</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        Extend WiFi connectivity to desktop computers, workstations, or devices without built-in wireless capabilities. Upgrade older systems to modern AC WiFi standards.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-video text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">HD Streaming & Gaming</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        High-speed wireless connection perfect for HD/4K video streaming, online gaming, and bandwidth-intensive multimedia applications with low latency.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fab fa-raspberry-pi text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">IoT & Embedded Development</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        Ideal for Raspberry Pi projects, IoT development, embedded systems, and Linux-based applications requiring reliable high-performance wireless connectivity.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Remote Work & Collaboration</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        Professional-grade wireless connectivity for remote work environments, video conferencing, cloud services, and enterprise collaboration applications.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 fade-in">
+                    <div class="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-signal text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Long-Range Connectivity</h3>
+                    <p class="text-base leading-relaxed" style="color: var(--text-tertiary);">
+                        Internal power amplifier and high-gain detachable antennas provide extended wireless range - up to 3× the distance of standard laptop WiFi cards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Contents -->
+    <section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12">Complete Package Contents</h2>
+
+            <div class="glass-card p-8">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-wifi text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">AWUS036ACH Adapter</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">Main USB-C WiFi adapter unit</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-tower-broadcast text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">2× 5 dBi Antennas</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">Detachable dual-band antennas with RP-SMA</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-usb text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">USB Cable</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">USB Type-A to USB Type-C cable</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-laptop text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">USB Docking Base</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">Desktop mounting solution</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-paperclip text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">Screen Clip Mount</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">Laptop screen mounting clip</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                            <i class="fas fa-book text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1 text-base">Quick Start Guide</h3>
+                            <p class="text-sm" style="color: var(--text-tertiary);">Installation and setup documentation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section id="downloads">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center mb-12">Official Downloads & Resources</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Drivers -->
+                <a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter" target="_blank" rel="noopener noreferrer" class="download-card p-8 block">
+                    <div class="flex items-start gap-6">
+                        <div class="icon-box">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-3">Official Drivers</h3>
+                            <p class="text-base mb-6 leading-relaxed" style="color: var(--text-secondary);">
+                                Download the latest official drivers and software for Windows, macOS, Linux, and other supported operating systems.
+                            </p>
+                            <div class="flex items-center font-semibold text-base" style="color: var(--accent-color);">
+                                Access Driver Portal
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
                 </a>
-                
-                <a href="https://docs.alfa.com.tw/" 
-                   target="_blank"
-                   style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 24px; border-radius: 12px; text-decoration: none; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);"
-                   onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-4px)'"
-                   onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
-                    <div style="font-size: 32px; margin-bottom: 12px;">
-                        <i class="fas fa-book"></i>
+
+                <!-- Documentation -->
+                <a href="https://docs.alfa.com.tw/" target="_blank" rel="noopener noreferrer" class="download-card p-8 block">
+                    <div class="flex items-start gap-6">
+                        <div class="icon-box">
+                            <i class="fas fa-file-lines"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-3">Technical Documentation</h3>
+                            <p class="text-base mb-6 leading-relaxed" style="color: var(--text-secondary);">
+                                Access comprehensive user manuals, technical datasheets, installation guides, and product specifications.
+                            </p>
+                            <div class="flex items-center font-semibold text-base" style="color: var(--accent-color);">
+                                View Documentation
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
                     </div>
-                    <h4 style="margin-bottom: 8px; font-size: 18px;">Technical Documentation</h4>
-                    <p style="margin: 0; font-size: 14px; opacity: 0.9;">Access comprehensive guides, manuals, and technical specifications</p>
                 </a>
             </div>
         </div>
+    </section>
 
-        <!-- Package Contents -->
-        <div class="card fade-in" style="margin-bottom: 48px;">
-            <h3 style="margin-bottom: 24px; color: var(--text-primary);">
-                <i class="fas fa-box-open" style="color: var(--accent-primary); margin-right: 12px;"></i>
-                Package Contents
-            </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">AWUS036ACH Adapter</span>
+    <!-- Important Notes -->
+    <section class="pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8" style="border-left: 6px solid var(--accent-color);">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-info-circle" style="color: var(--accent-color); font-size: 2rem;"></i>
+                    Important Information
+                </h3>
+                <ul class="space-y-4" style="list-style: none; padding: 0;">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: var(--accent-color); margin-top: 0.625rem;"></i>
+                        <span class="text-base leading-relaxed">
+                            <strong style="color: var(--text-primary);">USB 3.0 Recommended:</strong> A USB 3.0 port is recommended for optimal performance. The adapter is backward compatible with USB 2.0 but speeds will be limited.
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: var(--accent-color); margin-top: 0.625rem;"></i>
+                        <span class="text-base leading-relaxed">
+                            <strong style="color: var(--text-primary);">Extended Range:</strong> Internal power amplifier and high-gain antennas provide up to 3× the range of standard laptop WiFi cards.
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: var(--accent-color); margin-top: 0.625rem;"></i>
+                        <span class="text-base leading-relaxed">
+                            <strong style="color: var(--text-primary);">Antenna Upgrades:</strong> RP-SMA female connectors allow for higher-gain antenna upgrades to further extend wireless coverage and range.
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: var(--accent-color); margin-top: 0.625rem;"></i>
+                        <span class="text-base leading-relaxed">
+                            <strong style="color: var(--text-primary);">Driver Installation:</strong> Always download the latest drivers from the official ALFA Network website for optimal performance, stability, and security.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 mt-8" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center">
+                        <i class="fas fa-wifi text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold gradient-text">ALFA Network</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">2× 5 dBi Dual-Band Antennas</span>
+                <p class="text-base mb-6" style="color: var(--text-tertiary);">
+                    Professional WiFi Solutions for Security, Networking & Development
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 text-sm" style="color: var(--text-secondary);">
+                    <span class="font-semibold">AWUS036ACH</span>
+                    <span>•</span>
+                    <span>AC1200 Dual Band</span>
+                    <span>•</span>
+                    <span>RTL8812AU Chipset</span>
+                    <span>•</span>
+                    <span>USB Type-C</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">USB-C Cable</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">USB Docking Base</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">Screen Clip Mount</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 20px;"></i>
-                    <span style="font-size: 14px;">Quick Start Guide</span>
+                <div class="mt-6 text-sm" style="color: var(--text-tertiary);">
+                    © 2024 ALFA Network Inc. All rights reserved. Specifications subject to change without notice.
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <div style="text-align: center; padding-top: 48px; border-top: 1px solid var(--border-color);">
-            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px;">
-                Model: AWUS036ACH | Manufacturer: ALFA Network Inc.
-            </p>
-            <p style="color: var(--text-secondary); font-size: 13px; margin: 0;">
-                Specifications subject to change without notice. All trademarks are property of their respective owners.
-            </p>
-        </div>
-
-    </div>
+    </footer>
 
     <script>
-        // Theme Toggle Functionality
+        // Theme Toggle
         function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
+            const body = document.body;
+            if (body.classList.contains('light')) {
+                body.classList.remove('light');
+                body.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Initialize theme based on system preference or saved preference
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
             } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
             }
         }
 
-        // Smooth scroll animation for page load
-        window.addEventListener('load', () => {
-            initTheme();
-            document.querySelectorAll('.fade-in').forEach((element, index) => {
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                }, index * 100);
+        // Load saved theme or use system preference
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.remove('light', 'dark');
+                document.body.classList.add(savedTheme);
+            } else {
+                // Check system preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.remove('light');
+                    document.body.classList.add('dark');
+                }
+            }
+        }
+
+        // Initialize theme on page load
+        loadTheme();
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem('theme')) {
+                    if (e.matches) {
+                        document.body.classList.remove('light');
+                        document.body.classList.add('dark');
+                    } else {
+                        document.body.classList.remove('dark');
+                        document.body.classList.add('light');
+                    }
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                const themeIcon = document.getElementById('theme-icon');
-                if (e.matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeIcon.className = 'fas fa-sun';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    themeIcon.className = 'fas fa-moon';
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
-            }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate progress bars when in view
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.progress-bar').forEach(el => {
+            progressObserver.observe(el.closest('section'));
         });
     </script>
 </body>
