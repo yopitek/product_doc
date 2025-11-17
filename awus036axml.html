@@ -49,7 +49,7 @@
         
         /* Ensure minimum 12px font size */
         body, p, li, span, td, th, label, input, button, a {
-            font-size: max(0.875rem, 14px); /* 14px minimum */
+            font-size: max(1rem, 16px); /* 16px minimum for better readability */
         }
         
         h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
@@ -236,7 +236,7 @@
         .badge {
             display: inline-block;
             padding: 0.375rem 0.875rem;
-            font-size: 0.8125rem; /* 13px */
+            font-size: 0.875rem; /* 14px minimum */
             font-weight: 600;
             border-radius: 20px;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
@@ -328,17 +328,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-                        <i class="fas fa-wifi text-white text-lg"></i>
+                    <div class="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
+                        <i class="fas fa-wifi text-white" style="font-size: 1.25rem;"></i>
                     </div>
                     <div>
-                        <h1 class="text-lg font-semibold" style="font-size: 1.125rem;">AWUS036AXML</h1>
-                        <p class="text-xs" style="font-size: 0.8125rem; color: var(--text-tertiary);">WiFi 6E Tri-Band USB Adapter</p>
+                        <h1 class="text-lg font-semibold" style="font-size: 1.25rem;">AWUS036AXML</h1>
+                        <p class="text-sm" style="font-size: 0.9375rem; color: var(--text-tertiary);">WiFi 6E Tri-Band USB Adapter</p>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-4">
-                    <a href="#downloads" class="hidden sm:inline-flex btn btn-secondary" style="font-size: 0.875rem;">
+                    <a href="#downloads" class="hidden sm:inline-flex btn btn-secondary" style="font-size: 1rem;">
                         <i class="fas fa-download"></i>
                         Downloads
                     </a>
@@ -366,7 +366,32 @@
                     <p class="text-xl mb-8" style="color: var(--text-secondary); line-height: 1.6;">
                         Professional WiFi 6E tri-band USB adapter with Bluetooth 5.2, delivering exceptional wireless performance across 2.4 GHz, 5 GHz, and 6 GHz bands.
                     </p>
-                    
+
+                    <!-- Key Information Highlight -->
+                    <div class="mb-8 p-6 rounded-2xl" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border: 2px solid #667eea;">
+                        <h3 class="font-bold mb-4 flex items-center gap-2" style="font-size: 1.25rem; color: #667eea;">
+                            <i class="fas fa-star"></i> Key Specifications
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-microchip" style="color: #667eea; font-size: 1.25rem; margin-top: 2px;"></i>
+                                <div>
+                                    <div class="font-bold" style="font-size: 1rem; color: var(--text-primary);">Chipset: MediaTek MT7921</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">Professional-grade wireless chipset</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-desktop" style="color: #667eea; font-size: 1.25rem; margin-top: 2px;"></i>
+                                <div>
+                                    <div class="font-bold" style="font-size: 1rem; color: var(--text-primary);">Supported OS:</div>
+                                    <div style="font-size: 0.9375rem; color: var(--text-primary); font-weight: 500; margin-top: 0.25rem;">
+                                        Windows 10 • Kali Linux • Linux Ubuntu
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex flex-wrap gap-4">
                         <a href="#specifications" class="btn btn-primary">
                             <i class="fas fa-file-alt"></i>
@@ -378,13 +403,34 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="relative">
                     <div class="absolute inset-0 gradient-primary opacity-10 blur-3xl rounded-full"></div>
-                    <img src="https://store.rokland.com/cdn/shop/products/ProductPage700x700_5.png?v=1677606708" 
-                         alt="ALFA AWUS036AXML WiFi 6E USB Adapter" 
-                         class="relative rounded-2xl shadow-2xl w-full"
-                         style="max-width: 500px; margin: 0 auto;">
+                    <div class="relative rounded-2xl shadow-2xl w-full p-12" style="max-width: 500px; margin: 0 auto; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-32 h-32 rounded-full gradient-primary mb-6">
+                                <i class="fas fa-wifi text-white" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="font-bold mb-2" style="font-size: 1.5rem;">WiFi 6E</h3>
+                            <p style="font-size: 1.125rem; color: var(--text-secondary);">Tri-Band Adapter</p>
+                            <div class="mt-6 pt-6 border-t border-gray-300">
+                                <div class="grid grid-cols-3 gap-4 text-center">
+                                    <div>
+                                        <div class="font-bold" style="font-size: 1.25rem; color: #667eea;">2.4</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-tertiary);">GHz</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold" style="font-size: 1.25rem; color: #8b5cf6;">5</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-tertiary);">GHz</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold" style="font-size: 1.25rem; color: #10b981;">6</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-tertiary);">GHz</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -481,13 +527,15 @@
                         Wireless Specifications
                     </h4>
                     <div class="space-y-0">
-                        <div class="spec-row">
-                            <div class="spec-label">Chipset</div>
-                            <div class="spec-value">MediaTek MT7921AUN</div>
+                        <div class="spec-row" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%); padding: 1.25rem; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.3); margin-bottom: 1rem;">
+                            <div class="spec-label" style="font-weight: 700; color: #667eea; font-size: 1rem;">
+                                <i class="fas fa-microchip" style="margin-right: 0.5rem;"></i>Chipset
+                            </div>
+                            <div class="spec-value" style="font-weight: 700; font-size: 1.125rem; color: var(--text-primary);">MediaTek MT7921</div>
                         </div>
                         <div class="spec-row">
                             <div class="spec-label">IEEE Standards</div>
-                            <div class="spec-value">802.11 a/b/g/n/ac/ax</div>
+                            <div class="spec-value">802.11 a/b/g/n/ac/ax (WiFi 6E)</div>
                         </div>
                         <div class="spec-row">
                             <div class="spec-label">Bluetooth</div>
@@ -546,42 +594,58 @@
 
         <!-- Software & Compatibility -->
         <section class="mb-16">
-            <h3 class="text-2xl font-bold mb-8">Software & Compatibility</h3>
-            
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-3">Software & Compatibility</h3>
+                <div class="p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-left: 4px solid #667eea;">
+                    <p style="font-size: 1rem; font-weight: 600; color: var(--text-primary);">
+                        <i class="fas fa-check-circle" style="color: #10b981; margin-right: 0.5rem;"></i>
+                        Officially Supported Operating Systems: <span style="color: #667eea;">Windows 10 • Kali Linux • Linux Ubuntu</span>
+                    </p>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="card">
+                <div class="card" style="border: 2px solid rgba(0, 120, 212, 0.3);">
                     <div class="flex items-start gap-4">
                         <div class="feature-icon" style="background: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);">
                             <i class="fab fa-windows"></i>
                         </div>
                         <div class="flex-1">
-                            <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Windows Support</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1rem;">
+                            <h4 class="font-semibold mb-3 flex items-center gap-2" style="font-size: 1.25rem;">
+                                Windows 10 Support
+                                <span class="badge" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Official</span>
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem; line-height: 1.6;">
                                 Full driver support for Windows 10 and Windows 11 with WPA3 encryption and enterprise security features.
                             </p>
-                            <ul style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8;">
-                                <li>✓ Native Windows 10/11 support</li>
-                                <li>✓ WPA, WPA2, WPA3 encryption</li>
-                                <li>✓ Enterprise 64/128 WEP</li>
+                            <ul style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 2; list-style: none; padding: 0;">
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>Native Windows 10/11 driver support</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>WPA, WPA2, WPA3 encryption</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>Enterprise 64/128 WEP</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>Plug-and-play installation</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" style="border: 2px solid rgba(247, 148, 29, 0.3);">
                     <div class="flex items-start gap-4">
                         <div class="feature-icon" style="background: linear-gradient(135deg, #f7941d 0%, #fdc830 100%);">
                             <i class="fab fa-linux"></i>
                         </div>
                         <div class="flex-1">
-                            <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Linux Support</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1rem;">
-                                Community-supported drivers for popular Linux distributions including Kali Linux and Ubuntu.
+                            <h4 class="font-semibold mb-3 flex items-center gap-2" style="font-size: 1.25rem;">
+                                Linux Support
+                                <span class="badge" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Official</span>
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem; line-height: 1.6;">
+                                Comprehensive support for Kali Linux and Ubuntu distributions, ideal for security professionals.
                             </p>
-                            <ul style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8;">
-                                <li>✓ Kali Linux compatible</li>
-                                <li>✓ Ubuntu support</li>
-                                <li>✓ Wireless penetration testing</li>
+                            <ul style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 2; list-style: none; padding: 0;">
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i><strong>Kali Linux</strong> - Full compatibility</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i><strong>Linux Ubuntu</strong> - Native support</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>Wireless penetration testing</li>
+                                <li><i class="fas fa-check" style="color: #10b981; margin-right: 0.5rem;"></i>Monitor mode & packet injection</li>
                             </ul>
                         </div>
                     </div>
@@ -592,52 +656,64 @@
         <!-- Applications -->
         <section class="mb-16">
             <h3 class="text-2xl font-bold mb-8">Applications & Use Cases</h3>
-            
+
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="card">
-                    <div class="text-3xl mb-3">🎮</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Gaming & Streaming</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
                         Ultra-low latency and high-speed connectivity for competitive gaming and 4K streaming.
                     </p>
                 </div>
-                
+
                 <div class="card">
-                    <div class="text-3xl mb-3">🔒</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Security Research</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
-                        Professional wireless penetration testing and network security analysis.
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
+                        Professional wireless penetration testing and network security analysis with Kali Linux.
                     </p>
                 </div>
-                
+
                 <div class="card">
-                    <div class="text-3xl mb-3">💼</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #667eea 0%, #3b82f6 100%);">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Professional Work</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
                         Remote work, video conferencing, and high-bandwidth data transfers.
                     </p>
                 </div>
-                
+
                 <div class="card">
-                    <div class="text-3xl mb-3">🏠</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <i class="fas fa-home"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Home Networking</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
                         Upgrade older devices to WiFi 6E for better home network performance.
                     </p>
                 </div>
-                
+
                 <div class="card">
-                    <div class="text-3xl mb-3">📡</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Wireless Analysis</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
                         Advanced wireless network monitoring and spectrum analysis.
                     </p>
                 </div>
-                
+
                 <div class="card">
-                    <div class="text-3xl mb-3">🖥️</div>
+                    <div class="feature-icon mb-4" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="fas fa-desktop"></i>
+                    </div>
                     <h4 class="font-semibold mb-2" style="font-size: 1.125rem;">Desktop Upgrades</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
                         Add wireless connectivity to desktop computers and workstations.
                     </p>
                 </div>
@@ -647,54 +723,54 @@
         <!-- Package Contents -->
         <section class="mb-16">
             <h3 class="text-2xl font-bold mb-8">Package Contents</h3>
-            
+
             <div class="card">
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">AWUS036AXML Adapter</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Main wireless adapter unit</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">AWUS036AXML Adapter</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">Main wireless adapter unit</p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">2× 5 dBi Antennas</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Detachable external antennas</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">2× 5 dBi Antennas</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">Detachable external antennas</p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">USB-C Cable</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">3ft SuperSpeed cable with USB-A adapter</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">USB-C Cable</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">3ft SuperSpeed cable with USB-A adapter</p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Screen Clip</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">For mounting on laptop screens</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">Screen Clip</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">For mounting on laptop screens</p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Suction Cup Mount</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Alternative mounting option</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">Suction Cup Mount</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">Alternative mounting option</p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.25rem; margin-top: 2px;"></i>
+                        <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.5rem; margin-top: 2px;"></i>
                         <div>
-                            <div class="font-semibold mb-1" style="font-size: 0.9375rem;">Quick Start Guide</div>
-                            <p style="color: var(--text-tertiary); font-size: 0.875rem;">Installation instructions</p>
+                            <div class="font-semibold mb-1" style="font-size: 1rem;">Quick Start Guide</div>
+                            <p style="color: var(--text-tertiary); font-size: 0.9375rem;">Installation instructions</p>
                         </div>
                     </div>
                 </div>
@@ -704,21 +780,21 @@
         <!-- Downloads Section -->
         <section id="downloads" class="mb-16">
             <h3 class="text-2xl font-bold mb-8">Downloads & Resources</h3>
-            
+
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Drivers Download -->
                 <div class="download-card">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4">
-                        <i class="fas fa-download text-white text-2xl"></i>
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl gradient-primary mb-6">
+                        <i class="fas fa-download text-white" style="font-size: 2rem;"></i>
                     </div>
-                    <h4 class="font-semibold mb-2" style="font-size: 1.25rem;">Official Drivers</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1.5rem;">
-                        Download the latest drivers and software for Windows and Linux operating systems.
+                    <h4 class="font-semibold mb-3" style="font-size: 1.5rem;">Official Drivers</h4>
+                    <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                        Download the latest drivers and software for Windows 10, Kali Linux, and Linux Ubuntu operating systems.
                     </p>
-                    <a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036AXML" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="btn btn-primary">
+                    <a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036AXML"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary" style="font-size: 1rem;">
                         <i class="fas fa-external-link-alt"></i>
                         Get Drivers
                     </a>
@@ -726,17 +802,17 @@
 
                 <!-- Documentation -->
                 <div class="download-card">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <i class="fas fa-book text-white text-2xl"></i>
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-book text-white" style="font-size: 2rem;"></i>
                     </div>
-                    <h4 class="font-semibold mb-2" style="font-size: 1.25rem;">Technical Documentation</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-bottom: 1.5rem;">
+                    <h4 class="font-semibold mb-3" style="font-size: 1.5rem;">Technical Documentation</h4>
+                    <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
                         Access comprehensive technical documentation, datasheets, and user manuals.
                     </p>
-                    <a href="https://docs.alfa.com.tw/" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="btn btn-primary">
+                    <a href="https://docs.alfa.com.tw/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary" style="font-size: 1rem;">
                         <i class="fas fa-external-link-alt"></i>
                         View Documentation
                     </a>
@@ -747,25 +823,25 @@
         <!-- Important Notes -->
         <section class="mb-16">
             <div class="card" style="border-left: 4px solid #667eea;">
-                <h4 class="font-semibold mb-4 flex items-center gap-2" style="font-size: 1.125rem;">
+                <h4 class="font-semibold mb-6 flex items-center gap-2" style="font-size: 1.5rem;">
                     <i class="fas fa-info-circle" style="color: #667eea;"></i>
                     Important Notes
                 </h4>
-                <ul style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.8; list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.75rem;">
-                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                <ul style="color: var(--text-secondary); font-size: 1rem; line-height: 2; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1rem;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: #667eea; margin-right: 0.75rem;"></i>
                         <strong>USB 3.0 Required:</strong> USB 3.0 port required for maximum throughput. Backward compatible with USB 2.0 (up to 480 Mbps).
                     </li>
-                    <li style="margin-bottom: 0.75rem;">
-                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                    <li style="margin-bottom: 1rem;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: #667eea; margin-right: 0.75rem;"></i>
                         <strong>WiFi 6E Router:</strong> To utilize 6 GHz band and achieve maximum speeds, a WiFi 6E compatible router is required.
                     </li>
-                    <li style="margin-bottom: 0.75rem;">
-                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                    <li style="margin-bottom: 1rem;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: #667eea; margin-right: 0.75rem;"></i>
                         <strong>Antenna Upgrade:</strong> RP-SMA connectors allow for optional higher-gain antenna upgrades for extended range.
                     </li>
                     <li>
-                        <i class="fas fa-circle" style="font-size: 0.375rem; color: #667eea; margin-right: 0.75rem;"></i>
+                        <i class="fas fa-circle" style="font-size: 0.5rem; color: #667eea; margin-right: 0.75rem;"></i>
                         <strong>Driver Installation:</strong> Always download the latest drivers from the official ALFA Network website for optimal performance.
                     </li>
                 </ul>
@@ -780,36 +856,36 @@
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-                            <i class="fas fa-wifi text-white"></i>
+                        <div class="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
+                            <i class="fas fa-wifi text-white" style="font-size: 1.25rem;"></i>
                         </div>
-                        <span class="font-semibold" style="font-size: 1.125rem;">ALFA Network</span>
+                        <span class="font-semibold" style="font-size: 1.25rem;">ALFA Network</span>
                     </div>
-                    <p style="color: var(--text-tertiary); font-size: 0.875rem;">
+                    <p style="color: var(--text-tertiary); font-size: 1rem; line-height: 1.6;">
                         Professional wireless networking solutions for demanding applications.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h5 class="font-semibold mb-4" style="font-size: 1rem;">Product</h5>
-                    <ul style="color: var(--text-tertiary); font-size: 0.875rem; line-height: 2; list-style: none; padding: 0;">
+                    <h5 class="font-semibold mb-4" style="font-size: 1.125rem;">Product</h5>
+                    <ul style="color: var(--text-tertiary); font-size: 1rem; line-height: 2.2; list-style: none; padding: 0;">
                         <li><a href="#specifications" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Specifications</a></li>
                         <li><a href="#downloads" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Downloads</a></li>
                         <li><a href="https://docs.alfa.com.tw/" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Documentation</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
-                    <h5 class="font-semibold mb-4" style="font-size: 1rem;">Resources</h5>
-                    <ul style="color: var(--text-tertiary); font-size: 0.875rem; line-height: 2; list-style: none; padding: 0;">
+                    <h5 class="font-semibold mb-4" style="font-size: 1.125rem;">Resources</h5>
+                    <ul style="color: var(--text-tertiary); font-size: 1rem; line-height: 2.2; list-style: none; padding: 0;">
                         <li><a href="https://files.alfa.com.tw/?dir=%5B1%5D%20WiFi%20USB%20adapter/AWUS036AXML" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Driver Downloads</a></li>
                         <li><a href="https://www.alfa.com.tw/products/awus036axml" target="_blank" rel="noopener noreferrer" style="transition: color 0.2s;" onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='var(--text-tertiary)'">Official Product Page</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
-                <p style="color: var(--text-tertiary); font-size: 0.875rem; text-align: center;">
+                <p style="color: var(--text-tertiary); font-size: 1rem; text-align: center;">
                     © 2024 ALFA Network Inc. All rights reserved. Product specifications subject to change without notice.
                 </p>
             </div>
